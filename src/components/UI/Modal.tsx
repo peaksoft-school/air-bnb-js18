@@ -1,56 +1,24 @@
-import * as React from "react"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+"use client";
+
+import * as React from "react";
 
 type ModalProps = {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  title?: string
-  description?: string
-  children?: React.ReactNode
-  confirmText?: string
-  cancelText?: string
-}
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+};
 
-export function Modal({
-  open,
-  onOpenChange,
-  title,
-  description,
-  children,
-  confirmText = "Confirm",
-  cancelText = "Cancel",
-}: ModalProps) {
+function Modal({ open, onClose, children }: ModalProps) {
+  if (!open) return null;
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md rounded-xl">
-        {(title || description) && (
-          <DialogHeader>
-            {title && <DialogTitle>{title}</DialogTitle>}
-            {description && (
-              <DialogDescription>{description}</DialogDescription>
-            )}
-          </DialogHeader>
-        )}
+    <div className="fixed inset-0 z-50">
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
-        <div className="py-4">{children}</div>
-
-        <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)}>
-            {cancelText}
-          </Button>
-          <Button variant="default">
-            {confirmText}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
+      <div className="relative z-10 flex min-h-screen items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg">{children}</div>
+      </div>
+    </div>
+  );
 }
+export default Modal;
