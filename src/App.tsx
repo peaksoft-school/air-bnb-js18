@@ -1,9 +1,5 @@
 function App() {
-  return (
-    <div>
-      <h1>Air-bnb JS-18</h1>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
