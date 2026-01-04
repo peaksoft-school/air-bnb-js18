@@ -1,44 +1,50 @@
-import { X } from "lucide-react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-type NotificationVariant = "unblocked" | "blocked" | "wrong" | "booked";
+export const Notification = () => {
+  return (
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={true}
+      newestOnTop={true}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      limit={3}
+      className="max-w-[38rem] min-w-[20rem] w-fit"
+      toastClassName="bg-white border p-4 rounded shadow-lg flex flex-col"
+      closeButton={false}
+    />
+  );
+};
+
+export type NotificationVariant = "unblocked" | "blocked" | "wrong" | "booked";
 
 const contentByVariant: Record<
   NotificationVariant,
-  { title: string; description: string; bg: string; border: string }
+  { bg: string; border: string }
 > = {
-  unblocked: {
-    title: "Unblocked :)",
-    description: "The house was successfully unblocked",
-    bg: "bg-[#F0FFF1]",
-    border: "border-[#DFF5E1]",
-  },
-  blocked: {
-    title: "Blocked :)",
-    description: "The house was successfully blocked",
-    bg: "bg-[#F0FFF1]",
-    border: "border-[#DFF5E1]",
-  },
-  wrong: {
-    title: "Uh oh! Something went wrong :(",
-    description:
-      "We either couldn't find anything matching your search or have encountered an error. If you're searching for a unique location, try searching again with more common keywords.",
-    bg: "bg-[#FFF1F0]",
-    border: "border-[#DFF5E1]",
-  },
-  booked: {
-    title: "Booked :)",
-    description: "The house was successfully booked",
-    bg: "bg-[#F0FFF1]",
-    border: "border-[#DFF5E1]",
-  },
+  unblocked: { bg: "bg-[#F0FFF1]", border: "border-[#DFF5E1]" },
+  blocked: { bg: "bg-[#F0FFF1]", border: "border-[#DFF5E1]" },
+  wrong: { bg: "bg-[#FFF1F0]", border: "border-[#DFF5E1]" },
+  booked: { bg: "bg-[#F0FFF1]", border: "border-[#DFF5E1]" },
 };
 
-type NotificationProps = {
+interface NotificationLayoutProps {
   variant: NotificationVariant;
+  title: string;
+  message: string;
   onClose?: () => void;
-};
+}
 
-export function Notification({ variant, onClose }: NotificationProps) {
+export function NotificationLayout({
+  variant,
+  title,
+  message,
+}: NotificationLayoutProps) {
   const content = contentByVariant[variant];
 
   return (
@@ -60,23 +66,11 @@ export function Notification({ variant, onClose }: NotificationProps) {
       `}
     >
       <div className="w-[556px] h-[42px] flex flex-col justify-center">
-        <p className="text-sm font-medium text-black">{content.title}</p>
-        <p className="text-sm text-[#646464]">{content.description}</p>
+        <p className="text-sm font-medium text-black">{title}</p>
+        <p className="text-sm text-[#646464]">{message}</p>
       </div>
-
-      <button
-        onClick={onClose}
-        className="
-          absolute
-          top-[6.75px]
-          right-[6.75px]
-          w-[10.5px] h-[10.5px]
-          text-[#828282]
-          hover:opacity-70
-        "
-      >
-        <X size={10.5} />
-      </button>
     </div>
   );
 }
+
+export default Notification;
