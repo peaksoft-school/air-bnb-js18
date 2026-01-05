@@ -37,13 +37,12 @@ const ApartmentSlider: React.FC<Props> = ({ data }) => {
         </div>
 
         <div className="flex flex-col items-end justify-end gap-6  ">
-          {/* Галерея: Белые блоки */}
+        
           <div className="flex gap-4">
             <div className="w-[224px] h-[317px] bg-white/20 border border-white/10" />
             <div className="w-[224px] h-[317px] bg-white/20 border border-white/10" />
           </div>
 
-          {/* Навигация */}
           <div className="flex items-center gap-8 mb-2">
             <button
               onClick={prev}
