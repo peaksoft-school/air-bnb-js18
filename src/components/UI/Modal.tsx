@@ -1,14 +1,12 @@
-"use client";
-
-import * as React from "react";
+import type { ReactNode } from "react";
 
 type ModalProps = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-function Modal({ open, onClose, children }: ModalProps) {
+export const Modal = ({ open, onClose, children }: ModalProps) => {
   if (!open) return null;
 
   return (
@@ -16,9 +14,13 @@ function Modal({ open, onClose, children }: ModalProps) {
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center">
-        <div className="bg-white rounded-xl shadow-lg">{children}</div>
+        <div
+          className="rounded-xl bg-white shadow-lg"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
-}
-export default Modal;
+};
