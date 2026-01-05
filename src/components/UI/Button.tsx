@@ -4,6 +4,7 @@ import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium cursor-pointer box-border transition-all disabled:cursor-not-allowed disabled:opacity-50",
+
   {
     variants: {
       variant: {
