@@ -1,9 +1,3 @@
-const App = () => {
-  return (
-    <div>
-     
-    </div>
-  );
-}
+const App = () => <h1>Air bnb JS-20</h1>;
 
-export default App
+export default App;
