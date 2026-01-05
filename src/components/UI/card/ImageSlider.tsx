@@ -21,7 +21,7 @@ export const ImageSlider = ({ images }: Props) => {
   const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
 
   return (
-    <div className="relative bg-gray-100 aspect-[4/3] w-full overflow-hidden">
+    <div className="relative bg-gray-100 aspect-4/3 w-full overflow-hidden">
       <img
         src={images[index]}
         className="absolute inset-0 h-full w-full object-cover"
