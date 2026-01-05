@@ -1,35 +1,40 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { forwardRef, type InputHTMLAttributes } from "react";
 import { cn } from "../../lib/utils";
+import { SearchIcon } from "lucide-react";
 
-const inputVariants = cva(
-  "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-  {
-    variants: {
-      variant: {
-        default: "border-gray-300 text-gray-600",
+type InputProps = {
+  icon?: boolean;
+} & InputHTMLAttributes<HTMLInputElement>;
 
-        hover: `
-          border-gray-300 text-gray-600
-          hover:border-gray-500
-        `,
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ icon, className, disabled, ...props }, ref) => {
+    return (
+      <div className="relative w-full">
+        {icon && (
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#C4C4C4]">
+            <SearchIcon size={18} />
+          </span>
+        )}
 
-        active: `
-          border-gray-300 text-gray-600
-          focus:border-black
-        `,
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
+        <input
+          ref={ref}
+          disabled={disabled}
+          className={cn(
+            "h-9 w-full rounded-md border px-3 text-base text-black",
+            "placeholder:text-[#C4C4C4]",
+            "border-[rgba(196,196,196,1)]",
+            "transition-colors",
+            "hover:border-[rgba(130,130,130,1)]",
+            "focus:border-[rgba(130,130,130,1)] focus:outline-none focus:ring-0",
+            "disabled:cursor-not-allowed disabled:opacity-50",
+            icon && "pl-9",
+            className
+          )}
+          {...props}
+        />
+      </div>
+    );
   }
 );
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  VariantProps<typeof inputVariants>;
-
-export function Input({ variant, className, ...props }: InputProps) {
-  return (
-    <input className={cn(inputVariants({ variant }), className)} {...props} />
-  );
-}
+Input.displayName = "Input";
