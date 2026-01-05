@@ -15,7 +15,7 @@ type RadioProps = {
   className?: string;
 };
 
-const Radio = ({
+export const Radio = ({
   options,
   value,
   defaultValue,
@@ -43,7 +43,7 @@ const Radio = ({
             )}
           >
             <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-              <span className="block h-[14px] w-[14px] rounded-full bg-[#DD8A08]" />
+              <span className="block h-3.5 w-3.5 rounded-full bg-[#DD8A08]" />
             </RadioGroupPrimitive.Indicator>
           </RadioGroupPrimitive.Item>
 
@@ -54,4 +54,4 @@ const Radio = ({
   );
 };
 
-export { Radio };
+

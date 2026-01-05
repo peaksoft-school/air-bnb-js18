@@ -1,18 +1,18 @@
-import React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 type CheckboxProps = {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   disabled?: boolean;
 } & Omit<
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
+  ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
   "checked" | "onCheckedChange" | "disabled"
 >;
 
-const Checkbox = React.forwardRef<
+export const Checkbox = forwardRef<
   React.ComponentRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
 >(({ checked, onChange, disabled, className, ...rest }, ref) => {
@@ -43,4 +43,4 @@ const Checkbox = React.forwardRef<
 
 Checkbox.displayName = "Checkbox";
 
-export { Checkbox };
+
