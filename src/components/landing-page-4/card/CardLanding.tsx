@@ -1,5 +1,5 @@
 import type { CardDataLanding } from "./types";
-import mapPin from "../../../../assets/Icons/mapPin.svg";
+import mapPin from "../../../assets/Icons/mapPin.svg";
 import { Star } from "lucide-react";
 
 export const CardLanding = ({ data }: { data: CardDataLanding }) => {
