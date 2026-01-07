@@ -9,35 +9,20 @@ interface User {
   announcements: number;
 }
 
-const initialUsers: User[] = [
-  {
-    id: crypto.randomUUID(),
-    name: "Максат Максатов",
-    email: "example@gmail.com",
-    bookings: 1,
-    announcements: 2,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Максат Максатов",
-    email: "example@gmail.com",
-    bookings: 1,
-    announcements: 2,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Максат Максатов",
-    email: "example@gmail.com",
-    bookings: 1,
-    announcements: 2,
-  },
-];
+interface TableUsersProps {
+  users: User[];
+  onDelete?: (id: string) => void;
+}
 
-export const TableUsers = () => {
+export const TableUsers = ({
+  users: initialUsers,
+  onDelete,
+}: TableUsersProps) => {
   const [users, setUsers] = useState<User[]>(initialUsers);
 
-  const deleteUser = (id: string) => {
+  const handleDelete = (id: string) => {
     setUsers((prev) => prev.filter((user) => user.id !== id));
+    if (onDelete) onDelete(id);
   };
 
   return (
@@ -69,7 +54,7 @@ export const TableUsers = () => {
               <td className="p-3">{user.announcements}</td>
               <td className="p-3 flex justify-center">
                 <button
-                  onClick={() => deleteUser(user.id)}
+                  onClick={() => handleDelete(user.id)}
                   className="hover:opacity-70 transition"
                 >
                   <img src={basket} alt="Delete" className="h-5 w-5" />
@@ -77,6 +62,14 @@ export const TableUsers = () => {
               </td>
             </tr>
           ))}
+
+          {users.length === 0 && (
+            <tr>
+              <td colSpan={6} className="p-6 text-center text-gray-500">
+                Users not found
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
