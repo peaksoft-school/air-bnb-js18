@@ -12,12 +12,12 @@ type CardProps = {
 
 const variantClasses: Record<CardVariant, string> = {
   default:
-    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem]",
+    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem] border border-none rounded-[4px]",
 
   admin:
-    "hover:border-red-500 hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[13.5rem] min-h-[15rem]",
+    "hover:border-red-500 hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[13.5rem] min-h-[15rem] rounded-[4px] border border-none",
 
-  profile: "min-w-[16rem] min-h-[25rem]",
+  profile: "min-w-[16rem] min-h-[25rem] rounded-[4px] border border-none",
 };
 
 export const Card = ({ data, variant = "default", className }: CardProps) => {
@@ -41,7 +41,7 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
             <span className="ml-1 text-[1rem] text-[#6C6C6C]">/ day</span>
           </span>
 
-          <div className="flex items-center gap-1 rounded-[2px] bg-[#828282] px-[11px] py-1">
+          <div className="flex items-center gap-1 rounded-[2px] bg-[#828282] px-2.75 py-1">
             <Star size={14} className="text-[#F7D212]" fill="#F7D212" />
             <span className="text-sm text-white">{rating}</span>
           </div>
@@ -73,13 +73,13 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
                 <p className="font-normal text-[#363636]">{checkOut}</p>
               </div>
             </div>
-            <Button className="mt-3 h-[37px] w-full">CHANGE</Button>
+            <Button className="mt-3 h-9.25 w-full">CHANGE</Button>
           </>
         )}
 
         {variant !== "profile" && (
           <div className="mt-2 flex items-center justify-between">
-            <p className="max-w-[210px] text-[0.9rem] text-[#939393]">
+            <p className="max-w-52.5 text-[0.9rem] text-[#939393]">
               {guests} guests
             </p>
 
@@ -89,7 +89,7 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
 
                 <button
                   onClick={(e) => e.stopPropagation()}
-                  className="flex h-[35px] w-[35px] items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
+                  className="flex h-8.75 w-8.75items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
                 >
                   <Heart size={18} />
                 </button>
