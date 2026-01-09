@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Input } from "../UI/Input";
+import { Checkbox } from "../UI/Checkbox";
 import airbnb from "../../assets/icons/logo.svg";
 import profile from "../../assets/icons/profile.svg";
 
 const Intro = () => {
-  const [isLoggedIn, setIsloggedIn] = useState(true);
+  const [isLoggedIn, setIsloggedIn] = useState(false);
+  const [nearby, setNearby] = useState(false);
+
   console.log(setIsloggedIn);
 
   return (
@@ -36,20 +39,22 @@ const Intro = () => {
           <Input
             type="text"
             className="
-              bg-white h-11 pl-14 pr-4 text-[18px] text-gray-700 placeholder:text-gray-400 border-none"
+              bg-white h-11 text-[18px] text-gray-700 placeholder:text-gray-400 border-none"
             placeholder="Region, city, apartment, house..."
+            icon
           />
         </div>
 
         {!isLoggedIn && (
           <div className="w-181.25 mt-3 flex justify-end items-center">
-            <input
-              id="checkbox"
-              type="checkbox"
-              className="w-4 h-4 border border-white"
+            <Checkbox
+              id="nearby"
+              checked={nearby}
+              onChange={() => setNearby((prev) => !prev)}
             />
+
             <label
-              htmlFor="checkbox"
+              htmlFor="nearby"
               className="text-white ml-2 cursor-pointer text-sm"
             >
               Искать поблизости
