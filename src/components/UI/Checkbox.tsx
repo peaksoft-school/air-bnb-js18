@@ -23,18 +23,23 @@ export const Checkbox = forwardRef<
   return (
     <CheckboxPrimitive.Root
       ref={ref}
+      id={rest.id} 
+      data-slot="checkbox"
       checked={checked}
       onCheckedChange={(value) => onChange?.(Boolean(value))}
       disabled={disabled}
       className={cn(
         "peer size-5 shrink-0 rounded-[1px] border border-[#C4C4C4] transition-all outline-none",
         "data-[state=checked]:bg-[#DD8A08] data-[state=checked]:border-[#DD8A08]",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer",
         className
       )}
       {...rest}
     >
-      <CheckboxPrimitive.Indicator className="grid place-content-center text-white">
+      <CheckboxPrimitive.Indicator
+        data-slot="checkbox-indicator"
+        className="grid place-content-center text-white"
+      >
         <CheckIcon className="size-4" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
