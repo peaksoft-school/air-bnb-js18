@@ -1,7 +1,11 @@
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ComponentRef,
+} from "react";
 import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { forwardRef, type ComponentPropsWithoutRef } from "react";
 
 type CheckboxProps = {
   checked?: boolean;
@@ -13,13 +17,12 @@ type CheckboxProps = {
 >;
 
 export const Checkbox = forwardRef<
-  React.ComponentRef<typeof CheckboxPrimitive.Root>,
+  ComponentRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
 >(({ checked, onChange, disabled, className, ...rest }, ref) => {
   return (
     <CheckboxPrimitive.Root
       ref={ref}
-      data-slot="checkbox"
       checked={checked}
       onCheckedChange={(value) => onChange?.(Boolean(value))}
       disabled={disabled}
@@ -31,10 +34,7 @@ export const Checkbox = forwardRef<
       )}
       {...rest}
     >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className="grid place-content-center text-white"
-      >
+      <CheckboxPrimitive.Indicator className="grid place-content-center text-white">
         <CheckIcon className="size-4" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
@@ -42,5 +42,3 @@ export const Checkbox = forwardRef<
 });
 
 Checkbox.displayName = "Checkbox";
-
-
