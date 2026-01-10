@@ -23,7 +23,7 @@ export const Checkbox = forwardRef<
   return (
     <CheckboxPrimitive.Root
       ref={ref}
-      id={rest.id} 
+      id={rest.id}
       data-slot="checkbox"
       checked={checked}
       onCheckedChange={(value) => onChange?.(Boolean(value))}
