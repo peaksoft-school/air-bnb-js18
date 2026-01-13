@@ -1,8 +1,8 @@
 import Logo from "../../assets/Icons/logoBlack.svg";
 import SearchIcon from "../../assets/Icons/searchIcon.svg";
-import { Button } from "../UI/Button";
-import { Checkbox } from "../UI/Checkbox";
-import { Input } from "../UI/Input";
+import { Button } from "../../components/UI/Button";
+import { Checkbox } from "../../components/UI/Checkbox";
+import { Input } from "../../components/UI/Input";
 
 export const MainHeader = () => {
   return (
