@@ -1,6 +1,5 @@
-import { CardLanding } from "./card/CardLanding";
-import type { CardDataLanding } from "./card/types";
-import { ViewLink } from "./ViewLink";
+import { CardLanding } from "../UI/card/CardLanding";
+import type { CardDataLanding } from "../UI/card/types";
 
 type PopularHousesProps = {
   houses?: CardDataLanding[];
@@ -23,7 +22,9 @@ export const PopularHouses = ({ houses = [] }: PopularHousesProps) => {
           </p>
         </div>
         <a href="#" className="border-b border-[#363636]">
-          <ViewLink />
+          <span className="text-base font-normal leading-4.75 text-[#363636]">
+            View all
+          </span>
         </a>
       </div>
 

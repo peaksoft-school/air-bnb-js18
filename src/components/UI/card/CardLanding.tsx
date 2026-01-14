@@ -1,6 +1,6 @@
-import type { CardDataLanding } from "./types";
 import mapPin from "../../../assets/Icons/mapPin.svg";
 import { Star } from "lucide-react";
+import type { CardDataLanding } from "./types";
 
 export const CardLanding = ({ data }: { data: CardDataLanding }) => {
   const { images, price, rating, title, address } = data;
