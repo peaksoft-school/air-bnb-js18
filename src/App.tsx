@@ -1,6 +1,6 @@
 import "./App.css";
-import { SignInPage } from "./components/auth/SignInPage";
+import AppRoutes from "./routes/AppRoutes";
 
-const App = () => <SignInPage />;
+const App = () => <AppRoutes />;
 
 export default App;

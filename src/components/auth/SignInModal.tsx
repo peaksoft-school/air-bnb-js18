@@ -12,6 +12,8 @@ type SignInModalProps = {
 };
 
 type SignInFormValues = {
+  firstName?: string;
+  lastName?: string;
   email: string;
   password: string;
 };
@@ -53,12 +55,38 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
     <Modal open={true} onClose={onClose}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-118.5 h-59.5 bg-white rounded-[2px] py-6.25 px-7.5 flex flex-col items-center justify-center m-5.5"
+        className="w-118.5  bg-white rounded-[2px] py-6.25 px-7.5 flex flex-col items-center justify-center m-5.5"
       >
         <h2 className="text-black font-inter font-medium text-[18px] leading-5.5 uppercase mb-6">
           Sign In
         </h2>
-
+        <Input
+          placeholder="First Name"
+          type="text"
+          className={`rounded-[2px] ${
+            errors.firstName ? "border border-red-500" : ""
+          }`}
+          {...register("firstName")}
+        />
+        <div className="min-h-4 mb-4">
+          {errors.firstName && (
+            <p className="text-red-500 text-xs">{errors.firstName.message}</p>
+          )}
+        </div>
+        <Input
+          placeholder="Last Name"
+          type="text"
+          className={`rounded-[2px] ${
+            errors.lastName ? "border border-red-500" : ""
+          }`}
+          {...register("lastName")}
+        />
+        <div className="min-h-4 mb-4">
+          {errors.lastName && (
+            <p className="text-red-500 text-xs">{errors.lastName.message}</p>
+          )}
+        </div>
+      
         <Input
           placeholder="Email"
           type="email"
