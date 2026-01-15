@@ -15,7 +15,7 @@ export const PrivateRoutes = ({
 }: PrivateRoutesProps) => {
   const isAllowed = roles.includes(role);
 
-    if (!isAuth || !isAllowed) {
+  if (!isAuth || !isAllowed) {
     return <Navigate to={fallbackPath} replace />;
   }
 

@@ -1,16 +1,17 @@
-import { LandingPage } from "@/containers/LandingPage";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import { PrivateRoutes } from "./PrivateRoutes";
-import { Suspense } from "react";
-import { AdminLayout } from "@/layout/admin/AdminLayout";
 import { adminRoutes } from "./admin/AdminRoutes";
-import { UserLayout } from "@/layout/user/UserLayout";
 import { userRoutes } from "./user/UserRoutes";
-import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
+import { AdminLayout } from "@/layout/admin/AdminLayout";
+import { UserLayout } from "@/layout/user/UserLayout";
 import { NotFound } from "@/layout/NotFound";
+import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
+
+const LandingPage = lazy(() => import("@/containers/LandingPage"));
 
 const store = {
-  role: "ADMIN",
+  role: "GUEST",
   isAuth: true,
 };
 

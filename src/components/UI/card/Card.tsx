@@ -1,8 +1,8 @@
 import { cn } from "../../../lib/utils";
 import { Star, Heart, MoreHorizontal, MapPin } from "lucide-react";
-import { Button } from "../Button";
 import { ImageSlider } from "./ImageSlider";
 import type { CardData, CardVariant } from "./types";
+import { Button } from "../Button";
 
 type CardProps = {
   data: CardData;
@@ -89,7 +89,7 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
 
                 <button
                   onClick={(e) => e.stopPropagation()}
-                  className="flex h-8.75 w-8.75items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
+                  className="flex h-8.75 w-8.75 items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
                 >
                   <Heart size={18} />
                 </button>
