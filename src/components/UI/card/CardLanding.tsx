@@ -1,6 +1,6 @@
-import mapPin from "../../../assets/Icons/mapPin.svg";
 import { Star } from "lucide-react";
 import type { CardDataLanding } from "./types";
+import { LocationIcon } from "@/assets/icons";
 
 export const CardLanding = ({ data }: { data: CardDataLanding }) => {
   const { images, price, rating, title, address } = data;
@@ -25,7 +25,7 @@ export const CardLanding = ({ data }: { data: CardDataLanding }) => {
           <p className="text-[18px] font-medium text-[#363636]">{title}</p>
 
           <p className="flex items-center gap-1 text-[14px] text-[#757575]">
-            <img src={mapPin} alt="map pin" className="h-3 w-4" />
+            <img src={LocationIcon} alt="map pin" className="h-3 w-4" />
             {address}
           </p>
         </div>

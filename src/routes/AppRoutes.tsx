@@ -1,0 +1,80 @@
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
+import { PrivateRoutes } from "./PrivateRoutes";
+import { adminRoutes } from "./admin/AdminRoutes";
+import { userRoutes } from "./user/UserRoutes";
+import { AdminLayout } from "@/layout/admin/AdminLayout";
+import { UserLayout } from "@/layout/user/UserLayout";
+import { NotFound } from "@/layout/NotFound";
+import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
+
+const LandingPage = lazy(() => import("@/containers/LandingPage"));
+
+const store = {
+  role: "GUEST",
+  isAuth: true,
+};
+
+const AppRoutes = () => {
+  const { role, isAuth } = store;
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element:
+        role === "ADMIN" ? (
+          <Navigate to={`${ADMIN_ROUTES.index}`} />
+        ) : (
+          <LandingPage />
+        ),
+    },
+    {
+      element: (
+        <PrivateRoutes
+          isAuth={isAuth}
+          role={role}
+          roles={[ROLES.ADMIN]}
+          fallbackPath="/"
+        />
+      ),
+      children: [
+        {
+          path: `${ADMIN_ROUTES.index}`,
+          element: (
+            <Suspense fallback={<NotFound />}>
+              <AdminLayout />
+            </Suspense>
+          ),
+          children: adminRoutes,
+        },
+      ],
+    },
+
+    {
+      element: (
+        <PrivateRoutes
+          isAuth={isAuth}
+          role={role}
+          roles={[ROLES.USER]}
+          fallbackPath={`${ADMIN_ROUTES.index}`}
+        />
+      ),
+      children: [
+        {
+          path: `${USER_ROUTES.index}`,
+          element: (
+            <Suspense>
+              <UserLayout />
+            </Suspense>
+          ),
+          children: userRoutes,
+        },
+      ],
+    },
+    { path: "*", element: <NotFound /> },
+  ]);
+
+  return <RouterProvider router={router} />;
+};
+
+export default AppRoutes;

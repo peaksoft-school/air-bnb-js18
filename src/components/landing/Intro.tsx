@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Input } from "../UI/Input";
 import { Checkbox } from "../UI/Checkbox";
-import airbnb from "../../assets/icons/logo.svg";
-import profile from "../../assets/icons/profile.svg";
 import { Button } from "../UI/Button";
 import { JoinUsModal } from "../auth/JoinUsModal";
+import { Logo, ProfileIcon } from "@/assets/icons";
 
 const Intro = () => {
   const [isLoggedIn, setIsloggedIn] = useState(false);
@@ -16,12 +15,12 @@ const Intro = () => {
   return (
     <div className="h-screen w-screen bg-[url('@/assets/images/landing-bg.png')] bg-cover bg-center relative">
       <header className="relative z-20 flex items-center justify-between px-24 py-7">
-        <img src={airbnb} alt="logo" className="w-22 h-16.25" />
+        <img src={Logo} alt="logo" className="w-22 h-16.25" />
 
         {isLoggedIn ? (
           <div className="flex items-center gap-6">
             <button className="text-white font-medium">leave an ad</button>
-            <img src={profile} alt="profile" />
+            <img src={ProfileIcon} alt="profile" />
           </div>
         ) : (
           <div className="flex items-center gap-6">

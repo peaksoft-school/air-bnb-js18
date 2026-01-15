@@ -1,8 +1,8 @@
 import { useState } from "react";
-import GoogleIcon from "../../assets/Icons/google.svg";
 import { SignInModal } from "./SignInModal";
 import { Button } from "@/components/UI/Button";
 import { Modal } from "../UI/Modal";
+import { GoogleIcon } from "@/assets/icons";
 
 type JoinUsModalProps = {
   onClose: () => void;
