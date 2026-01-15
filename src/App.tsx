@@ -1,5 +1,6 @@
 import "./App.css";
+import { SignInPage } from "./components/auth/SignInPage";
 
-const App = () => <h1>Air-bnb JS-18</h1>;
+const App = () => <SignInPage />;
 
 export default App;
