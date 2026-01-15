@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Logo from "../../assets/Icons/logo.svg";
-import ArrowDown from "../../assets/Icons/downArrow.svg";
+import { Logo, ArrowDownIcon } from "@/assets/icons";
 
 export const AdminHeader = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +27,7 @@ export const AdminHeader = () => {
           className="flex items-center gap-2 cursor-pointer"
         >
           Administrator
-          <img src={ArrowDown} alt="ArrowDown" className="w-3.25" />
+          <img src={ArrowDownIcon} alt="ArrowDown" className="w-3.25" />
         </button>
 
         {open && (

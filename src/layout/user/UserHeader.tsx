@@ -1,14 +1,17 @@
-import Logo from "../../assets/Icons/logoBlack.svg";
-import SearchIcon from "../../assets/Icons/searchIcon.svg";
+import { useState } from "react";
+import { BlackLogoIcon, SearchIcon } from "@/assets/icons";
 import { Button } from "../../components/UI/Button";
 import { Checkbox } from "../../components/UI/Checkbox";
 import { Input } from "../../components/UI/Input";
+import { JoinUsModal } from "@/components/auth/JoinUsModal";
 
-export const MainHeader = () => {
+export const UserHeader = () => {
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+
   return (
     <header className="bg-white h-22 flex justify-between items-center px-25">
       <div className="flex gap-15">
-        <img src={Logo} alt="AirBNB logo" className="w-18.5 h-13.75" />
+        <img src={BlackLogoIcon} alt="AirBNB logo" className="w-18.5 h-13.75" />
 
         <button className="text-[#FFBE58] font-medium cursor-pointer">
           leave an ad
@@ -34,12 +37,16 @@ export const MainHeader = () => {
         </div>
 
         <Button
+          type="button"
+          onClick={() => setIsSignUpOpen(true)}
           variant="default"
           className="text-[#F7F7F7] text-sm font-medium leading-4 uppercase px-17.5 py-2.5"
         >
-          Join Us
+          JOIN US
         </Button>
       </div>
+
+      {isSignUpOpen && <JoinUsModal onClose={() => setIsSignUpOpen(false)} />}
     </header>
   );
 };

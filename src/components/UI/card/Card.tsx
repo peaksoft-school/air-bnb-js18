@@ -12,12 +12,12 @@ type CardProps = {
 
 const variantClasses: Record<CardVariant, string> = {
   default:
-    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem]",
+    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem] border border-none rounded-[4px]",
 
   admin:
-    "hover:border-red-500 hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[13.5rem] min-h-[15rem]",
+    "hover:border-red-500 hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[13.5rem] min-h-[15rem] rounded-[4px] border border-none",
 
-  profile: "min-w-[16rem] min-h-[25rem]",
+  profile: "min-w-[16rem] min-h-[25rem] rounded-[4px] border border-none",
 };
 
 export const Card = ({ data, variant = "default", className }: CardProps) => {
