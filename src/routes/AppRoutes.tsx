@@ -12,7 +12,7 @@ const LandingPage = lazy(() => import("@/containers/LandingPage"));
 
 const store = {
   role: "GUEST",
-  isAuth: true,
+  isAuth: false,
 };
 
 const AppRoutes = () => {

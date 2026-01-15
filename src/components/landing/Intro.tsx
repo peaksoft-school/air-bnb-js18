@@ -25,7 +25,12 @@ const Intro = () => {
         ) : (
           <div className="flex items-center gap-6">
             <button className="text-white font-medium">leave an ad</button>
-            <Button type="button" onClick={() => setIsSignUpOpen(true)}>
+            <Button
+              type="button"
+              onClick={() => setIsSignUpOpen(true)}
+              variant="default"
+              className="text-[#F7F7F7] text-sm font-medium leading-4 uppercase px-17.5 py-2.5"
+            >
               JOIN US
             </Button>
           </div>
