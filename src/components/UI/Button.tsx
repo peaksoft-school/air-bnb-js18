@@ -18,6 +18,7 @@ const buttonVariants = cva(
           "border border-[rgba(196,196,196,1)] " +
           "hover:border-[rgba(130,130,130,1)] " +
           "active:bg-[rgba(196,196,196,0.2)] active:border-[rgba(130,130,130,1)]",
+
         outline:
           "bg-transparent text-[rgba(130,130,130,1)] rounded-[1px] " +
           "border border-[rgba(125,125,125,1)] " +
@@ -70,6 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {icon && <span className="flex items-center">{icon}</span>}
+
         {children}
       </button>
     );
