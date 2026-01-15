@@ -1,8 +1,8 @@
-import { Modal } from "../UI/Modal";
-import { Button } from "../UI/Button";
-import { Input } from "../UI/Input";
-import { useForm } from "react-hook-form";
+import { Button } from "@/components/UI/Button";
+import { Input } from "@/components/UI/Input";
+import { Modal } from "@/components/UI/Modal";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 type ForgetPasswordProps = {
@@ -31,7 +31,7 @@ export const ForgetPassword = ({ onClose }: ForgetPasswordProps) => {
   });
 
   const onSubmit = (data: ForgetPasswordFormValues) => {
-    console.log("RESET EMAIL:", data.email); 
+    console.log("RESET EMAIL:", data.email);
     onClose();
   };
 

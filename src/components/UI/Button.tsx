@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import { forwardRef, type ReactNode } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium cursor-pointer box-border transition-all disabled:cursor-not-allowed disabled:opacity-50",
-=======
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
@@ -13,17 +5,12 @@ import { cn } from "../../lib/utils";
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium cursor-pointer box-border transition-all disabled:cursor-not-allowed disabled:opacity-50",
 
->>>>>>> development
   {
     variants: {
       variant: {
         default:
           "bg-[rgba(221,138,8,1)] text-white rounded-[2px] " +
-<<<<<<< HEAD
-          "hover:bg-[rgba(187,114,0,1)]" +
-=======
           "hover:bg-[rgba(187,114,0,1)] " +
->>>>>>> development
           "active:bg-[rgba(242,183,91,1)]",
 
         google:
@@ -31,10 +18,6 @@ const buttonVariants = cva(
           "border border-[rgba(196,196,196,1)] " +
           "hover:border-[rgba(130,130,130,1)] " +
           "active:bg-[rgba(196,196,196,0.2)] active:border-[rgba(130,130,130,1)]",
-<<<<<<< HEAD
-=======
-
->>>>>>> development
         outline:
           "bg-transparent text-[rgba(130,130,130,1)] rounded-[1px] " +
           "border border-[rgba(125,125,125,1)] " +
@@ -59,11 +42,7 @@ const buttonVariants = cva(
 
 type ButtonProps = {
   icon?: ReactNode;
-<<<<<<< HEAD
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-=======
 } & ButtonHTMLAttributes<HTMLButtonElement> &
->>>>>>> development
   VariantProps<typeof buttonVariants>;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -91,10 +70,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {icon && <span className="flex items-center">{icon}</span>}
-<<<<<<< HEAD
-=======
-
->>>>>>> development
         {children}
       </button>
     );

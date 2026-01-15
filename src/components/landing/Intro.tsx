@@ -3,16 +3,19 @@ import { Input } from "../UI/Input";
 import { Checkbox } from "../UI/Checkbox";
 import airbnb from "../../assets/icons/logo.svg";
 import profile from "../../assets/icons/profile.svg";
+import { Button } from "../UI/Button";
+import { JoinUsModal } from "../auth/JoinUsModal";
 
 const Intro = () => {
   const [isLoggedIn, setIsloggedIn] = useState(false);
   const [nearby, setNearby] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 
   console.log(setIsloggedIn);
 
   return (
     <div className="h-screen w-screen bg-[url('@/assets/images/landing-bg.png')] bg-cover bg-center relative">
-      <header className="flex items-center justify-between px-24 py-7">
+      <header className="relative z-20 flex items-center justify-between px-24 py-7">
         <img src={airbnb} alt="logo" className="w-22 h-16.25" />
 
         {isLoggedIn ? (
@@ -23,11 +26,13 @@ const Intro = () => {
         ) : (
           <div className="flex items-center gap-6">
             <button className="text-white font-medium">leave an ad</button>
-            <button className="text-white bg-[#DD8A08] py-2.5 px-8 rounded uppercase">
-              join us
-            </button>
+            <Button type="button" onClick={() => setIsSignUpOpen(true)}>
+              JOIN US
+            </Button>
           </div>
         )}
+
+        {isSignUpOpen && <JoinUsModal onClose={() => setIsSignUpOpen(false)} />}
       </header>
 
       <main className="absolute inset-0 flex flex-col items-center justify-center">
