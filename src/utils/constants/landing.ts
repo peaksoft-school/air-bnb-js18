@@ -1,5 +1,26 @@
 import type { CardDataLanding } from "@/components/UI/card/types";
+import ChuiImage from "@/assets/images/regions/chui.jpg";
+import BatkenImage from "@/assets/images/regions/batken.jpg";
+import JalalabadImage from "@/assets/images/regions/jalalAbad.jpg";
+import NarynImage from "@/assets/images/regions/naryn.jpg";
+import YssykKolImage from "@/assets/images/regions/issykKol.jpg";
+import TalasImage from "@/assets/images/regions/talas.jpg";
+import BishkekImage from "@/assets/images/regions/bishkek.jpg";
+import OshImage from "@/assets/images/regions/osh.jpg";
 
+// ragions
+export const RAGIONS_IMAGES = [
+  { id: 1, src: ChuiImage, span: "col-span-2 row-span-3" },
+  { id: 2, src: BatkenImage, span: "col-span-1 row-span-1" },
+  { id: 3, src: JalalabadImage, span: "col-span-1 row-span-1" },
+  { id: 4, src: NarynImage, span: "col-span-2 row-span-2" },
+  { id: 5, src: YssykKolImage, span: "col-span-1 row-span-1" },
+  { id: 6, src: TalasImage, span: "col-span-1 row-span-1" },
+  { id: 8, src: OshImage, span: "col-span-2 row-span-2" },
+  { id: 7, src: BishkekImage, span: "col-span-2 row-span-1" },
+];
+
+// popular houses
 export const POPULAR_HOUSES_DATA: CardDataLanding[] = [
   {
     id: 1,
