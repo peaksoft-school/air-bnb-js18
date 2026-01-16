@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAppDispatch } from "@/store/hooks";
 import { signIn } from "@/store/slices/auth/autThunk";
+import { ForgetPassword } from "./ForgetPassword";
+import { useState } from "react";
 
 type SignInModalProps = {
   onClose: () => void;
@@ -33,6 +35,7 @@ const signInSchema = yup.object({
 
 export const SignInModal = ({ onClose }: SignInModalProps) => {
   const dispatch = useAppDispatch();
+   const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
 
   const {
     register,
@@ -86,7 +89,7 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
             <p className="text-red-500 text-xs">{errors.lastName.message}</p>
           )}
         </div>
-      
+
         <Input
           placeholder="Email"
           type="email"
@@ -123,7 +126,19 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
         >
           Sign In
         </Button>
+
+        <button
+          type="button"
+          className="text-[#266BD3] font-normal text-[14px] leading-4.25 tracking-normal underline hover:text-blue-600 m-auto mt-4 cursor-pointer"
+          onClick={() => setIsForgetPasswordOpen(true)}
+        >
+          Forgot your password?
+        </button>
       </form>
+
+      {isForgetPasswordOpen && (
+        <ForgetPassword onClose={() => setIsForgetPasswordOpen(false)} />
+      )}
     </Modal>
   );
 };
