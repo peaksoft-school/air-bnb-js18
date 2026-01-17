@@ -1,8 +1,6 @@
 import "./App.css";
-import { AdminPage } from "./pages/Admin/AdminPage";
+import AppRoutes from "./routes/AppRoutes";
 
-const App = () => {
-    return <AdminPage/>
-};
+const App = () => <AppRoutes />;
 
 export default App;

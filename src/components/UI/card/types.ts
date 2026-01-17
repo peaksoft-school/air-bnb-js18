@@ -10,3 +10,12 @@ export type CardData = {
 };
 
 export type CardVariant = "default" | "admin" | "profile";
+
+export type CardDataLanding = {
+  images: string;
+  price: number;
+  rating: number;
+  title: string;
+  address: string;
+  id: number;
+};
