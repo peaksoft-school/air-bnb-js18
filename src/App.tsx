@@ -1,5 +1,8 @@
 import "./App.css";
+import { AdminPage } from "./pages/Admin/AdminPage";
 
-const App = () => <h1>Air-bnb JS-18</h1>;
+const App = () => {
+    return <AdminPage/>
+};
 
 export default App;
