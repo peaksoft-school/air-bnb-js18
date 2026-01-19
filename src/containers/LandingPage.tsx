@@ -1,6 +1,7 @@
 import Intro from "@/components/landing/Intro";
 import { PopularHouses } from "@/components/landing/PopularHouses";
-import { Regions } from "@/components/landing/regions";
+import { Regions } from "@/components/landing/Regions";
+import { PopularApartments } from "@/components/landing/popular-apartments/PopularApartments";
 import { Footer } from "@/layout/Footer";
 import { POPULAR_HOUSES_DATA } from "@/utils/constants/landing";
 
@@ -9,9 +10,9 @@ const LandingPage = () => {
     <>
       <Intro />
       <Regions />
-      <h1>Popular Apartments</h1>
+      <PopularApartments variant="popular-apartments" />
       <PopularHouses houses={POPULAR_HOUSES_DATA} />
-      <h1>The lastest</h1>
+      <PopularApartments variant="the-lastest" />
       <Footer />
     </>
   );
