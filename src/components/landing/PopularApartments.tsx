@@ -1,5 +1,5 @@
-import ApartmentSlider from "./ApartmentSlider";
 import { POPULAR_APARTMENTS_DATA } from "@/utils/constants/landing";
+import { ApartmentSlider } from "./ApartmentSlider";
 
 interface PopularApartmentsProps {
   variant?: string;

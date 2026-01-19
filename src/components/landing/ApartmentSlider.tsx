@@ -13,7 +13,7 @@ interface Props {
   variant?: string;
 }
 
-const ApartmentSlider = ({ data, variant }: Props) => {
+export const ApartmentSlider = ({ data, variant }: Props) => {
   if (!data.length) return null;
 
   const apartment = data[0];
@@ -104,5 +104,3 @@ const ApartmentSlider = ({ data, variant }: Props) => {
     </div>
   );
 };
-
-export default ApartmentSlider;
