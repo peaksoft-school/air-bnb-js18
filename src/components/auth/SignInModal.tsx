@@ -26,6 +26,7 @@ const signInSchema = yup.object({
     .email("Invalid email")
     .required("Email is required")
     .max(320, "Email must be at most 320 characters"),
+
   password: yup
     .string()
     .required("Password is required")
@@ -35,7 +36,8 @@ const signInSchema = yup.object({
 
 export const SignInModal = ({ onClose }: SignInModalProps) => {
   const dispatch = useAppDispatch();
-   const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
+
+  const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
 
   const {
     register,
