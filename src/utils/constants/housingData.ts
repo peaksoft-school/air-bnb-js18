@@ -1,9 +1,9 @@
-import type { CardData } from "@/components/ui/card/types";
+import type { CardData } from "@/components/UI/card/types";
 
 export const housingData: CardData[] = [
   {
     id: 1,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -12,7 +12,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 2,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -21,7 +21,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 3,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -30,7 +30,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 4,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -39,7 +39,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 5,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -48,7 +48,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 6,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -57,7 +57,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 7,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -66,7 +66,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 8,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -75,7 +75,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 9,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -84,7 +84,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 10,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -93,7 +93,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 11,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",
@@ -102,7 +102,7 @@ export const housingData: CardData[] = [
   },
   {
     id: 12,
-    images: ["/src/assets/images/house.jpg"],
+    images: ["/src/assets/images/house.png"],
     price: 26,
     rating: 3.4,
     title: "Beautiful and picturesque house",

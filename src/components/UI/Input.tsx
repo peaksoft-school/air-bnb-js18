@@ -28,13 +28,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             "focus:border-[rgba(130,130,130,1)] focus:outline-none focus:ring-0",
             "disabled:cursor-not-allowed disabled:opacity-50",
             icon && "pl-9",
-            className
+            className,
           )}
           {...props}
         />
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

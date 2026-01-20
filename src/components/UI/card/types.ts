@@ -1,5 +1,5 @@
 export type CardData = {
-  id: number,
+  id: number;
   images: string[];
   price: number;
   rating: number;
