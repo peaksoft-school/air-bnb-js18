@@ -50,7 +50,7 @@ export const ImageSlider = ({ images }: Props) => {
                 key={i}
                 className={cn(
                   "h-1.5 w-1.5 rounded-full",
-                  i === index ? "bg-white" : "bg-white/50"
+                  i === index ? "bg-white" : "bg-white/50",
                 )}
               />
             ))}
