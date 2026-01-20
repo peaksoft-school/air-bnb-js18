@@ -3,40 +3,23 @@ import { Button } from "../UI/Button";
 import { Input } from "../UI/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useAppDispatch } from "@/store/hooks";
 import { signIn } from "@/store/slices/auth/autThunk";
 import { ForgetPassword } from "./ForgetPassword";
 import { useState } from "react";
+import { signInSchema } from "@/utils/helpers/validate";
 
 type SignInModalProps = {
   onClose: () => void;
 };
 
 type SignInFormValues = {
-  firstName?: string;
-  lastName?: string;
   email: string;
   password: string;
 };
 
-const signInSchema = yup.object({
-  email: yup
-    .string()
-    .email("Invalid email")
-    .required("Email is required")
-    .max(320, "Email must be at most 320 characters"),
-
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(6, "Password must be at least 6 characters")
-    .max(12, "Password must be at most 12 characters"),
-});
-
 export const SignInModal = ({ onClose }: SignInModalProps) => {
   const dispatch = useAppDispatch();
-
   const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
 
   const {
@@ -50,7 +33,6 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
 
   const onSubmit = async (data: SignInFormValues) => {
     const resultAction = await dispatch(signIn(data));
-
     if (signIn.fulfilled.match(resultAction)) {
       onClose();
     }
@@ -60,78 +42,44 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
     <Modal open={true} onClose={onClose}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-118.5  bg-white rounded-[2px] py-6.25 px-7.5 flex flex-col items-center justify-center m-5.5"
+        className="w-118.5 bg-white rounded-[2px] py-6.25 px-7.5 flex flex-col items-center m-5.5"
       >
-        <h2 className="text-black font-inter font-medium text-[18px] leading-5.5 uppercase mb-6">
+        <h2 className="text-black font-inter font-medium text-[18px] uppercase mb-6">
           Sign In
         </h2>
-        <Input
-          placeholder="First Name"
-          type="text"
-          className={`rounded-[2px] ${
-            errors.firstName ? "border border-red-500" : ""
-          }`}
-          {...register("firstName")}
-        />
-        <div className="min-h-4 mb-4">
-          {errors.firstName && (
-            <p className="text-red-500 text-xs">{errors.firstName.message}</p>
-          )}
-        </div>
-        <Input
-          placeholder="Last Name"
-          type="text"
-          className={`rounded-[2px] ${
-            errors.lastName ? "border border-red-500" : ""
-          }`}
-          {...register("lastName")}
-        />
-        <div className="min-h-4 mb-4">
-          {errors.lastName && (
-            <p className="text-red-500 text-xs">{errors.lastName.message}</p>
-          )}
-        </div>
 
         <Input
           placeholder="Email"
           type="email"
-          className={`rounded-[2px] ${
-            errors.email ? "border border-red-500" : ""
-          }`}
           {...register("email")}
+          className={errors.email ? "border border-red-500" : ""}
         />
-        <div className="min-h-4 mb-4">
-          {errors.email && (
-            <p className="text-red-500 text-xs">{errors.email.message}</p>
-          )}
-        </div>
+        {errors.email && (
+          <p className="text-red-500 text-xs mb-4">{errors.email.message}</p>
+        )}
 
         <Input
           placeholder="Password"
           type="password"
-          className={`rounded-[2px] ${
-            errors.password ? "border border-red-500" : ""
-          }`}
           {...register("password")}
+          className={errors.password ? "border border-red-500" : ""}
         />
-        <div className="min-h-4 mb-9">
-          {errors.password && (
-            <p className="text-red-500 text-xs">{errors.password.message}</p>
-          )}
-        </div>
+        {errors.password && (
+          <p className="text-red-500 text-xs mb-9">{errors.password.message}</p>
+        )}
 
         <Button
           type="submit"
           variant="default"
-          className="w-103.5 px-2.5 py-4 font-medium text-[14px] uppercase"
           disabled={!isValid}
+          className="w-103.5 py-4 uppercase"
         >
           Sign In
         </Button>
 
         <button
           type="button"
-          className="text-[#266BD3] font-normal text-[14px] leading-4.25 tracking-normal underline hover:text-blue-600 m-auto mt-4 cursor-pointer"
+          className="text-[#266BD3] text-[14px] underline mt-4"
           onClick={() => setIsForgetPasswordOpen(true)}
         >
           Forgot your password?
