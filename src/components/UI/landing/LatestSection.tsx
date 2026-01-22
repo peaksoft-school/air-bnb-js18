@@ -1,7 +1,7 @@
 import mapGeoPin from "../../../../assets/Icons/Geo Icon.svg";
 import type { LatestHouse } from "./LatestHouse.tsx";
 import { InteriorSlider } from "./InteriorSlider.tsx";
-import { ViewLink } from "./ViewLink";
+import { ViewLink } from "./ViewLink.tsx";
 
 type LatestSectionProps = {
   data: LatestHouse | null;

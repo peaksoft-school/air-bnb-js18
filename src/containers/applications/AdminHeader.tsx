@@ -1,0 +1,48 @@
+import { useState } from "react";
+import logo from "@/assets/icons/logo.svg";
+import downArrow from "@/assets/icons/downArrow.svg";
+
+export const AdminHeader = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="bg-[#0B0B0B] h-20.5 flex justify-between items-center px-10">
+      <div className="flex items-center gap-20.75 text-[#E5E5E5] text-lg font-normal leading-6">
+        <img src={logo} alt="Logo" className="w-18.5 h-13.5" />
+        <div className="flex gap-9 cursor-pointer">
+          <a href="#" className="hover:text-[#FF4B4B]">
+            Application
+          </a>
+          <a href="#" className="hover:text-[#FF4B4B]">
+            Users
+          </a>
+          <a href="#" className="hover:text-[#FF4B4B]">
+            All housing
+          </a>
+        </div>
+      </div>
+
+      <div className="relative flex items-center text-[#FFFFFF]">
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex items-center gap-2 cursor-pointer"
+        >
+          Administrator
+          <img src={downArrow} alt="ArrowDown" className="w-3.25" />
+        </button>
+
+        {open && (
+          <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-45 h-14.75 bg-white rounded-[2px]">
+            <button
+              className="
+                w-full h-6.25 mx-auto mt-4 px-5 flex items-center text-[#525252] font-inter text-base hover:bg-gray-200 cursor-pointer"
+              onClick={() => console.log("logout")}
+            >
+              Log out
+            </button>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
