@@ -16,7 +16,7 @@ export const Chip = ({ children, className, ...props }: ChipButtonProps) => {
         "hover:bg-[#c4c4c4] hover:text-white",
         "active:bg-[#a0a0a0] active:text-white",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        className
+        className,
       )}
     >
       <span className="text-lg leading-none">×</span>

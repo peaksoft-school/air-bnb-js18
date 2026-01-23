@@ -13,4 +13,7 @@ createRoot(document.getElementById("root")!).render(
       <Notification />
     </Provider>
   </StrictMode>
+    <App />
+    <Notification />
+  </StrictMode>,
 );

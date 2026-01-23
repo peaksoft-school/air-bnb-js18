@@ -1,5 +1,7 @@
+import { ArrowDownIcon, Logo } from "@/assets/icons";
+import { ADMIN_ROUTES } from "@/utils/constants/routes";
 import { useState } from "react";
-import { Logo, ArrowDownIcon } from "@/assets/icons";
+import { NavLink } from "react-router";
 
 export const AdminHeader = () => {
   const [open, setOpen] = useState(false);
@@ -8,16 +10,37 @@ export const AdminHeader = () => {
     <header className="bg-[#0B0B0B] h-20.5 flex justify-between items-center px-10">
       <div className="flex items-center gap-20.75 text-[#E5E5E5] text-lg font-normal leading-6">
         <img src={Logo} alt="Logo" className="w-18.5 h-13.5" />
+
         <div className="flex gap-9 cursor-pointer">
-          <a href="#" className="hover:text-[#FF4B4B]">
-            Application
-          </a>
-          <a href="#" className="hover:text-[#FF4B4B]">
-            Users
-          </a>
-          <a href="#" className="hover:text-[#FF4B4B]">
+          <NavLink
+            to="application"
+            end
+            className={({ isActive }) =>
+              isActive ? "text-[#FF4B4B]" : "hover:text-[#FF4B4B]"
+            }
+          >
             All housing
-          </a>
+          </NavLink>
+
+          <NavLink
+            to="users"
+            end
+            className={({ isActive }) =>
+              isActive ? "text-[#FF4B4B]" : "hover:text-[#FF4B4B]"
+            }
+          >
+            Users
+          </NavLink>
+
+          <NavLink
+            to={ADMIN_ROUTES.allHousing}
+            end
+            className={({ isActive }) =>
+              isActive ? "text-[#FF4B4B]" : "hover:text-[#FF4B4B]"
+            }
+          >
+            All housing
+          </NavLink>
         </div>
       </div>
 
