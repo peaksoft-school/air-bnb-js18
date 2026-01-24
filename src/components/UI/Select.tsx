@@ -29,8 +29,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <span className="text-[#828282]">{label}</span>
+
           <div className="flex items-center gap-3">
             <span className="text-[#363636]">{selected}</span>
+
             <span className="text-gray-500">⌵</span>
           </div>
         </div>
@@ -55,7 +57,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Select.displayName = "Select";

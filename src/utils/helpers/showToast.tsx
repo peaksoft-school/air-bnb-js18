@@ -30,6 +30,6 @@ export const showToast = ({
       icon: false,
       closeButton: false,
       className: "!p-0 !bg-transparent !shadow-none",
-    }
+    },
   );
 };
