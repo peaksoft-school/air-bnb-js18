@@ -27,7 +27,7 @@ export const ApplicationInfo = () => {
       </div>
 
       <div className="flex items-center gap-4 pt-15">
-        <div className="w-[36px] h-[36px] bg-[#C4C4C4] rounded-full"></div>
+        <div className="w-9 h-9 bg-[#C4C4C4] rounded-full"></div>
         <div>
           <h4 className="font-medium text-[16px] leading-tight">Anna Annova</h4>
           <p className="text-[#828282] text-[16px]">anna@gmail.com</p>
@@ -39,7 +39,7 @@ export const ApplicationInfo = () => {
           className="
   w-[196px] 
   h-[37px] 
-  border-[1px] 
+  border
   border-[#DD8A08] 
   text-[#DD8A08] 
   rounded-[2px] 

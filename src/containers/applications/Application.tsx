@@ -2,6 +2,7 @@ import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
 import { AdminHeader } from "./AdminHeader";
 import { ApplicationGallery } from "./ApplicationGallery";
 import { ApplicationInfo } from "./ApplicationInfo";
+import { Reviews } from "@/containers/applications/reviews/Reviews";
 
 export const Application = () => {
   return (
@@ -16,6 +17,9 @@ export const Application = () => {
       <div className="flex">
       <ApplicationGallery />
       <ApplicationInfo />
+      </div>
+       <div className="mt-12">
+        <Reviews />
       </div>
     </div>
   );
