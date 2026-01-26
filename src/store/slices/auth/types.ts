@@ -11,7 +11,7 @@ export type SignInResponse = {
 };
 
 export type GoogleAuthPayload = {
-  idToken : string;
+  idToken: string;
 };
 
 export type GoogleAuthResponse = {

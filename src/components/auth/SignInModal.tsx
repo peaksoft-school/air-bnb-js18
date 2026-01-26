@@ -19,8 +19,9 @@ type SignInFormValues = {
 };
 
 export const SignInModal = ({ onClose }: SignInModalProps) => {
-  const dispatch = useAppDispatch();
   const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -33,6 +34,7 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
 
   const onSubmit = async (data: SignInFormValues) => {
     const resultAction = await dispatch(signIn(data));
+
     if (signIn.fulfilled.match(resultAction)) {
       onClose();
     }

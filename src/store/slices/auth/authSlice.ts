@@ -35,12 +35,14 @@ export const authSlice = createSlice({
       localStorage.removeItem("AIR-BNB");
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(signIn.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
+
       .addCase(signIn.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isAuth = true;
@@ -48,14 +50,17 @@ export const authSlice = createSlice({
         state.role = payload.role;
         state.token = payload.token;
       })
+
       .addCase(signIn.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload || "Failed to sign in";
       })
+
       .addCase(authWithGoogleRequest.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
+
       .addCase(authWithGoogleRequest.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isAuth = true;
@@ -63,6 +68,7 @@ export const authSlice = createSlice({
         state.role = payload.role;
         state.token = payload.token;
       })
+
       .addCase(authWithGoogleRequest.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload || "Google auth failed";

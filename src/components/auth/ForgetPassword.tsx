@@ -24,7 +24,7 @@ export const ForgetPassword = ({ onClose }: ForgetPasswordProps) => {
   });
 
   const onSubmit = (data: ForgetPasswordFormValues) => {
-    console.log("RESET EMAIL:", data.email); 
+    console.log("RESET EMAIL:", data.email);
     onClose();
   };
 
