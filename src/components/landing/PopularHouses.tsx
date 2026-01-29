@@ -1,3 +1,4 @@
+import { NotFound } from "@/layout/NotFound";
 import { CardLanding } from "../UI/card/CardLanding";
 import type { CardDataLanding } from "../UI/card/types";
 
@@ -7,7 +8,7 @@ type PopularHousesProps = {
 
 export const PopularHouses = ({ houses = [] }: PopularHousesProps) => {
   if (!houses.length) {
-    return <p className="p-10 text-gray-500">No houses available</p>;
+    return <NotFound/>
   }
 
   return (
