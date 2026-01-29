@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ApartmentSlider } from "./ApartmentSlider";
 import { getPopularApartments } from "@/store/slices/popularApartments/popularApartmentsThunk";
 import { getLatestAnnouncements } from "@/store/slices/latestHouse/latestHousesThunk";
-import { NotFound } from "@/layout/NotFound";
 
 
 interface PopularApartmentsProps {
@@ -30,7 +29,7 @@ export const PopularApartments = ({ variant }: PopularApartmentsProps) => {
   }, [dispatch, isPopular]);
 
   if (isLoading) {
-    return <NotFound/>;
+    return <p className="text-center">Loading...</p>;
   }
 
   return (
