@@ -3,9 +3,11 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
+import { favoriteReducer } from "./slices/favorite/favoriteSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
+  favorite: favoriteReducer,
 });
 
 const persistConfig = {

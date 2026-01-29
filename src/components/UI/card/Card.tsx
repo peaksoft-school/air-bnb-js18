@@ -8,6 +8,8 @@ type CardProps = {
   data: CardData;
   variant?: CardVariant;
   className?: string;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: number) => void;
 };
 
 const variantClasses: Record<CardVariant, string> = {
@@ -19,8 +21,14 @@ const variantClasses: Record<CardVariant, string> = {
 
   profile: "min-w-[16rem] min-h-[25rem] rounded-[4px] border border-none",
 };
+export const Card = ({
+  data,
+  variant = "default",
+  className,
+  isFavorite,
+  onToggleFavorite,
+}: CardProps) => {
 
-export const Card = ({ data, variant = "default", className }: CardProps) => {
   const { images, price, rating, title, address, guests, checkIn, checkOut } =
     data;
 
@@ -88,10 +96,26 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
                 <Button size="sm">BOOK</Button>
 
                 <button
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex h-8.75 w-8.75 items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleFavorite?.(data.id);
+                  }}
+                  className={cn(
+                    "flex h-8.75 w-8.75 items-center justify-center rounded-[2px] border transition cursor-pointer",
+                    isFavorite
+                      ? "border-[#DD8A08] bg-white text-[#DD8A08]"
+                      : "border-transparent text-[#C4C4C4] group-hover:border-[#DD8A08]",
+                  )}
                 >
-                  <Heart size={18} />
+                  <Heart
+                    size={18}
+                    className={cn(
+                      "transition",
+                      isFavorite
+                        ? "fill-[#DD8A08] text-[#DD8A08]"
+                        : "fill-none",
+                    )}
+                  />
                 </button>
               </div>
             )}
