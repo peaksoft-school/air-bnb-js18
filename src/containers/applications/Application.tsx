@@ -1,5 +1,5 @@
 import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
-import { AdminHeader } from "./AdminHeader";
+import { AdminHeader } from "@/layout/admin/AdminHeader";
 import { ApplicationGallery } from "./ApplicationGallery";
 import { ApplicationInfo } from "./ApplicationInfo";
 

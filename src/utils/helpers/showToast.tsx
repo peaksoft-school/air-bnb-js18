@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { NotificationLayout } from "@/components/UI/notifications/Notifications";
-import type { NotificationVariant } from "@/components/UI/notifications/Notifications";
+import { NotificationLayout } from "@/components/UI/Notifications";
+import type { NotificationVariant } from "@/components/UI/Notifications";
 
 interface ShowToastProps {
   title: string;
@@ -24,11 +24,12 @@ export const showToast = ({
         onClose={closeToast}
       />
     ),
+
     {
       autoClose: duration,
       icon: false,
       closeButton: false,
       className: "!p-0 !bg-transparent !shadow-none",
-    }
+    },
   );
 };
