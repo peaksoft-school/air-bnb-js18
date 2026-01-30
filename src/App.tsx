@@ -1,7 +1,6 @@
 import "./App.css";
-import { Favorite } from "./containers/Favorite";
 import AppRoutes from "./routes/AppRoutes";
 
-const App = () => <Favorite />;
+const App = () => <AppRoutes />;
 
 export default App;
