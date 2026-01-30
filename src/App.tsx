@@ -1,9 +1,6 @@
 import "./App.css";
-import { Application } from "./containers/applications/Application";
+import AppRoutes from "./routes/AppRoutes";
 
-
-
-const App = () => <Application />;
-
+const App = () => <AppRoutes />;
 
 export default App;

@@ -1,3 +1,5 @@
+import { Button } from "@/components/UI/Button";
+
 export const ApplicationInfo = () => {
   return (
     <div className="pt-13 pl-20">
@@ -35,41 +37,9 @@ export const ApplicationInfo = () => {
       </div>
 
       <div className="flex gap-5 pt-12">
-        <button
-          className="
-  w-[196px] 
-  h-[37px] 
-  border
-  border-[#DD8A08] 
-  text-[#DD8A08] 
-  rounded-[2px] 
-  font-bold 
-  uppercase 
- cursor-pointer
-  flex 
-  items-center 
-  justify-center
-"
-        >
-          Reject
-        </button>
-        <button
-          className="
-  w-[196px] 
-  h-[37px] 
-  bg-[#DD8A08] 
-  text-white 
-  font-bold 
-  rounded-[2px] 
-  uppercase 
-    cursor-pointer
-  flex 
-  items-center 
-  justify-center
-"
-        >
-          Accept
-        </button>
+        <Button variant="default">Reject</Button>
+
+        <Button variant="outline">Accept</Button>
       </div>
     </div>
   );
