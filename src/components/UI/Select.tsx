@@ -1,9 +1,11 @@
 import { useState, forwardRef } from "react";
 
+type Option = { value: string; label: string };
+
 type SelectProps = {
-  options: string[];
+  options: Option[];
   label: string;
-  onChange?: (e: { target: { value: string } }) => void;
+  onChange?: (value: string) => void;
 };
 
 const Select = forwardRef<HTMLDivElement, SelectProps>(
@@ -11,10 +13,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     const [selected, setSelected] = useState("All");
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSelectChange = (e: { target: { value: string } }) => {
-      setSelected(e.target.value);
-
-      if (onChange) onChange(e);
+    const handleSelectChange = (value: string, label: string) => {
+      setSelected(label);
+      if (onChange) onChange(value);
+      setIsOpen(false);
     };
 
     return (
@@ -41,14 +43,9 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               <li
                 key={i}
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-black"
-                onClick={() => {
-                  handleSelectChange({
-                    target: { value: item },
-                  });
-                  setIsOpen(false);
-                }}
+                onClick={() => handleSelectChange(item.value, item.label)}
               >
-                {item}
+                {item.label}
               </li>
             ))}
           </ul>

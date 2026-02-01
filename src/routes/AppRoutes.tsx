@@ -9,6 +9,7 @@ import { NotFound } from "@/layout/NotFound";
 import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
 
 const LandingPage = lazy(() => import("@/containers/LandingPage"));
+const HousesPage = lazy(() => import("@/components/landing/HousesPage"));
 
 const store = {
   role: "GUEST",
@@ -28,6 +29,16 @@ const AppRoutes = () => {
           <LandingPage />
         ),
     },
+    // 
+    {
+      path: "/houses",
+      element: (
+        <Suspense fallback={<div>Loading HousesPage...</div>}>
+          <HousesPage />
+        </Suspense>
+      ),
+    },
+    // 
     {
       element: (
         <PrivateRoutes
