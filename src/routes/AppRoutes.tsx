@@ -7,17 +7,13 @@ import { AdminLayout } from "@/layout/admin/AdminLayout";
 import { UserLayout } from "@/layout/user/UserLayout";
 import { NotFound } from "@/layout/NotFound";
 import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
+import { useAppSelector } from "@/store/hooks";
 
 const LandingPage = lazy(() => import("@/containers/LandingPage"));
 const HousesPage = lazy(() => import("@/components/landing/HousesPage"));
 
-const store = {
-  role: "GUEST",
-  isAuth: false,
-};
-
 const AppRoutes = () => {
-  const { role, isAuth } = store;
+  const { role, isAuth } = useAppSelector((state) => state.auth);
 
   const router = createBrowserRouter([
     {
@@ -48,6 +44,7 @@ const AppRoutes = () => {
           fallbackPath="/"
         />
       ),
+
       children: [
         {
           path: `${ADMIN_ROUTES.index}`,
@@ -56,6 +53,7 @@ const AppRoutes = () => {
               <AdminLayout />
             </Suspense>
           ),
+
           children: adminRoutes,
         },
       ],
@@ -78,10 +76,12 @@ const AppRoutes = () => {
               <UserLayout />
             </Suspense>
           ),
+
           children: userRoutes,
         },
       ],
     },
+
     { path: "*", element: <NotFound /> },
   ]);
 

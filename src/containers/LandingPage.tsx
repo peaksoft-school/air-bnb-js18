@@ -1,16 +1,18 @@
-import Intro from "@/components/landing/Intro";
+import { Intro } from "@/components/landing/Intro";
+import { PopularApartments } from "@/components/landing/PopularApartments";
 import { PopularHouses } from "@/components/landing/PopularHouses";
-import { Footer } from "@/layout/Footer";
+import { Regions } from "@/components/landing/Regions";
 import { POPULAR_HOUSES_DATA } from "@/utils/constants/landing";
+import { Footer } from "@/layout/Footer";
 
 const LandingPage = () => {
   return (
     <>
       <Intro />
-      <h1>Regions</h1>
-      <h1>Popular Apartments</h1>
+      <Regions />
+      <PopularApartments variant="popular-apartments" />
       <PopularHouses houses={POPULAR_HOUSES_DATA} />
-      <h1>The lastest</h1>
+      <PopularApartments variant="the-lastest" />
       <Footer />
     </>
   );

@@ -1,11 +1,31 @@
-import { configureStore } from "@reduxjs/toolkit";
 import housesReducer from "../store/slices/houses/housesSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import persistStore from "redux-persist/es/persistStore";
+import { authSlice } from "./slices/auth/authSlice";
+
+const rootReducer = combineReducers({
+  [authSlice.name]: authSlice.reducer,
+});
+
+const persistConfig = {
+  key: "AIR-BNB",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    houses: housesReducer,
-  },
+  reducer: persistedReducer,
+  houses: housesReducer,
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
+
+export const persistor = persistStore(store);
+
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
