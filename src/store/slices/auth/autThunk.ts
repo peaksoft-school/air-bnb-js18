@@ -55,11 +55,7 @@ export const authWithGoogleRequest = createAsyncThunk<
   async ({ idToken }, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post<GoogleAuthResponse>(
-        "/api/auth/google",
-
-        null,
-
-        { params: { idToken } },
+        `/api/auth/authenticate/google?tokenId=${idToken}`,
       );
 
       showToast({
