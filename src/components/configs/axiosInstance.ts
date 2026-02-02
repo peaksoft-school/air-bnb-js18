@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosInstance } from "axios";
 import type { Store } from "@reduxjs/toolkit";
 import type { RootState } from "@/store/store";
 
-const BASE_URL = "http://18.194.43.178";
+const BASE_URL = "http://35.156.129.180";
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,
