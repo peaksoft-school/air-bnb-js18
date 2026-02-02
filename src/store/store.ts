@@ -4,16 +4,12 @@ import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
-import { apartmentsReducer } from "./slices/popularApartments/popularApartmentsSlice";
-import { popularHousesReducer } from "./slices/popularHouses/popularHousesSlice";
-import { latestAnnouncementsReducer } from "./slices/latestHouse/latestHousesSlice";
+import { landingSlice } from "./slices/landing/landingSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
-  apartments: apartmentsReducer,
-  houses: popularHousesReducer,
-  announcements: latestAnnouncementsReducer,
+  [landingSlice.name]: landingSlice.reducer,
 });
 
 const persistConfig = {

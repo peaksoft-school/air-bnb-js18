@@ -1,15 +1,19 @@
 import { Star } from "lucide-react";
-import type { CardDataLanding } from "./types";
 import { LocationIcon } from "@/assets/icons";
+import type { PopularHouse } from "@/store/slices/landing/types";
 
-export const CardLanding = ({ data }: { data: CardDataLanding }) => {
+interface Props {
+  data: PopularHouse;
+}
+
+export const CardLanding = ({ data }: Props) => {
   const { images, price, rating, title, address } = data;
 
   return (
     <div className="w-100 font-Inter">
       <div className="relative h-121 w-full">
         <img
-          src={images}
+          src={images[0]}
           alt="guest house"
           className="h-full w-full object-cover"
         />

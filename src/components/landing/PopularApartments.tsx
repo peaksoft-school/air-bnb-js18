@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ApartmentSlider } from "./ApartmentSlider";
-import { getPopularApartments } from "@/store/slices/popularApartments/popularApartmentsThunk";
-import { getLatestAnnouncements } from "@/store/slices/latestHouse/latestHousesThunk";
-
+import {
+  getLatestAnnouncements,
+  getPopularApartments,
+} from "@/store/slices/landing/landingThunk";
 
 interface PopularApartmentsProps {
   variant: "popular-apartments" | "the-lastest";
@@ -12,13 +13,19 @@ interface PopularApartmentsProps {
 export const PopularApartments = ({ variant }: PopularApartmentsProps) => {
   const dispatch = useAppDispatch();
 
-  const popularState = useAppSelector((state) => state.apartments);
-  const latestState = useAppSelector((state) => state.announcements);
+  const {
+    popularApartment,
+    latestAnnouncement,
+    isLoadingPopularApartment,
+    isLoadingLatestAnnouncement,
+  } = useAppSelector((state) => state.landing);
 
   const isPopular = variant === "popular-apartments";
 
-  const data = isPopular ? popularState.popular : latestState.latest;
-  const isLoading = isPopular ? popularState.isLoading : latestState.isLoading;
+  const data = isPopular ? popularApartment : latestAnnouncement;
+  const isLoading = isPopular
+    ? isLoadingPopularApartment
+    : isLoadingLatestAnnouncement;
 
   useEffect(() => {
     if (isPopular) {
@@ -49,7 +56,7 @@ export const PopularApartments = ({ variant }: PopularApartmentsProps) => {
           </button>
         </div>
 
-        <ApartmentSlider data={data ?? []} variant={variant} />
+        {data && <ApartmentSlider data={data} variant={variant} />}
       </div>
     </div>
   );

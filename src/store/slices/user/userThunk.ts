@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosInstance } from "@/components/configs/axiosInstance";
-import type { UserProfileResponse } from "./types";
+import { axiosInstance } from "@/configs/axiosInstance";
+import type { UserProfileResponse } from "./type";
 
 export const getProfile = createAsyncThunk<
   UserProfileResponse,
