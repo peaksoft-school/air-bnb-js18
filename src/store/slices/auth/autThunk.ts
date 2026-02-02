@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { axiosInstance } from "@/components/configs/axiosInstance";
+import { axiosInstance } from "@/configs/axiosInstance";
 import { showToast } from "@/utils/helpers/showToast";
 
 import type {

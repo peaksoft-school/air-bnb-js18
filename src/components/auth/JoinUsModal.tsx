@@ -4,9 +4,9 @@ import { Button } from "@/components/UI/Button";
 import { Modal } from "../UI/Modal";
 import { GoogleIcon } from "@/assets/icons";
 import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../configs/firebase";
 import { useAppDispatch } from "@/store/hooks";
 import { authWithGoogleRequest } from "@/store/slices/auth/autThunk";
+import { auth, googleProvider } from "@/configs/firebase";
 
 type JoinUsModalProps = {
   onClose: () => void;
