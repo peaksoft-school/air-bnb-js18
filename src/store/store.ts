@@ -5,11 +5,13 @@ import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
+import {paymentSlice} from "./slices/payment-feedback-slice/paymentSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
   [landingSlice.name]: landingSlice.reducer,
+  [paymentSlice.name]: paymentSlice.reducer,
 });
 
 const persistConfig = {
