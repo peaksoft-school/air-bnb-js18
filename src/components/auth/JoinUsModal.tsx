@@ -3,6 +3,10 @@ import { SignInModal } from "./SignInModal";
 import { Button } from "@/components/UI/Button";
 import { Modal } from "../UI/Modal";
 import { GoogleIcon } from "@/assets/icons";
+import { signInWithPopup } from "firebase/auth";
+import { useAppDispatch } from "@/store/hooks";
+import { authWithGoogleRequest } from "@/store/slices/auth/autThunk";
+import { auth, googleProvider } from "@/configs/firebase";
 
 type JoinUsModalProps = {
   onClose: () => void;
@@ -10,6 +14,26 @@ type JoinUsModalProps = {
 
 export const JoinUsModal = ({ onClose }: JoinUsModalProps) => {
   const [isSignInOpen, setIsSignInOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const signInWithGoogleHandler = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+
+      const idToken = await result.user.getIdToken();
+
+      dispatch(
+        authWithGoogleRequest({
+          idToken,
+        }),
+      );
+
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Modal open={true} onClose={onClose}>
@@ -25,6 +49,7 @@ export const JoinUsModal = ({ onClose }: JoinUsModalProps) => {
         <Button
           variant="google"
           className="h-12.5 py-2.5 px-39.5 mb-9 rounded-xl text-black font-inter font-medium text-[18px] leading-5.5 flex items-center justify-center gap-2"
+          onClick={signInWithGoogleHandler}
         >
           <img src={GoogleIcon} alt="Google" className="w-7.5 h-7.5" />
           Google

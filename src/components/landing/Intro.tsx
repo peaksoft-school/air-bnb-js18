@@ -1,30 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../UI/Input";
 import { Checkbox } from "../UI/Checkbox";
 import { Button } from "../UI/Button";
 import { JoinUsModal } from "../auth/JoinUsModal";
 import { Logo, ProfileIcon } from "@/assets/icons";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getProfile } from "@/store/slices/user/userThunk";
+import downArrow from "../../assets/icons/svgs/down-arrow.svg";
 
 export const Intro = () => {
-  const [isLoggedIn, setIsloggedIn] = useState(false);
   const [nearby, setNearby] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const image = useAppSelector((state) => state.user.image);
 
-  console.log(setIsloggedIn);
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(getProfile());
+    }
+  }, [isAuth, dispatch]);
 
   return (
     <div className="h-screen w-screen bg-[url('@/assets/images/landing-bg.png')] bg-cover bg-center relative">
       <header className="relative z-20 flex items-center justify-between px-24 py-7">
         <img src={Logo} alt="logo" className="w-22 h-16.25" />
 
-        {isLoggedIn ? (
-          <div className="flex items-center gap-6">
-            <button className="text-white font-medium">leave an ad</button>
-            <img src={ProfileIcon} alt="profile" />
-          </div>
-        ) : (
-          <div className="flex items-center gap-6">
-            <button className="text-white font-medium">leave an ad</button>
+        <div className="flex items-center gap-6">
+          <button className="text-white font-medium">leave an ad</button>
+
+          {isAuth ? (
+            <div className="flex items-center gap-2 cursor-pointer">
+              <img
+                src={image || ProfileIcon}
+                alt="User profile"
+                className="w-9.25 h-9.25 rounded-full object-cover"
+              />
+
+              <button type="button">
+                <img
+                  src={downArrow}
+                  alt="arrow down"
+                  className="w-3.25 h-1.75"
+                />
+              </button>
+            </div>
+          ) : (
             <Button
               type="button"
               onClick={() => setIsSignUpOpen(true)}
@@ -33,8 +54,8 @@ export const Intro = () => {
             >
               JOIN US
             </Button>
-          </div>
-        )}
+          )}
+        </div>
 
         {isSignUpOpen && <JoinUsModal onClose={() => setIsSignUpOpen(false)} />}
       </header>
@@ -54,7 +75,7 @@ export const Intro = () => {
           />
         </div>
 
-        {!isLoggedIn && (
+        {!isAuth && (
           <div className="w-181.25 mt-3 flex justify-end items-center">
             <Checkbox
               id="nearby"

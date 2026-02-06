@@ -3,14 +3,19 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
+import { userSlice } from "./slices/user/userSlice";
+import { landingSlice } from "./slices/landing/landingSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
+  [userSlice.name]: userSlice.reducer,
+  [landingSlice.name]: landingSlice.reducer,
 });
 
 const persistConfig = {
   key: "AIR-BNB",
   storage,
+  whitelist: ["auth"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
