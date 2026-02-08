@@ -9,7 +9,7 @@ export type UserProfile = {
 export type TabType = "bookings" | "announcements";
 
 export type AdminUserPageProps = {
-  user?: UserProfile;
+  user: UserProfile;
   bookings?: CardData[];
   announcements?: CardData[];
 };
