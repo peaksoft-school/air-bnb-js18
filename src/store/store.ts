@@ -5,11 +5,19 @@ import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
+import { feedbacksSlice } from "./slices/inner-page-vendor/feedback/feedbackSlice";
+import { housesSlice } from "./slices/inner-page-vendor/house/houseSlice";
+import { favoritesSlice } from "./slices/inner-page-vendor/inFavorites/favoritesSlice";
+import { bookingsSlice } from "./slices/inner-page-vendor/bookings/bookingsSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
   [landingSlice.name]: landingSlice.reducer,
+  [feedbacksSlice.name]: feedbacksSlice.reducer,
+  [housesSlice.name]: housesSlice.reducer,
+  [favoritesSlice.name]: favoritesSlice.reducer,
+  [bookingsSlice.name]: bookingsSlice.reducer,
 });
 
 const persistConfig = {
