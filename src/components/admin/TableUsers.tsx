@@ -3,10 +3,10 @@ import basket from "../../assets/icons/basket.svg";
 
 interface User {
   id: string;
-  name: string;
-  email: string;
-  bookings: number;
-  announcements: number;
+  username: string;
+  contact: string;
+  bookingsQuantity: number;
+  housesQuantity: number;
 }
 
 interface TableUsersProps {
@@ -48,10 +48,10 @@ export const TableUsers = ({
               className="bg-gray-50 hover:bg-[#D8D8D8] transition"
             >
               <td className="p-3 text-center">{index + 1}</td>
-              <td className="p-3">{user.name}</td>
-              <td className="p-3 text-left">{user.email}</td>
-              <td className="p-3 text-left">{user.bookings}</td>
-              <td className="p-3">{user.announcements}</td>
+              <td className="p-3">{user.username}</td>
+              <td className="p-3 text-left">{user.contact}</td>
+              <td className="p-3 text-left">{user.bookingsQuantity}</td>
+              <td className="p-3">{user.housesQuantity}</td>
               <td className="p-3 flex justify-center">
                 <button
                   onClick={() => handleDelete(user.id)}

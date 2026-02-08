@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../../../configs/admin/users/axiosInstance";
 import type { User } from "./usersSlice";
 
-export const fetchUsers = createAsyncThunk<User[]>(
-  "users/fetchUsers",
+export const getAllUsers = createAsyncThunk<User[]>(
+  "users/getAllUsers",
   async () => {
-    const res = await axiosInstance.get<User[]>("/users");
+    const res = await axiosInstance.get<User[]>("/api/admin/users");
     return res.data;
   }
 );
@@ -13,7 +13,7 @@ export const fetchUsers = createAsyncThunk<User[]>(
 export const deleteUserById = createAsyncThunk<string, string>(
   "users/deleteUser",
   async (id) => {
-    await axiosInstance.delete(`/users/${id}`);
+    await axiosInstance.delete(`/api/users/${id}`);
     return id;
   }
 );

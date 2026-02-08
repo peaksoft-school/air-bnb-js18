@@ -7,7 +7,7 @@ import {
 import { TableUsers } from "../../components/admin/TableUsers";
 import { useEffect } from "react";
 
-export const AdminPage = () => {
+const AdminPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector((state: RootState) => state.users.list);
 
@@ -19,3 +19,5 @@ export const AdminPage = () => {
     <TableUsers users={users} onDelete={(id) => dispatch(deleteUserById(id))} />
   );
 };
+
+export default AdminPage;

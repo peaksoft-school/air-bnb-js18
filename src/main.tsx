@@ -4,13 +4,20 @@ import "./index.css";
 import App from "./App.tsx";
 import { Notification } from "@/components/UI/Notifications.tsx";
 import { Provider } from "react-redux";
-import { store } from "./store/index";
+import { PersistGate } from "redux-persist/integration/react";
+import { injectStore } from "./configs/admin/users/axiosInstance.ts";
+import { persistor, store } from "./store/index.ts";
+
+injectStore(store);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
-      <Notification />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+
+        <Notification />
+      </PersistGate>
     </Provider>
   </StrictMode>
 );

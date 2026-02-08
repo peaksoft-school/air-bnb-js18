@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUsers, deleteUserById } from "./usersThunks";
+import { deleteUserById, getAllUsers } from "./usersThunks";
 
 export interface User {
   id: string;
@@ -19,26 +19,30 @@ const initialState: UsersState = {
   loading: false,
 };
 
-const usersSlice = createSlice({
+export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(getAllUsers.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(getAllUsers.fulfilled, (state, action) => {
         state.list = action.payload;
         state.loading = false;
       })
-      .addCase(fetchUsers.rejected, (state) => {
+      .addCase(getAllUsers.rejected, (state) => {
         state.loading = false;
+      })
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
       })
       .addCase(deleteUserById.fulfilled, (state, action) => {
         state.list = state.list.filter((user) => user.id !== action.payload);
+      })
+      .addCase(getAllUsers.rejected, (state) => {
+        state.loading = false;
       });
   },
 });
-
-export default usersSlice.reducer;
