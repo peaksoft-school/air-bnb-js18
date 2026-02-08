@@ -5,7 +5,7 @@ import { Button } from "../UI/Button";
 import { JoinUsModal } from "../auth/JoinUsModal";
 import { Logo, ProfileIcon } from "@/assets/icons";
 
-const Intro = () => {
+export const Intro = () => {
   const [isLoggedIn, setIsloggedIn] = useState(false);
   const [nearby, setNearby] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -74,5 +74,3 @@ const Intro = () => {
     </div>
   );
 };
-
-export default Intro;

@@ -24,6 +24,7 @@ const AppRoutes = () => {
           <LandingPage />
         ),
     },
+
     {
       element: (
         <PrivateRoutes
@@ -33,6 +34,7 @@ const AppRoutes = () => {
           fallbackPath="/"
         />
       ),
+
       children: [
         {
           path: `${ADMIN_ROUTES.index}`,
@@ -41,6 +43,7 @@ const AppRoutes = () => {
               <AdminLayout />
             </Suspense>
           ),
+
           children: adminRoutes,
         },
       ],
@@ -63,10 +66,12 @@ const AppRoutes = () => {
               <UserLayout />
             </Suspense>
           ),
+
           children: userRoutes,
         },
       ],
     },
+
     { path: "*", element: <NotFound /> },
   ]);
 

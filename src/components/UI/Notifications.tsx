@@ -59,7 +59,7 @@ export function NotificationLayout({
       className={`
         relative
         w-full
-        h-[66px]
+        h-16.5
         ${content.bg}
         ${content.border}
         border
@@ -72,7 +72,7 @@ export function NotificationLayout({
         duration-300
       `}
     >
-      <div className="w-[556px] h-[42px] flex flex-col justify-center">
+      <div className="w-139 h-10.5 flex flex-col justify-center">
         <p className="text-sm font-medium text-black">{title}</p>
         <p className="text-sm text-[#646464]">{message}</p>
       </div>

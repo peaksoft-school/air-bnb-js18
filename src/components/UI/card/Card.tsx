@@ -29,7 +29,7 @@ export const Card = ({ data, variant = "default", className }: CardProps) => {
       className={cn(
         "group cursor-pointer overflow-hidden rounded-lg border bg-[#F7F7F7] transition-all",
         variantClasses[variant],
-        className
+        className,
       )}
     >
       <ImageSlider images={images} />

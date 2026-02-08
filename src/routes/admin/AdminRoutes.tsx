@@ -10,3 +10,4 @@ export const adminRoutes = [
   { path: ADMIN_ROUTES.allHousing, Component: AllHousing },
   { path: ADMIN_ROUTES.users, Component: Users },
 ];
+
