@@ -14,15 +14,21 @@ interface Tab {
 interface TabsProps {
   tabs: Tab[];
   data?: any;
+  onChange?: (value: string) => void;
 }
 
-const Tabs = ({ tabs }: TabsProps) => {
+const Tabs = ({ tabs, onChange }: TabsProps) => {
   const [value, setValue] = useState(tabs[0]?.label || "");
+
+  const handleChange = (val: string) => {
+    setValue(val);
+    onChange?.(val);
+  };
 
   if (!tabs || tabs.length === 0) return null;
 
   return (
-    <ShadcnTabs value={value} onValueChange={setValue} className="w-full">
+    <ShadcnTabs value={value} onValueChange={handleChange} className="w-full">
       <TabsList className="w-full justify-center gap-20 border-b-2 border-[#c4c4c4] bg-transparent rounded-none h-auto p-0">
         {tabs.map(({ label }) => (
           <TabsTrigger
