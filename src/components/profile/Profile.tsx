@@ -5,11 +5,10 @@ import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
 import { ADMIN_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
 import { ADMIN_TABS } from "@/utils/constants/tabs";
-
 import { useState } from "react";
 import { Button } from "@/components/UI/Button";
 
-export const AdminUserPage = ({ user }: AdminUserPageProps) => {
+export const Profile = ({ user }: AdminUserPageProps) => {
   const [activeTab, setActiveTab] = useState("Bookings");
 
   if (!user) {
@@ -26,9 +25,7 @@ export const AdminUserPage = ({ user }: AdminUserPageProps) => {
         <UserProfileCard user={user} />
 
         {activeTab === "Announcement" && (
-          <Button>
-            BLOCK ALL ANNOUNCEMENT
-          </Button>
+          <Button>BLOCK ALL ANNOUNCEMENT</Button>
         )}
       </div>
 
