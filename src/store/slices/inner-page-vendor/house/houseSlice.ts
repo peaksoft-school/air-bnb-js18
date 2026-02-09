@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getHouse } from "./houseThunk";
+import { deleteHouse, getHouse, updateHouse } from "./houseThunk";
 import type { HouseState } from "./types";
 
 const initialState: HouseState = {
   house: null,
   loading: false,
+  loadingDelete: false,
+  loadingUpdate: false,
   error: null,
   success: false,
 };
@@ -33,6 +35,27 @@ export const housesSlice = createSlice({
       .addCase(getHouse.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Error";
+      })
+      .addCase(deleteHouse.pending, (state) => {
+        state.loadingDelete = true;
+      })
+      .addCase(deleteHouse.fulfilled, (state) => {
+        state.loadingDelete = false;
+        state.house = null;
+      })
+      .addCase(deleteHouse.rejected, (state, action) => {
+        state.loadingDelete = false;
+        state.error = action.payload ?? "Error";
+      })
+      .addCase(updateHouse.pending, (state) => {
+        state.loadingUpdate = true;
+      })
+      .addCase(updateHouse.fulfilled, (state) => {
+        state.loadingUpdate = false;
+      })
+      .addCase(updateHouse.rejected, (state, action) => {
+        state.loadingUpdate = false;
+        state.error = action.payload ?? "Error";
       });
   },
 });

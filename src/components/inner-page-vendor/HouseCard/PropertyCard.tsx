@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import { PropertyGallery } from "./PropertyGallery";
 import type { House } from "@/store/slices/inner-page-vendor/house/types";
 import { PropertyInfo } from "./PropertyInfo";
@@ -7,7 +6,7 @@ interface PropertyCardProps {
   house: House;
 }
 
-export const PropertyCard: FC<PropertyCardProps> = ({ house }) => {
+export const PropertyCard = ({ house }: PropertyCardProps) => {
   return (
     <div>
       <h1 className="text-xl font-medium">{house.title}</h1>

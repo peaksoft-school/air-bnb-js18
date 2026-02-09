@@ -27,13 +27,23 @@ export const InnerPageVendor = () => {
 
   return (
     <div className="mx-auto p-10">
-      <Breadcrumbs
-        links={[...INNERPAGE_BREADCRUMBS, { label: house.title, href: "" }]}
-      />
-      <PropertyCard house={house} />
-      <BookedSection houseId={house.id} />
-      <FavoritesSection houseId={house.id} />
-      <Reviews />
+      {house ? (
+        <>
+          <Breadcrumbs
+            links={[...INNERPAGE_BREADCRUMBS, { label: house.title, href: "" }]}
+          />
+          <PropertyCard house={house} />
+          <BookedSection houseId={house.id} />
+          <FavoritesSection houseId={house.id} />
+          <Reviews />
+        </>
+      ) : loading ? (
+        <p className="m-auto text-gray-400">Loading house…</p>
+      ) : error ? (
+        <p className="mt-6 text-red-500">{error}</p>
+      ) : (
+        <NotFound />
+      )}
     </div>
   );
 };

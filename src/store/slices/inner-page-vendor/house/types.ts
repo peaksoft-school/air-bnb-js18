@@ -14,6 +14,8 @@ export interface HouseInnerPage {
 
 export interface HouseState {
   loading: boolean;
+  loadingDelete: boolean;
+  loadingUpdate: boolean;
   error: string | null;
   success: boolean;
   house: House | null;
@@ -26,6 +28,8 @@ export interface House extends HouseInnerPage {
 export const initialState: HouseState = {
   house: null,
   loading: false,
+  loadingDelete: false,
+  loadingUpdate: false,
   error: null,
   success: false,
 };
