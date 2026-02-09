@@ -4,20 +4,20 @@ import { Checkbox } from "../UI/Checkbox";
 import { Button } from "../UI/Button";
 import { JoinUsModal } from "../auth/JoinUsModal";
 import { Logo, ProfileIcon } from "@/assets/icons";
+import { useAppSelector } from "@/store/hooks";
 
 export const Intro = () => {
-  const [isLoggedIn, setIsloggedIn] = useState(false);
+  const { isAuth } = useAppSelector((state) => state.auth);
+
   const [nearby, setNearby] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-
-  console.log(setIsloggedIn);
 
   return (
     <div className="h-screen w-screen bg-[url('@/assets/images/landing-bg.png')] bg-cover bg-center relative">
       <header className="relative z-20 flex items-center justify-between px-24 py-7">
         <img src={Logo} alt="logo" className="w-22 h-16.25" />
 
-        {isLoggedIn ? (
+        {isAuth ? (
           <div className="flex items-center gap-6">
             <button className="text-white font-medium">leave an ad</button>
             <img src={ProfileIcon} alt="profile" />
@@ -54,7 +54,7 @@ export const Intro = () => {
           />
         </div>
 
-        {!isLoggedIn && (
+        {!isAuth && (
           <div className="w-181.25 mt-3 flex justify-end items-center">
             <Checkbox
               id="nearby"

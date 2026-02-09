@@ -1,6 +1,6 @@
 import axios, { AxiosError, type AxiosInstance } from "axios";
 import type { Store } from "@reduxjs/toolkit";
-import type { RootState } from "@/store";
+import type { RootState } from "@/store/store";
 
 const BASE_URL = "http://35.156.129.180";
 
@@ -34,10 +34,10 @@ axiosInstance.interceptors.request.use(
 
     return config;
   },
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error),
 );

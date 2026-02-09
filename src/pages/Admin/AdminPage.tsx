@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState, AppDispatch } from "../../store/index";
+import type { RootState, AppDispatch } from "../../store/store";
 import {
   fetchUsers,
   deleteUserById,

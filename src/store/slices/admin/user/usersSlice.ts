@@ -1,18 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { deleteUserById, getAllUsers } from "./usersThunks";
-
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  bookings: number;
-  announcements: number;
-}
-
-interface UsersState {
-  list: User[];
-  loading: boolean;
-}
+import type { UsersState } from "./types";
 
 const initialState: UsersState = {
   list: [],
@@ -35,13 +23,14 @@ export const usersSlice = createSlice({
       .addCase(getAllUsers.rejected, (state) => {
         state.loading = false;
       })
-      .addCase(getAllUsers.pending, (state) => {
+
+      .addCase(deleteUserById.pending, (state) => {
         state.loading = true;
       })
       .addCase(deleteUserById.fulfilled, (state, action) => {
         state.list = state.list.filter((user) => user.id !== action.payload);
       })
-      .addCase(getAllUsers.rejected, (state) => {
+      .addCase(deleteUserById.rejected, (state) => {
         state.loading = false;
       });
   },
