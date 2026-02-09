@@ -1,5 +1,6 @@
 import { Bookings } from "@/components/admin/users/Bookings";
 import { Announcement } from "@/components/admin/users/Announcement";
+import { OnModeration } from "@/components/admin/users/OnModeration";
 
 export const USER_TABS = [
   {
@@ -12,7 +13,7 @@ export const USER_TABS = [
   },
   {
     label: "On moderation",
-    Component: "On moderation",
+    Component: OnModeration,
   },
 ];
 

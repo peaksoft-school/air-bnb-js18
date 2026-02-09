@@ -8,7 +8,7 @@ export const UserProfileCard = ({ user }: Props) => {
   return (
     <div>
       <h2 className="text-[#363636] text-xl font-medium mb-5.5 uppercase">
-        {user.fullName}
+        Profile
       </h2>
 
       <div className="flex items-center justify-center rounded-4xl border p-4 w-103.25 h-62.75">
@@ -34,6 +34,11 @@ export const UserProfileCard = ({ user }: Props) => {
               </span>{" "}
               {user.email}
             </p>
+            <div className="flex justify-items-start">
+              <button className="text-red-500  font-normal text-base mb-9.5 cursor-pointer">
+                Log out
+              </button>
+            </div>
           </div>
         </div>
       </div>

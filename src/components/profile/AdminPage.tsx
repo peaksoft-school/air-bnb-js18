@@ -8,7 +8,7 @@ import { ADMIN_TABS } from "@/utils/constants/tabs";
 import { useState } from "react";
 import { Button } from "@/components/UI/Button";
 
-export const Profile = ({ user }: AdminUserPageProps) => {
+export const AdminPage = ({ user }: AdminUserPageProps) => {
   const [activeTab, setActiveTab] = useState("Bookings");
 
   if (!user) {
