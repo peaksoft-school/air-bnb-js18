@@ -1,29 +1,22 @@
-import { Bookings } from "@/components/admin/users/Bookings";
-import { Announcement } from "@/components/admin/users/Announcement";
-import { OnModeration } from "@/components/admin/users/OnModeration";
+import { UserBookings } from "@/components/profile/pages/UserBookings";
+import { UserAnnouncements } from "@/components/profile/pages/UserAnnouncements";
+import { OnModeration } from "@/components/profile/pages/OnModeration";
+import { AdminAnnouncements } from "@/components/admin/users/AdminAnnouncements";
+import { AdminBookings } from "@/components/admin/users/AdminBookings";
 
 export const USER_TABS = [
-  {
-    label: "Bookings",
-    Component: Bookings,
-  },
-  {
-    label: "Announcement",
-    Component: Announcement,
-  },
-  {
-    label: "On moderation",
-    Component: OnModeration,
-  },
+  { label: "Bookings", Component: UserBookings },
+  { label: "Announcement", Component: UserAnnouncements },
+  { label: "On moderation", Component: OnModeration },
 ];
 
 export const ADMIN_TABS = [
   {
     label: "Bookings",
-    Component: Bookings,
+    Component: AdminBookings,
   },
   {
     label: "Announcement",
-    Component: Announcement,
+    Component: AdminAnnouncements,
   },
 ];

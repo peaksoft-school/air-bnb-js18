@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { AnnouncementsState } from "./types";
-import { fetchAnnouncements } from "./announcementsThunk";
+import { fetchAdminAnnouncements } from "./adminAnnouncementsThunk";
 
 const initialState: AnnouncementsState = {
   data: [],
@@ -8,26 +8,26 @@ const initialState: AnnouncementsState = {
   error: null,
 };
 
-const announcementsSlice = createSlice({
-  name: "announcements",
+const adminAnnouncementsSlice = createSlice({
+  name: "adminAnnouncements",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnnouncements.pending, (state) => {
+      .addCase(fetchAdminAnnouncements.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchAnnouncements.fulfilled, (state, action) => {
+      .addCase(fetchAdminAnnouncements.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       })
-      .addCase(fetchAnnouncements.rejected, (state, action) => {
+      .addCase(fetchAdminAnnouncements.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "Error";
       });
   },
 });
 
-export const announcementsReducer = announcementsSlice.reducer;
-export const announcementsName = announcementsSlice.name;
+export const announcementsReducer = adminAnnouncementsSlice.reducer;
+export const announcementsName = adminAnnouncementsSlice.name;

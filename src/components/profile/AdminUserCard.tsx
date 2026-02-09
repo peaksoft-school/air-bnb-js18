@@ -2,10 +2,9 @@ import type { UserProfile } from "@/components/profile/type";
 
 type Props = {
   user: UserProfile;
-  onLogout?: () => void;
 };
 
-export const UserProfileCard = ({ user, onLogout }: Props) => {
+export const AdminUserCard = ({ user }: Props) => {
   return (
     <div>
       <h2 className="text-[#363636] text-xl font-medium mb-5.5 uppercase">
@@ -35,17 +34,6 @@ export const UserProfileCard = ({ user, onLogout }: Props) => {
               </span>{" "}
               {user.email}
             </p>
-
-            {user.role === "admin" || user.role === "user" ? (
-              <div className="flex justify-items-start">
-                <button
-                  onClick={onLogout}
-                  className="text-red-500 font-normal text-base mb-9.5 cursor-pointer"
-                >
-                  Log out
-                </button>
-              </div>
-            ) : null}
           </div>
         </div>
       </div>

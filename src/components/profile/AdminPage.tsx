@@ -1,5 +1,4 @@
 import type { AdminUserPageProps } from "@/components/profile/type";
-import { UserProfileCard } from "@/components/profile/UserProfileCard";
 import Breadcrumbs from "@/components/UI/BreadCrumbs";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
@@ -7,6 +6,7 @@ import { ADMIN_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
 import { ADMIN_TABS } from "@/utils/constants/tabs";
 import { useState } from "react";
 import { Button } from "@/components/UI/Button";
+import { AdminUserCard } from "./AdminUserCard";
 
 export const AdminPage = ({ user }: AdminUserPageProps) => {
   const [activeTab, setActiveTab] = useState("Bookings");
@@ -22,7 +22,7 @@ export const AdminPage = ({ user }: AdminUserPageProps) => {
           links={[...ADMIN_BREADCRUMBS, { label: user.fullName, href: "" }]}
         />
 
-        <UserProfileCard user={user} />
+        <AdminUserCard user={user} />
 
         {activeTab === "Announcement" && (
           <Button>BLOCK ALL ANNOUNCEMENT</Button>

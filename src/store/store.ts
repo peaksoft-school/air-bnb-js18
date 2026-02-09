@@ -5,16 +5,23 @@ import persistStore from "redux-persist/es/persistStore";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
-import { announcementsName, announcementsReducer } from "./slices/admin/user/announcements/announcementsSlice";
-import { bookingsName, bookingsReducer } from "./slices/admin/user/bookings/bookingsSlice";
+import { moderationHousesName, moderationHousesReducer } from "./slices/user/moderationHouses/moderationHousesSlice";
+import { bookingsUserName, bookingsUserReducer } from "./slices/user/bookingsUser/userBookingsSlice";
+import { announcementsUserName } from "./slices/user/announcementsUser/userAnnouncementsSlice";
+import { announcementsUserReducer } from "./slices/user/announcementsUser/userAnnouncementsSlice";
+import { announcementsName, announcementsReducer } from "./slices/admin/user/announcements/adminAnnouncementsSlice";
+import { bookingsName, bookingsReducer } from "./slices/admin/user/bookings/adminBookingsSlice";
 
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
   [landingSlice.name]: landingSlice.reducer,
-  [announcementsName]: announcementsReducer,
+  [announcementsName]: announcementsReducer, 
   [bookingsName]: bookingsReducer,
+  [moderationHousesName]: moderationHousesReducer,
+  [bookingsUserName]: bookingsUserReducer,
+  [announcementsUserName]: announcementsUserReducer,
 });
 
 const persistConfig = {

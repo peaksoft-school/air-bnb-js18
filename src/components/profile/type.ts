@@ -4,9 +4,10 @@ export type UserProfile = {
   fullName: string;
   email: string;
   image?: string;
+  role?: "admin" | "user";
 };
 
-export type TabType = "bookings" | "announcements";
+export type TabType = "bookings" | "announcements" | "onModeration";
 
 export type AdminUserPageProps = {
   user: UserProfile;
