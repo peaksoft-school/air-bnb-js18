@@ -1,33 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchBookings } from "./bookingsThunk";
+import { getUserBooking } from "./bookingsThunk";
 import type { BookingsState } from "./type";
 
 const initialState: BookingsState = {
-  data: [],
+  bookings: [],
   isLoading: false,
   error: null,
 };
 
-const bookingsSlice = createSlice({
+export const bookingsSlice = createSlice({
   name: "bookings",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBookings.pending, (state) => {
+      .addCase(getUserBooking.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchBookings.fulfilled, (state, action) => {
+      .addCase(getUserBooking.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.bookings = action.payload;
       })
-      .addCase(fetchBookings.rejected, (state, action) => {
+      .addCase(getUserBooking.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "Error";
       });
   },
 });
-
-export const bookingsReducer = bookingsSlice.reducer;
-export const bookingsName = bookingsSlice.name;

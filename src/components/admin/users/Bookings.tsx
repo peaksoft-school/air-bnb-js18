@@ -1,14 +1,23 @@
 import { Card } from "@/components/UI/card/Card";
-import type { CardData } from "@/components/UI/card/types";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getUserBooking } from "@/store/slices/admin/profile/bookings/bookingsThunk";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 
-interface BookingsProps {
-  data?: CardData[];
-}
+export const Bookings = () => {
+  const { bookings } = useAppSelector((state) => state.bookings);
 
-export const Bookings = ({ data = [] }: BookingsProps) => {
+  const { userId } = useParams();
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserBooking(userId));
+  }, []);
+
   return (
     <div className="grid grid-cols-4 gap-6 w-225">
-      {data.map((item, index) => (
+      {bookings?.map((item, index) => (
         <Card key={index} variant="admin" data={item} />
       ))}
     </div>

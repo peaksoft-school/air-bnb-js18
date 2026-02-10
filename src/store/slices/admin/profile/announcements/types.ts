@@ -16,7 +16,7 @@ export interface Announcement {
 }
 
 export interface AnnouncementsState {
-  data: Announcement[];
+  announcements: Announcement[];
   isLoading: boolean;
   error: string | null;
 }

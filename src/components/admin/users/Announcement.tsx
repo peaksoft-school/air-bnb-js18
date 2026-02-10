@@ -1,15 +1,23 @@
 import { Card } from "@/components/UI/card/Card";
-import type { CardData } from "@/components/UI/card/types";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getUserAnnouncements } from "@/store/slices/admin/profile/announcements/announcementsThunk";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 
+export const Announcement = () => {
+  const { announcements } = useAppSelector((state) => state.announcements);
 
-interface AnnouncementProps {
-  data?: CardData[];
-}
+  const { userId } = useParams();
 
-export const Announcement = ({ data = [] }: AnnouncementProps) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAnnouncements(userId));
+  }, []);
+
   return (
     <div className="grid grid-cols-4 gap-6 w-225">
-      {data.map((item, index) => (
+      {announcements?.map((item, index) => (
         <Card key={index} variant="admin" data={item} />
       ))}
     </div>

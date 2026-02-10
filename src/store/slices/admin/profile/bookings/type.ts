@@ -13,7 +13,7 @@ export interface Booking {
 }
 
 export interface BookingsState {
-  data: Booking[];
+  bookings: Booking[];
   isLoading: boolean;
   error: string | null;
 }

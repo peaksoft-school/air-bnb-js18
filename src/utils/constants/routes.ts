@@ -8,6 +8,7 @@ export const ADMIN_ROUTES = {
   index: "/admin",
   allHousing: "/admin/all-housing",
   users: "/admin/users",
+  user: "/admin/users/:userId",
 };
 export const USER_ROUTES = {
   index: "/user",

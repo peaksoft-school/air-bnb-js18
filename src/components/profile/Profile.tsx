@@ -1,15 +1,45 @@
-import type { AdminUserPageProps } from "@/components/profile/type";
 import { UserProfileCard } from "@/components/profile/UserProfileCard";
 import Breadcrumbs from "@/components/UI/BreadCrumbs";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
-import { ADMIN_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
+import { USER_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
 import { ADMIN_TABS } from "@/utils/constants/tabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/UI/Button";
+import { useLocation, useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { getUser } from "@/store/slices/admin/profile/user/profileUserThunk";
+import { ADMIN_ROUTES } from "@/utils/constants/routes";
+import { mapUserToProfile } from "./type";
 
-export const Profile = ({ user }: AdminUserPageProps) => {
+const Profile = () => {
   const [activeTab, setActiveTab] = useState("Bookings");
+
+  const { role } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state["profile-user"]);
+
+  const { pathname } = useLocation();
+  const { userId } = useParams();
+
+  const dispatch = useAppDispatch();
+
+  if (role === "ADMIN") {
+    useEffect(() => {
+      dispatch(getUser(userId));
+    }, []);
+  }
+
+  const ADMIN_BREADCRUMBS = [
+    {
+      label: "Users",
+      href: ADMIN_ROUTES.users,
+    },
+
+    {
+      label: user?.name ?? "Profile",
+      href: pathname,
+    },
+  ];
 
   if (!user) {
     return <NotFound />;
@@ -19,10 +49,10 @@ export const Profile = ({ user }: AdminUserPageProps) => {
     <div className="flex gap-12 my-10 mx-10">
       <div className="w-103.25 flex flex-col gap-6">
         <Breadcrumbs
-          links={[...ADMIN_BREADCRUMBS, { label: user.fullName, href: "" }]}
+          links={role === "ADMIN" ? ADMIN_BREADCRUMBS : USER_BREADCRUMBS}
         />
 
-        <UserProfileCard user={user} />
+        <UserProfileCard user={mapUserToProfile(user)} role={role} />
 
         {activeTab === "Announcement" && (
           <Button>BLOCK ALL ANNOUNCEMENT</Button>
@@ -35,3 +65,5 @@ export const Profile = ({ user }: AdminUserPageProps) => {
     </div>
   );
 };
+
+export default Profile;

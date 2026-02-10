@@ -19,25 +19,19 @@ export const injectStore = (store: Store<RootState>) => {
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    if (!customStore) return config;
- if (config.url?.includes("/auth/login")) {
-   return config;
- }
-    const token = customStore.getState().auth.token;
+    const updateConfig = { ...config };
+
+    const token = customStore?.getState().auth.accessToken;
 
     if (token) {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${token}`,
-      } as any;
+      updateConfig.headers.Authorization = `Bearer ${token}`;
     }
-
-    return config;
+    return updateConfig;
   },
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error: AxiosError) => Promise.reject(error)
+  (error: AxiosError) => Promise.reject(error),
 );

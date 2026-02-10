@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getProfile } from "./userThunk";
-
-interface UserState {
-  image: string | null;
-  name: string | null;
-  email: string | null;
-  isLoading: boolean;
-}
+import type { UserState } from "./type";
 
 const initialState: UserState = {
   image: null,
@@ -25,6 +19,7 @@ export const userSlice = createSlice({
       state.email = null;
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getProfile.pending, (state) => {

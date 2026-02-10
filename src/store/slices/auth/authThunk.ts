@@ -1,14 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { axiosInstance } from "@/configs/axiosInstance";
 import { showToast } from "@/utils/helpers/showToast";
-
 import type {
-  SignInPayload,
-  SignInResponse,
   GoogleAuthPayload,
   GoogleAuthResponse,
+  SignInPayload,
+  SignInResponse,
 } from "./types";
+import { axiosInstance } from "@/configs/axiosInstance";
 
 export const signIn = createAsyncThunk<
   SignInResponse,
@@ -31,7 +30,7 @@ export const signIn = createAsyncThunk<
       });
 
       return response.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         showToast({
           title: "Error",
@@ -65,7 +64,7 @@ export const authWithGoogleRequest = createAsyncThunk<
       });
 
       return response.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         showToast({
           title: "Error",
