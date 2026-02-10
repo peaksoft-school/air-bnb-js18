@@ -1,15 +1,20 @@
 import { BasketIcon } from "@/assets/icons";
-import type { User } from "@/store/slices/admin/user/types";
+import { useAppDispatch } from "@/store/hooks";
+import type { User } from "@/store/slices/admin/users/types";
+import { deleteUserById } from "@/store/slices/admin/users/usersThunks";
+import { useNavigate } from "react-router";
 
 interface TableUsersProps {
   users: User[];
-  onDelete?: (id: string) => void;
 }
 
-export const TableUsers = ({ users, onDelete }: TableUsersProps) => {
-  const handleDelete = (id: string) => {
-    if (onDelete) onDelete(id);
-  };
+export const TableUsers = ({ users }: TableUsersProps) => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleDelete = (id: string) => dispatch(deleteUserById(id));
+
+  const handleNavigate = (id: string) => navigate(`${id}`);
 
   return (
     <div className="p-10">
@@ -35,8 +40,15 @@ export const TableUsers = ({ users, onDelete }: TableUsersProps) => {
             ) => (
               <tr key={id} className="bg-gray-50 hover:bg-[#D8D8D8] transition">
                 <td className="p-3 text-center">{i + 1}</td>
-                <td className="p-3">{username}</td>
-                <td className="p-3 text-left">{contact}</td>
+                <td className="p-3" onClick={() => handleNavigate(id)}>
+                  {username}
+                </td>
+                <td
+                  className="p-3 text-left"
+                  onClick={() => handleNavigate(id)}
+                >
+                  {contact}
+                </td>
                 <td className="p-3 text-left">{bookingsQuantity}</td>
                 <td className="p-3">{housesQuantity}</td>
                 <td className="p-3 flex justify-center">

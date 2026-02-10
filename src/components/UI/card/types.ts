@@ -10,8 +10,6 @@ export type CardData = {
   guests?: number;
 };
 
-export type CardVariant = "default" | "admin" | "profile";
-
 export type CardDataLanding = {
   images: string[];
   price: number;

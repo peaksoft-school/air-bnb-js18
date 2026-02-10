@@ -21,7 +21,7 @@ export const getAllUsers = createAsyncThunk<User[]>(
         });
       }
 
-      return rejectWithValue("Login error");
+      return rejectWithValue("Users error");
     }
   },
 );
@@ -29,11 +29,13 @@ export const getAllUsers = createAsyncThunk<User[]>(
 export const deleteUserById = createAsyncThunk<void, string>(
   "users/deleteUser",
 
-  async (id, { rejectWithValue }) => {
+  async (id, { dispatch, rejectWithValue }) => {
     try {
       const { data } = await axiosInstance.delete(`/api/users/${id}`);
 
       const message = data.message;
+
+      dispatch(getAllUsers());
 
       return showToast({ title: "Delete:", message });
     } catch (error: unknown) {
@@ -45,7 +47,7 @@ export const deleteUserById = createAsyncThunk<void, string>(
         });
       }
 
-      return rejectWithValue("Login error");
+      return rejectWithValue("Delete error");
     }
   },
 );

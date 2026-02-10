@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-import {
-  deleteUserById,
-  getAllUsers,
-} from "../../../store/slices/admin/user/usersThunks";
+import { getAllUsers } from "../../../store/slices/admin/users/usersThunks";
 import { TableUsers } from "../../../components/admin/TableUsers";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
@@ -15,9 +12,7 @@ const Users = () => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  return (
-    <TableUsers users={users} onDelete={(id) => dispatch(deleteUserById(id))} />
-  );
+  return <TableUsers users={users} />;
 };
 
 export default Users;
