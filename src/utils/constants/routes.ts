@@ -7,6 +7,7 @@ export const ROLES = {
 export const ADMIN_ROUTES = {
   index: "/admin",
   allHousing: "/admin/all-housing",
+  users: "/admin/users",
 };
 export const USER_ROUTES = {
   index: "/user",
