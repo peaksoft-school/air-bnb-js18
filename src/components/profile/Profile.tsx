@@ -1,4 +1,4 @@
-import { UserProfileCard } from "@/components/profile/UserProfileCard";
+import { UserProfileCard } from "@/components/UI/card/UserProfileCard";
 import Breadcrumbs from "@/components/UI/BreadCrumbs";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";

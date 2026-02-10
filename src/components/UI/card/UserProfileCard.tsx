@@ -1,5 +1,5 @@
 import type { UserProfile } from "@/components/profile/type";
-import { Button } from "../UI/Button";
+import { Button } from "../Button";
 
 type Props = {
   user: UserProfile;
