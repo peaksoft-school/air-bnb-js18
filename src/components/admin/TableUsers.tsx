@@ -1,27 +1,13 @@
-import { useState } from "react";
-import basket from "../../assets/icons/basket.svg";
-
-interface User {
-  id: string;
-  username: string;
-  contact: string;
-  bookingsQuantity: number;
-  housesQuantity: number;
-}
+import { BasketIcon } from "@/assets/icons";
+import type { User } from "@/store/slices/admin/user/types";
 
 interface TableUsersProps {
   users: User[];
   onDelete?: (id: string) => void;
 }
 
-export const TableUsers = ({
-  users: initialUsers,
-  onDelete,
-}: TableUsersProps) => {
-  const [users, setUsers] = useState<User[]>(initialUsers);
-
+export const TableUsers = ({ users, onDelete }: TableUsersProps) => {
   const handleDelete = (id: string) => {
-    setUsers((prev) => prev.filter((user) => user.id !== id));
     if (onDelete) onDelete(id);
   };
 
@@ -42,26 +28,28 @@ export const TableUsers = ({
         </thead>
 
         <tbody>
-          {users.map((user, index) => (
-            <tr
-              key={user.id}
-              className="bg-gray-50 hover:bg-[#D8D8D8] transition"
-            >
-              <td className="p-3 text-center">{index + 1}</td>
-              <td className="p-3">{user.username}</td>
-              <td className="p-3 text-left">{user.contact}</td>
-              <td className="p-3 text-left">{user.bookingsQuantity}</td>
-              <td className="p-3">{user.housesQuantity}</td>
-              <td className="p-3 flex justify-center">
-                <button
-                  onClick={() => handleDelete(user.id)}
-                  className="hover:opacity-70 transition"
-                >
-                  <img src={basket} alt="Delete" className="h-5 w-5" />
-                </button>
-              </td>
-            </tr>
-          ))}
+          {users.map(
+            (
+              { id, username, contact, bookingsQuantity, housesQuantity },
+              i,
+            ) => (
+              <tr key={id} className="bg-gray-50 hover:bg-[#D8D8D8] transition">
+                <td className="p-3 text-center">{i + 1}</td>
+                <td className="p-3">{username}</td>
+                <td className="p-3 text-left">{contact}</td>
+                <td className="p-3 text-left">{bookingsQuantity}</td>
+                <td className="p-3">{housesQuantity}</td>
+                <td className="p-3 flex justify-center">
+                  <button
+                    onClick={() => handleDelete(id)}
+                    className="hover:opacity-70 transition"
+                  >
+                    <img src={BasketIcon} alt="Delete" className="h-5 w-5" />
+                  </button>
+                </td>
+              </tr>
+            ),
+          )}
 
           {users.length === 0 && (
             <tr>

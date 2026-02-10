@@ -3,11 +3,11 @@ import { Button } from "../UI/Button";
 import { Input } from "../UI/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useAppDispatch } from "@/store/hooks";
 import { ForgetPassword } from "./ForgetPassword";
 import { useState } from "react";
-import { useAppDispatch } from "@/store/hooks";
-import { signIn } from "@/store/slices/auth/authThunk";
 import { signInSchema } from "@/utils/helpers/validate";
+import { signIn } from "@/store/slices/auth/authThunk";
 
 type SignInModalProps = {
   onClose: () => void;

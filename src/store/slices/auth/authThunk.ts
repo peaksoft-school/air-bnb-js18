@@ -1,8 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { showToast } from "@/utils/helpers/showToast";
-import type { GoogleAuthPayload, GoogleAuthResponse, SignInPayload, SignInResponse } from "./types";
-import { axiosInstance } from "@/configs/admin/users/axiosInstance";
+import type {
+  GoogleAuthPayload,
+  GoogleAuthResponse,
+  SignInPayload,
+  SignInResponse,
+} from "./types";
+import { axiosInstance } from "@/configs/axiosInstance";
 
 export const signIn = createAsyncThunk<
   SignInResponse,
@@ -15,7 +20,7 @@ export const signIn = createAsyncThunk<
     try {
       const response = await axiosInstance.post<SignInResponse>(
         "/api/auth/signIn",
-        data
+        data,
       );
 
       showToast({
@@ -36,7 +41,7 @@ export const signIn = createAsyncThunk<
 
       return rejectWithValue("Login error");
     }
-  }
+  },
 );
 
 export const authWithGoogleRequest = createAsyncThunk<
@@ -49,7 +54,7 @@ export const authWithGoogleRequest = createAsyncThunk<
   async ({ idToken }, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post<GoogleAuthResponse>(
-        `/api/auth/authenticate/google?tokenId=${idToken}`
+        `/api/auth/authenticate/google?tokenId=${idToken}`,
       );
 
       showToast({
@@ -71,5 +76,5 @@ export const authWithGoogleRequest = createAsyncThunk<
 
       return rejectWithValue("Google auth error");
     }
-  }
+  },
 );

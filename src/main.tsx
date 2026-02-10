@@ -3,10 +3,11 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { Notification } from "@/components/UI/Notifications.tsx";
+import { store } from "./store/store.ts";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { injectStore } from "./configs/admin/users/axiosInstance.ts";
-import { persistor, store } from "./store/store.ts";
+import { persistor } from "./store/store";
+import { injectStore } from "./configs/axiosInstance.ts";
 
 injectStore(store);
 

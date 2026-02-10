@@ -1,9 +1,9 @@
-import { Button } from "@/components/UI/Button";
-import { Input } from "@/components/UI/Input";
-import { Modal } from "@/components/UI/Modal";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "../UI/Modal";
+import { Button } from "../UI/Button";
+import { Input } from "../UI/Input";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { emailSchema } from "@/utils/helpers/validate";
 
 type ForgetPasswordProps = {
   onClose: () => void;
@@ -12,13 +12,6 @@ type ForgetPasswordProps = {
 type ForgetPasswordFormValues = {
   email: string;
 };
-
-const emailSchema = yup.object({
-  email: yup
-    .string()
-    .email("Invalid email format")
-    .required("Email is required"),
-});
 
 export const ForgetPassword = ({ onClose }: ForgetPasswordProps) => {
   const {

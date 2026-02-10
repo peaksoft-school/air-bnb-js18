@@ -1,12 +1,12 @@
 export interface User {
   id: string;
-  name: string;
-  email: string;
-  bookings: number;
-  announcements: number;
+  username: string;
+  contact: string;
+  bookingsQuantity: number;
+  housesQuantity: number;
 }
 
 export interface UsersState {
-  list: User[];
+  users: User[];
   loading: boolean;
 }

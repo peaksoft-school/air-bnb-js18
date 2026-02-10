@@ -9,10 +9,10 @@ import { NotFound } from "@/layout/NotFound";
 import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
 import { useAppSelector } from "@/store/hooks";
 
-const LandingPage = lazy(() => import("@/containers/LandingPage"));
+const LandingPage = lazy(() => import("@/pages/LandingPage"));
 
 const AppRoutes = () => {
-  const { role, isAuth } = useAppSelector((state)=> state.auth);
+  const { role, isAuth } = useAppSelector((state) => state.auth);
 
   const router = createBrowserRouter([
     {

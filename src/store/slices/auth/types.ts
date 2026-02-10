@@ -4,10 +4,10 @@ export type SignInPayload = {
 };
 
 export type SignInResponse = {
-  id: string;
   email: string;
-  accessToken: string;
+  accessToken: string | null;
   role: "USER" | "ADMIN";
+  image: string | null;
 };
 
 export type GoogleAuthPayload = {
@@ -18,4 +18,16 @@ export type GoogleAuthResponse = {
   email: string;
   role: "GUEST" | "USER" | "ADMIN";
   token: string;
+  accessToken: string;
+  image: string | null;
 };
+
+export interface AuthState {
+  isAuth: boolean;
+  role: "GUEST" | "USER" | "ADMIN";
+  email: string | null;
+  isLoading: boolean;
+  error: string | null;
+  accessToken: string | null;
+  image: string | null;
+}

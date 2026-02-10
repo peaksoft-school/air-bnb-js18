@@ -3,7 +3,7 @@ import { deleteUserById, getAllUsers } from "./usersThunks";
 import type { UsersState } from "./types";
 
 const initialState: UsersState = {
-  list: [],
+  users: [],
   loading: false,
 };
 
@@ -17,7 +17,7 @@ export const usersSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.list = action.payload;
+        state.users = action.payload;
         state.loading = false;
       })
       .addCase(getAllUsers.rejected, (state) => {
@@ -27,8 +27,8 @@ export const usersSlice = createSlice({
       .addCase(deleteUserById.pending, (state) => {
         state.loading = true;
       })
-      .addCase(deleteUserById.fulfilled, (state, action) => {
-        state.list = state.list.filter((user) => user.id !== action.payload);
+      .addCase(deleteUserById.fulfilled, (state) => {
+        state.loading = false;
       })
       .addCase(deleteUserById.rejected, (state) => {
         state.loading = false;

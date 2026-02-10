@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authWithGoogleRequest, signIn } from "./authThunk";
-
-interface AuthState {
-  isAuth: boolean;
-  role: "GUEST" | "USER" | "ADMIN";
-  email: string | null;
-  isLoading: boolean;
-  error: string | null;
-  token: string | null;
-}
+import type { AuthState } from "./types";
 
 const initialState: AuthState = {
   isAuth: false,
@@ -16,7 +8,8 @@ const initialState: AuthState = {
   email: null,
   isLoading: false,
   error: null,
-  token: null,
+  accessToken: null,
+  image: null,
 };
 
 export const authSlice = createSlice({
@@ -27,7 +20,7 @@ export const authSlice = createSlice({
       state.isAuth = false;
       state.role = "GUEST";
       state.email = null;
-      state.token = null;
+      state.accessToken = null;
       state.error = null;
       state.isLoading = false;
 
@@ -43,11 +36,14 @@ export const authSlice = createSlice({
       })
 
       .addCase(signIn.fulfilled, (state, { payload }) => {
+        console.log(payload);
+
         state.isLoading = false;
         state.isAuth = true;
         state.email = payload.email;
         state.role = payload.role;
-        state.token = payload.accessToken;
+        state.accessToken = payload.accessToken;
+        state.image = payload.image;
       })
 
       .addCase(signIn.rejected, (state, { payload }) => {
@@ -65,7 +61,8 @@ export const authSlice = createSlice({
         state.isAuth = true;
         state.email = payload.email;
         state.role = payload.role;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
+        state.image = payload.image;
       })
 
       .addCase(authWithGoogleRequest.rejected, (state, { payload }) => {
