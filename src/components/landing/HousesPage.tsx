@@ -23,7 +23,7 @@ const HousesPage = () => {
       <div className="grid grid-cols-3 gap-6 p-6">
         {houses.map((house) => (
           <div key={house.id} className="border rounded p-4">
-            <img src={house.image} alt="" className="mb-2" />
+            <img src={house.images[0]} alt="" className="mb-2" />
             <h3 className="font-semibold">{house.title}</h3>
             <p>⭐ {house.rating}</p>
             <p>${house.price}</p>

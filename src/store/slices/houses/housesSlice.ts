@@ -1,25 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchHouses } from "./housesThunks";
-
-interface House {
-  id: number;
-  title: string;
-  price: number;
-  rating: number;
-  image: string;
-}
-
-interface HousesState {
-  houses: House[];
-  loading: boolean;
-}
+import type { HousesState } from "./types";
 
 const initialState: HousesState = {
   houses: [],
   loading: false,
 };
 
-const housesSlice = createSlice({
+export const housesSlice = createSlice({
   name: "houses",
   initialState,
   reducers: {},
@@ -30,7 +18,7 @@ const housesSlice = createSlice({
       })
       .addCase(fetchHouses.fulfilled, (state, action) => {
         state.loading = false;
-        state.houses = action.payload;
+        state.houses.splice(0, state.houses.length, ...action.payload);
       })
       .addCase(fetchHouses.rejected, (state) => {
         state.loading = false;

@@ -9,6 +9,7 @@ import { usersSlice } from "./slices/admin/users/usersSlice";
 import { announcementsSlice } from "./slices/admin/profile/announcements/announcementsSlice";
 import { bookingsSlice } from "./slices/admin/profile/bookings/bookingsSlice";
 import { profileUserSlice } from "./slices/admin/profile/user/profileUserSlice";
+import { housesSlice } from "./slices/houses/housesSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   [announcementsSlice.name]: announcementsSlice.reducer,
   [bookingsSlice.name]: bookingsSlice.reducer,
   [profileUserSlice.name]: profileUserSlice.reducer,
+  [housesSlice.name]: housesSlice.reducer,
 });
 
 const persistConfig = {

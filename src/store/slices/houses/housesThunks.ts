@@ -1,25 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../../utils/constants/user/axios"; 
+import { api } from "../../../utils/constants/user/axios";
+import type { Filters, House } from "./types";
 
-export interface Filters {
-  region?: string;
-  popular?: string;
-  houseType?: string;
-  price?: string;
-}
-
-export const fetchHouses = createAsyncThunk(
+export const fetchHouses = createAsyncThunk<House[], Filters | undefined>(
   "houses/fetch",
   async (filters: Filters = {}) => {
-    const { data } = await api.get("/api/users/houses", {
-      params: {
-        region: filters.region || undefined,
-        popular: filters.popular || undefined,
-        houseType: filters.houseType || undefined,
-        price: filters.price || undefined,
-      },
-    });
+    const { data } = await api.get<{ houseResponses: House[] }>(
+      "/api/houses/filtered",
+      {
+        params: filters,
+      }
+    );
 
-    return data;
+    return data.houseResponses;
   }
 );

@@ -8,6 +8,7 @@ import { UserLayout } from "@/layout/user/UserLayout";
 import { NotFound } from "@/layout/NotFound";
 import { ADMIN_ROUTES, ROLES, USER_ROUTES } from "@/utils/constants/routes";
 import { useAppSelector } from "@/store/hooks";
+import HousesPage from "@/components/landing/HousesPage";
 
 const LandingPage = lazy(() => import("@/pages/LandingPage"));
 
@@ -71,6 +72,8 @@ const AppRoutes = () => {
         },
       ],
     },
+
+    {path: "/pagesearch", element: <HousesPage/>},
 
     { path: "*", element: <NotFound /> },
   ]);
