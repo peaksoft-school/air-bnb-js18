@@ -6,17 +6,23 @@ import {
   RightArrowIcon,
   RightBlackArrowIcon,
 } from "@/assets/icons";
-import type { PopularApartmentsData } from "@/utils/constants/landing";
+
+interface PopularApartmentsData {
+  id: number;
+  images: string[];
+  title: string;
+  description: string;
+  address: string;
+}
 
 interface Props {
-  data: PopularApartmentsData[];
+  data: PopularApartmentsData;
   variant?: string;
 }
 
-export const ApartmentSlider = ({ data, variant }: Props) => {
-  if (!data.length) return null;
+export const ApartmentSlider = ({ data: apartment, variant }: Props) => {
+  if (!apartment) return null;
 
-  const apartment = data[0];
   const images: string[] = apartment.images || [];
 
   if (!images.length) return null;
@@ -46,7 +52,7 @@ export const ApartmentSlider = ({ data, variant }: Props) => {
             {apartment.description}
           </p>
           <p className="text-xs text-[#97C69E] mb-6 flex gap-1 items-end">
-            <img src={LocationIcon} alt="location" /> {apartment.location}
+            <img src={LocationIcon} alt="location" /> {apartment.address}
           </p>
 
           <span className="text-[#FFBE58] border-b border-[#FFBE58] w-fit cursor-pointer">

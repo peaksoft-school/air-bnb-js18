@@ -20,7 +20,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     };
 
     return (
-      <div ref={ref} className="relative w-[271px]">
+      <div ref={ref} className="relative w-67.75">
         <div
           className={`
             py-3 px-4 border border-gray-300 rounded cursor-pointer
