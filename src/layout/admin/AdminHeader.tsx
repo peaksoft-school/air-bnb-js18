@@ -27,7 +27,7 @@ export const AdminHeader = () => {
               isActive ? "text-[#FF4B4B]" : "hover:text-[#FF4B4B]"
             }
           >
-            All housing
+            Application
           </NavLink>
 
           <NavLink

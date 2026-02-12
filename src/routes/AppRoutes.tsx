@@ -44,7 +44,14 @@ const AppRoutes = () => {
             </Suspense>
           ),
 
-          children: adminRoutes,
+          children: [
+            {
+              index: true,
+              element: <Navigate to={ADMIN_ROUTES.application} replace />,
+            },
+
+            ...adminRoutes,
+          ],
         },
       ],
     },
