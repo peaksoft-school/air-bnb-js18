@@ -12,6 +12,7 @@ import LeftBlackArrowIcon from "./svgs/left-black-arrow.svg";
 import RightArrowIcon from "./svgs/right-arrow.svg";
 import RightBlackArrowIcon from "./svgs/right-black-arrow.svg";
 import SearchIcon from "./svgs/search.svg";
+import BasketIcon from "./svgs/basket.svg";
 
 export {
   Logo,
@@ -28,4 +29,5 @@ export {
   RightArrowIcon,
   RightBlackArrowIcon,
   SearchIcon,
+  BasketIcon,
 };

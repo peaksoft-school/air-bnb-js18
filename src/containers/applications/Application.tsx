@@ -1,22 +1,22 @@
-import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
-import { AdminHeader } from "@/layout/admin/AdminHeader";
 import { ApplicationGallery } from "./ApplicationGallery";
 import { ApplicationInfo } from "./ApplicationInfo";
+import Breadcrumbs from "@/components/UI/BreadCrumbs";
 
-export const Application = () => {
+const Application = () => {
   return (
     <div>
-      <AdminHeader />
       <Breadcrumbs
-        items={[
+        links={[
           { label: "Application", href: "/applications" },
-          { label: "Name" },
+          { label: "Name", href: "/applications" },
         ]}
       />
       <div className="flex">
-      <ApplicationGallery />
-      <ApplicationInfo />
+        <ApplicationGallery />
+        <ApplicationInfo />
       </div>
     </div>
   );
 };
+
+export default Application;
