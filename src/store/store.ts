@@ -6,9 +6,11 @@ import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
 import { usersSlice } from "./slices/admin/users/usersSlice";
-import { announcementsSlice } from "./slices/admin/profile/announcements/announcementsSlice";
-import { bookingsSlice } from "./slices/admin/profile/bookings/bookingsSlice";
-import { profileUserSlice } from "./slices/admin/profile/user/profileUserSlice";
+import { announcementsSlice } from "./slices/admin/users/profile/announcements/announcementsSlice";
+import { bookingsSlice } from "./slices/admin/users/profile/bookings/bookingsSlice";
+import { profileUserSlice } from "./slices/admin/users/profile/user/profileUserSlice";
+import { applicationSlice } from "./slices/admin/application/applicationSlice";
+import { allHousingSlice } from "./slices/admin/all-housing/allHousingSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   [announcementsSlice.name]: announcementsSlice.reducer,
   [bookingsSlice.name]: bookingsSlice.reducer,
   [profileUserSlice.name]: profileUserSlice.reducer,
+  [applicationSlice.name]: applicationSlice.reducer,
+  [allHousingSlice.name]: allHousingSlice.reducer,
 });
 
 const persistConfig = {

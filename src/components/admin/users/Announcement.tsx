@@ -1,6 +1,6 @@
 import { Card } from "@/components/UI/card/Card";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getUserAnnouncements } from "@/store/slices/admin/profile/announcements/announcementsThunk";
+import { getUserAnnouncements } from "@/store/slices/admin/users/profile/announcements/announcementsThunk";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 

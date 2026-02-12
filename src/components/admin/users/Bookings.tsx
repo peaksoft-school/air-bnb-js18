@@ -1,6 +1,6 @@
 import { Card } from "@/components/UI/card/Card";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getUserBooking } from "@/store/slices/admin/profile/bookings/bookingsThunk";
+import { getUserBooking } from "@/store/slices/admin/users/profile/bookings/bookingsThunk";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 
