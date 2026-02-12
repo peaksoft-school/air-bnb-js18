@@ -19,7 +19,7 @@ export const ApplicationInfo = () => {
         </p>
       </div>
 
-      <div className="w-[542px] h-[84px] pt-5">
+      <div className="w-135.5 h-21 pt-5">
         <p className="text-[#363636] text-[16px] ">
           The hotel will provide guests with air-conditioned rooms offering a
           desk, a kettle, a fridge, a minibar, a safety deposit box, a

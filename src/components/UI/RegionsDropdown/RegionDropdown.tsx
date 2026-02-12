@@ -32,7 +32,7 @@ const RegionDropdown = ({ onChange }: RegionsDropdownProps) => {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="relative w-[610px]">
+    <div ref={dropdownRef} className="relative w-152.5">
       <div
         onClick={() => setIsOpen((prev) => !prev)}
         className="
@@ -61,8 +61,8 @@ const RegionDropdown = ({ onChange }: RegionsDropdownProps) => {
             top-full
             left-0
             mt-1
-            w-[610px]
-            h-[262px]
+            w-152.5
+            h-65.5
             bg-white
             border border-gray-300
             rounded
@@ -75,7 +75,7 @@ const RegionDropdown = ({ onChange }: RegionsDropdownProps) => {
               key={region}
               onClick={() => handleSelect(region)}
               className={`
-                h-[27px]
+                h-6.75
                 px-4
                 flex items-center
                 cursor-pointer
