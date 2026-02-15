@@ -4,7 +4,6 @@ interface SelectOption {
   label: string;
 }
 
-/* ===== REGION ===== */
 export const REGION_SORT_OPTIONS: SelectOption[] = [
   { id: 1, value: "", label: "All" },
   { id: 2, value: "BATKEN", label: "Batken" },
@@ -17,21 +16,18 @@ export const REGION_SORT_OPTIONS: SelectOption[] = [
   { id: 9, value: "BISHKEK", label: "Bishkek" },
 ];
 
-/* ===== POPULAR ===== */
 export const POPULAR_SORT_OPTIONS: SelectOption[] = [
   { id: 1, value: "", label: "All" },
   { id: 2, value: "ASC", label: "Popular" },
   { id: 3, value: "DESC", label: "The latest" },
 ];
 
-/* ===== HOUSE TYPE ===== */
 export const HOUSE_TYPE_OPTIONS: SelectOption[] = [
   { id: 1, value: "", label: "All" },
   { id: 2, value: "APARTMENT", label: "Apartment" },
   { id: 3, value: "HOUSE", label: "House" },
 ];
 
-/* ===== PRICE ===== */
 export const PRICE_FILTER_OPTIONS: SelectOption[] = [
   { id: 1, value: "", label: "All" },
   { id: 2, value: "LOW_TO_HIGH", label: "Low to high" },

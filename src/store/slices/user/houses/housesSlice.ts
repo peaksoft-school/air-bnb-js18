@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchHouses } from "./housesThunks";
+import { getFilteredHouses } from "./housesThunk";
 import type { HousesState } from "./types";
 
 const initialState: HousesState = {
   houses: [],
+  totalPages: 1,
   loading: false,
 };
 
@@ -11,19 +12,19 @@ export const housesSlice = createSlice({
   name: "houses",
   initialState,
   reducers: {},
+
   extraReducers: (builder) => {
     builder
-      .addCase(fetchHouses.pending, (state) => {
+      .addCase(getFilteredHouses.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchHouses.fulfilled, (state, action) => {
+      .addCase(getFilteredHouses.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.houses.splice(0, state.houses.length, ...action.payload);
+        state.houses = payload.houseResponses;
+        state.totalPages = payload.totalPages;
       })
-      .addCase(fetchHouses.rejected, (state) => {
+      .addCase(getFilteredHouses.rejected, (state) => {
         state.loading = false;
       });
   },
 });
-
-export default housesSlice.reducer;

@@ -1,5 +1,5 @@
 import { UserProfileCard } from "@/components/UI/card/UserProfileCard";
-import Breadcrumbs from "@/components/UI/BreadCrumbs";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
 import { USER_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/UI/Button";
 import { useLocation, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getUser } from "@/store/slices/admin/profile/user/profileUserThunk";
+import { getUser } from "@/store/slices/admin/users/profile/user/profileUserThunk";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
 import { mapUserToProfile } from "./type";
 
