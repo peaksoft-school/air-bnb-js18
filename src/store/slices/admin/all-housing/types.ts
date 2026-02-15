@@ -27,17 +27,17 @@ export interface FilterParams {
 }
 
 export interface DeleteCardParams {
-  id: number;
+  id: number | string;
   getData: FilterParams;
 }
 
 export interface AcceptCardParams {
-  id: number;
+  id: number | string;
   getData: FilterParams;
 }
 
 export interface RejectCardParams {
-  houseId: number;
+  houseId: number | string;
   massage: string;
   getData: FilterParams;
 }

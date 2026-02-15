@@ -11,6 +11,8 @@ export const ADMIN_ROUTES = {
   users: "/admin/users",
   user: "/admin/users/:userId",
 };
+
 export const USER_ROUTES = {
   index: "/user",
+  innerRegion: "/user/inner-region",
 };

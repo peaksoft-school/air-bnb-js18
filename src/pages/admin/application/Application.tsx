@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/UI/card/Card";
-import { Pagination } from "@/components/UI/Pogination";
+import { Pagination } from "@/components/UI/Pagination";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   getAllApplication,

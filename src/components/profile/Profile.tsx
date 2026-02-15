@@ -1,5 +1,5 @@
 import { UserProfileCard } from "@/components/UI/card/UserProfileCard";
-import Breadcrumbs from "@/components/UI/BreadCrumbs";
+import Breadcrumbs from "@/components/UI/Breadcrumbs";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
 import { USER_BREADCRUMBS } from "@/utils/constants/breadcrumbs";

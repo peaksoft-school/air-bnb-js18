@@ -1,11 +1,18 @@
 import type { ReactNode, ButtonHTMLAttributes } from "react";
 import { cn } from "../../lib/utils";
+import { X } from "lucide-react";
 
 interface ChipButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  onRemove?: () => void;
 }
 
-export const Chip = ({ children, className, ...props }: ChipButtonProps) => {
+export const Chip = ({
+  children,
+  className,
+  onRemove,
+  ...props
+}: ChipButtonProps) => {
   return (
     <button
       {...props}
@@ -19,7 +26,14 @@ export const Chip = ({ children, className, ...props }: ChipButtonProps) => {
         className,
       )}
     >
-      <span className="text-lg leading-none">×</span>
+      {onRemove && (
+        <button
+          onClick={onRemove}
+          className="hover:bg-gray-300 rounded-full p-0.5 transition"
+        >
+          <X size={14} />
+        </button>
+      )}
 
       <span>{children}</span>
     </button>

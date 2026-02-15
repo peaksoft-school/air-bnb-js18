@@ -34,12 +34,25 @@ export const Card = ({
   className,
   menuActions,
 }: CardProps) => {
-  const { images, price, rating, title, address, guests, checkIn, checkOut } =
-    data;
+  const {
+    images,
+    price,
+    rating,
+    title,
+    address,
+    province,
+    guests,
+    maxGuests,
+    checkIn,
+    checkOut,
+  } = data;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const locationText = address || province || "Location not specified";
+  const guestsText = guests || maxGuests || 0;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -64,7 +77,6 @@ export const Card = ({
 
   const handleMenuAction = (action: MenuAction) => {
     action.onClick(data);
-
     setIsMenuOpen(false);
   };
 
@@ -91,6 +103,7 @@ export const Card = ({
               <span className="text-sm text-white">{rating}</span>
             </div>
           </div>
+
           <div className="space-y-2">
             <p className="line-clamp-2 text-[1rem] font-normal leading-snug text-[#2B2B2B]">
               {title}
@@ -98,14 +111,14 @@ export const Card = ({
 
             <p className="flex items-center gap-1 text-[0.9rem] text-[#828282]">
               <MapPin className="h-4 w-4 text-[#C4C4C4]" />
-              {address}
+              {locationText}
             </p>
           </div>
 
           {variant === "profile" && (
             <>
               <p className="py-3.5 text-[0.9rem] text-[#828282]">
-                {guests} guests
+                {guestsText} guests
               </p>
 
               <div className="flex justify-between text-[0.9rem] text-[#828282]">
@@ -125,7 +138,7 @@ export const Card = ({
           {variant !== "profile" && (
             <div className="mt-2 flex items-center justify-between">
               <p className="max-w-52.5 text-[0.9rem] text-[#939393]">
-                {guests} guests
+                {guestsText} guests
               </p>
 
               {variant === "default" && (
@@ -164,7 +177,7 @@ export const Card = ({
         menuActions.length > 0 && (
           <div
             ref={menuRef}
-            className="absolute right-3 bottom-0 min-w-32 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50"
+            className="absolute left-full top-0 ml-2 min-w-32 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50"
           >
             {menuActions.map((action, index) => (
               <button
