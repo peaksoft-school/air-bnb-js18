@@ -5,14 +5,14 @@ import type { NotificationVariant } from "@/components/UI/Notifications";
 interface ShowToastProps {
   title: string;
   message: string;
-  type: NotificationVariant;
+  type?: NotificationVariant;
   duration?: number;
 }
 
 export const showToast = ({
   title,
   message,
-  type,
+  type = "success",
   duration = 3000,
 }: ShowToastProps) => {
   toast(
