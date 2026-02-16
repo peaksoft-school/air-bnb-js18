@@ -16,16 +16,15 @@ type CardProps = {
   variant?: "default" | "admin" | "profile";
   className?: string;
   menuActions?: MenuAction[];
+  onToggleFavorite?: (id: string | number) => void;
 };
 
 const variantClasses: Record<"default" | "admin" | "profile", string> = {
   default:
-    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem] border border-none rounded-[4px]",
-
+    "hover:bg-white hover:shadow-md min-w-[16rem] max-w-[18.5rem] min-h-[21rem] border-none rounded",
   admin:
-    "hover:border-red-500 hover:bg-white hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[14.5rem] min-h-[15rem] rounded-[4px] border border-none",
-
-  profile: "min-w-[16rem] min-h-[25rem] rounded-[4px] border border-none",
+    "hover:border-red-500 hover:bg-white hover:shadow-[0_0_0_3px_rgba(255,0,0,0.6)] min-w-[12rem] max-w-[14.5rem] min-h-[15rem] border-none rounded",
+  profile: "min-w-[16rem] min-h-[25rem] border-none rounded",
 };
 
 export const Card = ({
@@ -33,6 +32,7 @@ export const Card = ({
   variant = "default",
   className,
   menuActions,
+  onToggleFavorite,
 }: CardProps) => {
   const {
     images,
@@ -45,6 +45,7 @@ export const Card = ({
     maxGuests,
     checkIn,
     checkOut,
+    favorite = false,
   } = data;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,6 +54,7 @@ export const Card = ({
 
   const locationText = address || province || "Location not specified";
   const guestsText = guests || maxGuests || 0;
+  const ratingValue = rating || 0;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -68,11 +70,9 @@ export const Card = ({
 
     if (isMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, [isMenuOpen]);
 
   const handleMenuAction = (action: MenuAction) => {
@@ -100,7 +100,7 @@ export const Card = ({
 
             <div className="flex items-center gap-1 rounded-[2px] bg-[#828282] px-2.75 py-1">
               <Star size={14} className="text-[#F7D212]" fill="#F7D212" />
-              <span className="text-sm text-white">{rating}</span>
+              <span className="text-sm text-white">{ratingValue}</span>
             </div>
           </div>
 
@@ -108,7 +108,6 @@ export const Card = ({
             <p className="line-clamp-2 text-[1rem] font-normal leading-snug text-[#2B2B2B]">
               {title}
             </p>
-
             <p className="flex items-center gap-1 text-[0.9rem] text-[#828282]">
               <MapPin className="h-4 w-4 text-[#C4C4C4]" />
               {locationText}
@@ -120,7 +119,6 @@ export const Card = ({
               <p className="py-3.5 text-[0.9rem] text-[#828282]">
                 {guestsText} guests
               </p>
-
               <div className="flex justify-between text-[0.9rem] text-[#828282]">
                 <div>
                   <p className="text-[#646464]">Check in</p>
@@ -144,12 +142,22 @@ export const Card = ({
               {variant === "default" && (
                 <div className="flex items-center gap-2">
                   <Button size="sm">BOOK</Button>
-
                   <button
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex h-8.75 w-8.75 items-center justify-center rounded-[2px] border border-transparent text-[#DD8A08] transition group-hover:border-[#DD8A08] group-hover:bg-white"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onToggleFavorite?.(data.id);
+                    }}
+                    className={cn(
+                      "flex h-8.75 w-8.75 items-center justify-center rounded-[2px] border transition cursor-pointer",
+                      favorite
+                        ? "border-[#DD8A08] bg-white text-[#DD8A08]"
+                        : "border-transparent text-[#C4C4C4] group-hover:border-[#DD8A08] group-hover:bg-white",
+                    )}
                   >
-                    <Heart size={18} />
+                    <Heart
+                      size={18}
+                      className={cn("transition", favorite && "fill-[#DD8A08]")}
+                    />
                   </button>
                 </div>
               )}

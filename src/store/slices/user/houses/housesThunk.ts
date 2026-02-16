@@ -54,3 +54,34 @@ export const getFilteredHouses = createAsyncThunk<
     }
   },
 );
+
+export const toggleFilteredFavorite = createAsyncThunk<
+  void,
+  FilterParams,
+  { rejectValue: string }
+>(
+  "favorite/toggle",
+
+  async (
+    { region, houseType, popular, rating, price, currentPage, pageSize, id },
+    { rejectWithValue, dispatch },
+  ) => {
+    try {
+      await axiosInstance.post(`/api/favorites/${id}`);
+
+      await dispatch(
+        getFilteredHouses({
+          region,
+          houseType,
+          popular,
+          rating,
+          price,
+          currentPage,
+          pageSize,
+        }),
+      );
+    } catch {
+      return rejectWithValue("Failed to toggle favorite");
+    }
+  },
+);

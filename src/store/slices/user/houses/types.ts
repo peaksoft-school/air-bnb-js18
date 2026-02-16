@@ -24,6 +24,7 @@ export interface FilterParams {
   rating?: string;
   currentPage: number;
   pageSize: number;
+  id?: number | string;
 }
 
 export interface HousesState {

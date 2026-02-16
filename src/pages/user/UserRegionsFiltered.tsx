@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getFilteredHouses } from "@/store/slices/user/houses/housesThunk";
+import {
+  getFilteredHouses,
+  toggleFilteredFavorite,
+} from "@/store/slices/user/houses/housesThunk";
 import {
   REGION_SORT_OPTIONS,
   POPULAR_SORT_OPTIONS,
@@ -79,6 +82,20 @@ const UserRegionsFiltered = () => {
     priceFilterOption,
     currentPage,
   ]);
+
+  const handleToggleFavorite = (id: number | string) =>
+    dispatch(
+      toggleFilteredFavorite({
+        region: sortOption,
+        houseType: homeTypeOption,
+        popular: sortByOption,
+        rating: sortByOption,
+        price: priceFilterOption,
+        currentPage,
+        pageSize,
+        id,
+      }),
+    );
 
   const handleClearAll = () => {
     setSortOption(REGION_SORT_OPTIONS[0]?.value || "");
@@ -205,7 +222,12 @@ const UserRegionsFiltered = () => {
       {houses?.length !== 0 ? (
         <div className="mt-5 grid grid-cols-3 gap-4">
           {houses?.map((house) => (
-            <Card key={house.id} data={house} variant="default" />
+            <Card
+              key={house.id}
+              data={house}
+              variant="default"
+              onToggleFavorite={handleToggleFavorite}
+            />
           ))}
         </div>
       ) : (

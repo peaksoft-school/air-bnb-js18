@@ -3,7 +3,7 @@ export type CardData = {
   images: string[];
   price: number;
   rating?: number;
-  title: string;
+  title?: string;
   address?: string;
   province?: string;
   region?: string;
@@ -21,7 +21,7 @@ export type CardDataLanding = {
   images: string[];
   price: number;
   rating?: number;
-  title: string;
+  title?: string;
   address: string;
   id: string | number;
 };

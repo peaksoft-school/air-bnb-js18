@@ -7,6 +7,7 @@ import ProfileIcon from "./svgs/profile.svg";
 import GoogleIcon from "./svgs/google.svg";
 import LocationIcon from "./svgs/location.svg";
 import ArrowDownIcon from "./svgs/down-arrow.svg";
+import GreyArrowDownIcon from "./svgs/gray-arrow-down.svg";
 import LeftArrowIcon from "./svgs/left-arrow.svg";
 import LeftBlackArrowIcon from "./svgs/left-black-arrow.svg";
 import RightArrowIcon from "./svgs/right-arrow.svg";
@@ -24,6 +25,7 @@ export {
   GoogleIcon,
   LocationIcon,
   ArrowDownIcon,
+  GreyArrowDownIcon,
   LeftArrowIcon,
   LeftBlackArrowIcon,
   RightArrowIcon,

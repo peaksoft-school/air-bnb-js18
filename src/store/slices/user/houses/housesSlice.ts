@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFilteredHouses } from "./housesThunk";
+import { getFilteredHouses, toggleFilteredFavorite } from "./housesThunk";
 import type { HousesState } from "./types";
 
 const initialState: HousesState = {
@@ -24,6 +24,15 @@ export const housesSlice = createSlice({
         state.totalPages = payload.totalPages;
       })
       .addCase(getFilteredHouses.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(toggleFilteredFavorite.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(toggleFilteredFavorite.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(toggleFilteredFavorite.rejected, (state) => {
         state.loading = false;
       });
   },
