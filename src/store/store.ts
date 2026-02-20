@@ -11,6 +11,8 @@ import { bookingsSlice } from "./slices/admin/profile/bookings/bookingsSlice";
 import { profileUserSlice } from "./slices/admin/profile/user/profileUserSlice";
 import { applicationSlice } from "./slices/admin/application/applicationSlice";
 import { allHousingSlice } from "./slices/admin/all-housing/allHousingSlice";
+import { innerApplicationSlice } from "./slices/admin/inner-application/innerApplicationSlice";
+
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   [profileUserSlice.name]: profileUserSlice.reducer,
   [applicationSlice.name]: applicationSlice.reducer,
   [allHousingSlice.name]: allHousingSlice.reducer,
+  [innerApplicationSlice.name]: innerApplicationSlice.reducer
+ 
 });
 
 const persistConfig = {

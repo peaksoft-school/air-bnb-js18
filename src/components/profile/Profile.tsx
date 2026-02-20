@@ -1,5 +1,5 @@
 import { UserProfileCard } from "@/components/UI/card/UserProfileCard";
-import Breadcrumbs from "@/components/UI/BreadCrumbs";
+import Breadcrumbs from "@/components/UI/Breadcrumbs_tt";
 import Tabs from "@/components/UI/Tab";
 import { NotFound } from "@/layout/NotFound";
 import { USER_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
@@ -23,11 +23,11 @@ const Profile = () => {
 
   const dispatch = useAppDispatch();
 
-  if (role === "ADMIN") {
-    useEffect(() => {
+  useEffect(() => {
+    if (role === "ADMIN") {
       dispatch(getUser(userId));
-    }, []);
-  }
+    }
+  }, [role, userId, dispatch]);
 
   const ADMIN_BREADCRUMBS = [
     {
