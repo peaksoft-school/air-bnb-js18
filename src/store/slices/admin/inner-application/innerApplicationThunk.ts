@@ -69,7 +69,9 @@ export const rejectInnerApplication = createAsyncThunk<
   async ({ id, message }, { dispatch, rejectWithValue }) => {
     try {
       await axiosInstance.post(
-        `/api/admin/accepted-application/${id}?value=REJECT&messageFromAdminToUser=${message}`,
+        `/api/admin/accepted-application/${id}?value=REJECT&messageFromAdminToUser=${encodeURIComponent(
+          message,
+        )}`,
       );
 
       showToast({

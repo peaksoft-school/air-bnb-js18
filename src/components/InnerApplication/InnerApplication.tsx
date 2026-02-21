@@ -1,16 +1,50 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import Breadcrumbs from "@/components/UI/Breadcrumbs_tt";
 import { Button } from "@/components/UI/Button";
 import { AdminHeader } from "@/layout/admin/AdminHeader";
 
-import image1 from "@/assets/images/image1.png";
-import image2 from "@/assets/images/image2.png";
-import image3 from "@/assets/images/image3.png";
-import image4 from "@/assets/images/image4.png";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import {
+  getInnerApplication,
+  approveInnerApplication,
+  rejectInnerApplication,
+} from "@/store/slices/admin/inner-application/innerApplicationThunk";
 
 const InnerApplication = () => {
-  const images = [image1, image3, image4, image2];
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const { applicationId } = useParams<{ applicationId: string }>();
+  const dispatch = useAppDispatch();
+
+  const { data, isLoading } = useAppSelector((state) => state.innerApplication);
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!applicationId) return;
+    dispatch(getInnerApplication({ id: Number(applicationId) }));
+  }, [dispatch, applicationId]);
+
+  const images = useMemo(() => data?.images ?? [], [data]);
+  const [activeImage, setActiveImage] = useState<string>(
+    data?.images?.[0] ?? "",
+  );
+
+  const onAccept = () => {
+    if (!applicationId) return;
+    dispatch(approveInnerApplication({ id: Number(applicationId) }));
+  };
+
+  const onReject = () => {
+    if (!applicationId) return;
+    if (!message.trim()) return;
+    dispatch(
+      rejectInnerApplication({
+        id: Number(applicationId),
+        message,
+      }),
+    );
+  };
 
   return (
     <div className="bg-[#F7F7F7] min-h-screen ">
@@ -19,27 +53,31 @@ const InnerApplication = () => {
       <div className="px-10 py-8">
         <Breadcrumbs
           links={[
-            { label: "Application", href: "/applications" },
-            { label: "Name", href: "/applications" },
+            { label: "Application", href: "/admin/application" },
+            { label: data?.title || "Details", href: "#" },
           ]}
         />
       </div>
 
       <div className="flex gap-16 mt-6 px-10">
         <div className="w-157.5">
-          <h1 className="text-lg font-bold text-slate-900">NAME</h1>
+          <h1 className="text-lg font-bold text-slate-900">
+            {isLoading ? "Loading..." : data?.title || "—"}
+          </h1>
 
           <div className="mt-6 flex flex-col gap-5">
-            <div className="overflow-hidden w-157.5 h-126.75">
-              <img
-                src={activeImage}
-                className="w-full h-full object-cover transition-all duration-300"
-                alt="Main"
-              />
+            <div className="overflow-hidden w-157.5 h-126.75 bg-gray-200">
+              {activeImage ? (
+                <img
+                  src={activeImage}
+                  className="w-full h-full object-cover transition-all duration-300"
+                  alt="Main"
+                />
+              ) : null}
             </div>
 
             <div className="flex gap-5">
-              {images.slice(1).map((img, index) => (
+              {images.slice(1, 4).map((img, index) => (
                 <img
                   key={index}
                   src={img}
@@ -59,38 +97,38 @@ const InnerApplication = () => {
         <div className="w-105 pt-10">
           <div className="flex gap-3">
             <span className="px-3 py-1 bg-[#FFF0F6] border border-[#FFCBE0]">
-              Apartement
+              {data?.houseType || "—"}
             </span>
             <span className="px-3 py-1 bg-[#FFF0F6] border border-[#FFCBE0]">
-              2 Guests
+              {data?.maxGuests ? `${data.maxGuests} Guests` : "—"}
             </span>
           </div>
 
           <div className="pt-4">
-            <h1 className="text-xl font-medium">Name of hotel</h1>
-            <p className="text-[#828282]">12 Morris Ave, Toronto, ON, CA</p>
+            <h1 className="text-xl font-medium">{data?.title || "—"}</h1>
+            <p className="text-[#828282]">{data?.address || "—"}</p>
           </div>
 
           <div className="pt-4">
-            <p>
-              The hotel will provide guests with air-conditioned rooms offering
-              a desk, a kettle, a fridge, a minibar, a safety deposit box, a
-              flat-screen TV and a shared bathroom with a shower. At Garden
-              Hotel & SPA the rooms have bed linen and towels.
-            </p>
+            <p>{data?.description || "—"}</p>
           </div>
 
-          <div className="flex items-center gap-4 pt-10">
-            <div className="w-9 h-9 bg-[#C4C4C4] rounded-full"></div>
-            <div>
-              <h4 className="font-medium">Anna Annova</h4>
-              <p className="text-[#828282]">anna@gmail.com</p>
-            </div>
+          <div className="pt-6">
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Reason for reject..."
+              className="w-full p-3 border border-gray-300 rounded"
+            />
           </div>
 
-          <div className="flex gap-5 pt-10">
-            <Button variant="outline">REJECT</Button>
-            <Button variant="default">ACCEPT</Button>
+          <div className="flex gap-5 pt-6">
+            <Button variant="outline" onClick={onReject} disabled={isLoading}>
+              REJECT
+            </Button>
+            <Button variant="default" onClick={onAccept} disabled={isLoading}>
+              ACCEPT
+            </Button>
           </div>
         </div>
       </div>

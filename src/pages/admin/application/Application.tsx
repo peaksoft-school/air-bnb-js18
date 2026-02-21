@@ -11,8 +11,10 @@ import {
 import AdminNoDataImage from "@/assets/images/admin-no-data.png";
 import type { CardData } from "@/components/UI/card/types";
 import RejectedModal from "@/components/UI/admin/RejectModal";
+import { useNavigate } from "react-router-dom";
 
 const Application = () => {
+  const navigate = useNavigate();
   const { houses, totalPages } = useAppSelector((state) => state.application);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -95,16 +97,16 @@ const Application = () => {
       <div className="flex items-center justify-between w-full bg-[#F7F7F7] px-10 pt-11.5">
         <h2 className="text-lg font-semibold text-black">APPLICATION</h2>
       </div>
-
       {houses?.length > 0 ? (
         <div className="grid grid-cols-6 gap-5 bg-[#F7F7F7] px-10 py-6">
           {houses?.map((item) => (
-            <Card
+            <div
               key={item.id}
-              data={item}
-              variant="admin"
-              menuActions={menuActions}
-            />
+              onClick={() => navigate(`/admin/application/${item.id}`)}
+              className="cursor-pointer"
+            >
+              <Card data={item} variant="admin" menuActions={menuActions} />
+            </div>
           ))}
         </div>
       ) : (
