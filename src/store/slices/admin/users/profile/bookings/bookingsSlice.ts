@@ -26,17 +26,6 @@ export const bookingsSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || "Error";
       })
-      // .addCase(blockedHouses.pending, (state) => {
-      //   state.isLoading = true;
-      //   state.error = null;
-      // })
-      // .addCase(blockedHouses.fulfilled, (state) => {
-      //   state.isLoading = false;
-      // })
-      // .addCase(blockedHouses.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.error.message || "Error";
-      // })
       .addCase(deleteHouse.pending, (state) => {
         state.isLoading = true;
         state.error = null;

@@ -1,4 +1,4 @@
-import type { User } from "@/store/slices/admin/profile/user/types";
+import type { User } from "@/store/slices/admin/users/profile/user/types";
 import type { CardData } from "../UI/card/types";
 
 export type UserProfile = {

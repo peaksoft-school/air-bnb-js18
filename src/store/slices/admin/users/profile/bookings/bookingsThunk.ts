@@ -28,35 +28,6 @@ export const getUserBooking = createAsyncThunk<Booking[], string | undefined>(
   },
 );
 
-// export const blockedHouses = createAsyncThunk<void, BlockedHousesArgs>(
-//   "bookings/blockedHouses",
-//   async ({ id, block }, { rejectWithValue, dispatch }) => {
-//     try {
-//       const { data } = await axiosInstance.post(
-//         `api/houses/blockedHousesById?houseId=${id}&blockOrUnblock=${block}`,
-//       );
-
-//       showToast({
-//         title: "Block",
-//         message: data.message,
-//         type: "success",
-//       });
-
-//       dispatch(getUserBooking(String(id)));
-//     } catch (error: unknown) {
-//       const err = error as { response?: { message?: string } };
-
-//       showToast({
-//         title: "Block",
-//         message: err.response?.message ?? "Something went wrong",
-//         type: "error",
-//       });
-
-//       return rejectWithValue(err.response?.message);
-//     }
-//   },
-// );
-
 export const deleteHouse = createAsyncThunk<void, DeleteHouseArgs>(
   "user/deleteHouse",
   async ({ id, navigate }, { rejectWithValue, dispatch }) => {

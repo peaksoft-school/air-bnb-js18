@@ -18,11 +18,6 @@ export interface BookingsState {
   error: string | null;
 }
 
-export type BlockedHousesArgs = {
-  id: number | string;
-  block: boolean;
-};
-
 export type DeleteHouseArgs = {
   id: number | string;
   navigate?: (delta: number) => void;

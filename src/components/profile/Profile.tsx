@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/UI/Button";
 import { useLocation, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getUser } from "@/store/slices/admin/profile/user/profileUserThunk";
+import { getUser } from "@/store/slices/admin/users/profile/user/profileUserThunk";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
 import { mapUserToProfile } from "./type";
 import { ProfileCard } from "./ProfileCard";
 import { Breadcrumbs } from "../UI/Breadcrumbs";
-import { blockAllUserHouses } from "@/store/slices/admin/profile/announcements/announcementsThunk";
+import { blockAllUserHouses } from "@/store/slices/admin/users/profile/announcements/announcementsThunk";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("Bookings");

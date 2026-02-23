@@ -13,11 +13,11 @@ import { favoriteSlice } from "./slices/user/favorite/favoriteSlice";
 import { bookingsUserSlice } from "./slices/user/bookingsUser/userBookingsSlice";
 import { announcementsUserSlice } from "./slices/user/announcementsUser/userAnnouncementsSlice";
 import { moderationHousesSlice } from "./slices/user/moderationHouses/moderationHousesSlice";
-import { announcementsSlice } from "./slices/admin/profile/announcements/announcementsSlice";
-import { bookingsSlice } from "./slices/admin/profile/bookings/bookingsSlice";
+import { announcementsSlice } from "./slices/admin/users/profile/announcements/announcementsSlice";
+import { bookingsSlice } from "./slices/admin/users/profile/bookings/bookingsSlice";
 import { profileSlice } from "./slices/user/profile/profileSlice";
 import { innerApplicationSlice } from "./slices/admin/inner-application/innerApplicationSlice";
-import { profileUserSlice } from "./slices/admin/profile/user/profileUserSlice";
+import { profileUserSlice } from "./slices/admin/users/profile/user/profileUserSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,

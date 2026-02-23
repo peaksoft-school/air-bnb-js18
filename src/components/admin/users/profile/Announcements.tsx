@@ -4,7 +4,7 @@ import {
   getUserAnnouncements,
   blockedHouses,
   deleteHouse,
-} from "@/store/slices/admin/profile/announcements/announcementsThunk";
+} from "@/store/slices/admin/users/profile/announcements/announcementsThunk";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import UserNoDataImage from "@/assets/images/user-no-data.png";

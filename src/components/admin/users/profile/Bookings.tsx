@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   deleteHouse,
   getUserBooking,
-} from "@/store/slices/admin/profile/bookings/bookingsThunk";
+} from "@/store/slices/admin/users/profile/bookings/bookingsThunk";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import UserNoDataImage from "@/assets/images/user-no-data.png";
