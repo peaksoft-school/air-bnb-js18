@@ -38,7 +38,7 @@ export const Announcements = () => {
   return (
     <>
       {announcements && announcements?.length > 0 ? (
-        <div className="grid grid-cols-4 gap-6 w-225">
+        <div className="grid grid-cols-4 gap-6 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {announcements.map((item, index) => (
             <Card
               key={index}

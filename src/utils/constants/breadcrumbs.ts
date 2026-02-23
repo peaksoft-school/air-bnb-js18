@@ -17,3 +17,10 @@ export const USER_BREADCRUMBS = [
     href: USER_ROUTES.index,
   },
 ];
+
+export const INNERPAGE_BREADCRUMBS = [
+  {
+    label: "Profile",
+    href: USER_ROUTES.index,
+  },
+];

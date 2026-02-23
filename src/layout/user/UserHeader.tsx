@@ -51,7 +51,7 @@ export const UserHeader = () => {
   };
 
   return (
-    <header className="bg-white h-22 flex justify-between items-center px-25">
+    <header className="bg-white h-22 flex justify-between items-center px-25 py-10">
       <div className="flex gap-15">
         <img
           src={BlackLogoIcon}

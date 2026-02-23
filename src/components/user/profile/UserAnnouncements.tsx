@@ -10,6 +10,8 @@ import {
   priceOptions,
   ratingOptions,
 } from "@/utils/constants/user";
+import { useNavigate } from "react-router";
+import { USER_ROUTES } from "@/utils/constants/routes";
 
 type FilterKey = "houseType" | "rating" | "price";
 
@@ -24,6 +26,7 @@ export const UserAnnouncements = () => {
     (state) => state.announcementsUser,
   );
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [houseType, setHouseType] = useState("");
   const [rating, setRating] = useState("");
@@ -105,9 +108,16 @@ export const UserAnnouncements = () => {
       )}
 
       {data && data.length > 0 ? (
-        <div className="grid grid-cols-4 gap-6 w-225">
+        <div className="grid grid-cols-4 gap-6 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((item) => (
-            <Card key={item.id} variant="admin" data={item} />
+            <Card
+              key={item.id}
+              variant="admin"
+              data={item}
+              onClick={() =>
+                navigate(`${USER_ROUTES.profile}/my-announcement/${item.id}`)
+              }
+            />
           ))}
         </div>
       ) : (

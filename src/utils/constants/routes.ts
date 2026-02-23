@@ -18,4 +18,5 @@ export const USER_ROUTES = {
   innerRegion: "/user/inner-region",
   favorite: "/user/favorite",
   profile: "/user/profile",
+  innerMyAnnouncement: "/user/profile/my-announcement/:houseId",
 };

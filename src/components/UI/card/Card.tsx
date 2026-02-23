@@ -16,6 +16,7 @@ type CardProps = {
   variant?: "default" | "admin" | "profile";
   className?: string;
   menuActions?: MenuAction[];
+  onClick?: () => void;
   onToggleFavorite?: (id: string | number) => void;
 };
 
@@ -33,6 +34,7 @@ export const Card = ({
   className,
   menuActions,
   onToggleFavorite,
+  onClick,
   ...rest
 }: CardProps) => {
   const {
@@ -82,7 +84,7 @@ export const Card = ({
   };
 
   return (
-    <div className="relative" {...rest}>
+    <div className="relative" {...rest} onClick={onClick}>
       <div
         className={cn(
           "group cursor-pointer overflow-hidden rounded-lg border bg-[#F7F7F7] transition-all",

@@ -14,6 +14,12 @@ import RightArrowIcon from "./svgs/right-arrow.svg";
 import RightBlackArrowIcon from "./svgs/right-black-arrow.svg";
 import SearchIcon from "./svgs/search.svg";
 import BasketIcon from "./svgs/basket.svg";
+import StarIcon from "./svgs/star.svg";
+import GrayStarIcon from "./svgs/grey-star.svg";
+import LikeIcon from "./svgs/like.svg";
+import DislikeIcon from "./svgs/dislike.svg";
+import BlackLikeIcon from "./svgs/black-like.svg";
+import BlackDislikeIcon from "./svgs/black-dislike.svg";
 
 export {
   Logo,
@@ -32,4 +38,10 @@ export {
   RightBlackArrowIcon,
   SearchIcon,
   BasketIcon,
+  StarIcon,
+  GrayStarIcon,
+  LikeIcon,
+  DislikeIcon,
+  BlackLikeIcon,
+  BlackDislikeIcon,
 };

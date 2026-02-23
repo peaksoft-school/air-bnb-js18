@@ -220,7 +220,7 @@ const UserRegionsFiltered = () => {
       {loading && <p className="mt-5">Loading...</p>}
 
       {houses?.length !== 0 ? (
-        <div className="mt-5 grid grid-cols-3 gap-4">
+        <div className="mt-5 grid grid-cols-5 gap-4">
           {houses?.map((house) => (
             <Card
               key={house.id}

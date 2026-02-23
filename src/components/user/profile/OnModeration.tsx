@@ -17,7 +17,7 @@ export const OnModeration = () => {
   return (
     <>
       {data && data?.length > 0 ? (
-        <div className="grid grid-cols-4 gap-6 w-225">
+        <div className="grid grid-cols-4 gap-6 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((item) => (
             <Card key={item.id} variant="admin" data={item} />
           ))}
