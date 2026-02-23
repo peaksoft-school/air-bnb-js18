@@ -74,7 +74,14 @@ const AppRoutes = () => {
             </Suspense>
           ),
 
-          children: userRoutes,
+          children: [
+            {
+              index: true,
+              element: <Navigate to={USER_ROUTES.innerRegion} replace />,
+            },
+
+            ...userRoutes,
+          ],
         },
       ],
     },

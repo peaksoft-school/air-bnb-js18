@@ -38,7 +38,11 @@ export const UserHeader = () => {
 
   const handleDropDown = () => setIsProfileOpen((prev) => !prev);
 
-  const handleMyProfile = () => handleDropDown();
+  const handleMyProfile = () => {
+    navigate(USER_ROUTES.profile);
+
+    handleDropDown();
+  };
 
   const handleLogOut = () => {
     dispatch(logout());

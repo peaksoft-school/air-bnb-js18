@@ -15,8 +15,8 @@ import { Chip } from "../../components/UI/Chip";
 import { useLocation } from "react-router";
 import UserNoDataImage from "@/assets/images/user-no-data.png";
 import { Pagination } from "../../components/UI/Pagination";
-import Breadcrumbs from "../../components/UI/Breadcrumbs";
 import { Card } from "../../components/UI/card/Card";
+import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
 
 type SelectChangeEvent = {
   target: {

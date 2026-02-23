@@ -8,6 +8,8 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getProfile } from "@/store/slices/user/userThunk";
 import downArrow from "../../assets/icons/svgs/down-arrow.svg";
 import { logout } from "@/store/slices/auth/authSlice";
+import { useNavigate } from "react-router";
+import { USER_ROUTES } from "@/utils/constants/routes";
 
 export const Intro = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -19,6 +21,8 @@ export const Intro = () => {
 
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (isAuth) {
       dispatch(getProfile());
@@ -28,6 +32,8 @@ export const Intro = () => {
   const handleDropDown = () => setIsProfileOpen((prev) => !prev);
 
   const handleMyProfile = () => {
+    navigate(USER_ROUTES.profile);
+
     handleDropDown();
   };
 

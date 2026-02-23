@@ -185,7 +185,7 @@ export const Card = ({
         menuActions.length > 0 && (
           <div
             ref={menuRef}
-            className="absolute left-full top-0 ml-2 min-w-32 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50"
+            className="absolute left-30 top-70 ml-2 min-w-32 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50"
           >
             {menuActions.map((action, index) => (
               <button

@@ -6,7 +6,7 @@ import {
   toggleFavorite,
 } from "@/store/slices/user/favorite/favoriteThunk";
 import UserNoDataImage from "@/assets/images/user-no-data.png";
-import Breadcrumbs from "@/components/UI/Breadcrumbs";
+import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
 
 const Favorite = () => {
   const { favorite, isLoading } = useAppSelector((state) => state.favorite);

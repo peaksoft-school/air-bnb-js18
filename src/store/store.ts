@@ -6,13 +6,16 @@ import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
 import { usersSlice } from "./slices/admin/users/usersSlice";
-import { announcementsSlice } from "./slices/admin/users/profile/announcements/announcementsSlice";
 import { bookingsSlice } from "./slices/admin/users/profile/bookings/bookingsSlice";
 import { profileUserSlice } from "./slices/admin/users/profile/user/profileUserSlice";
 import { applicationSlice } from "./slices/admin/application/applicationSlice";
 import { allHousingSlice } from "./slices/admin/all-housing/allHousingSlice";
 import { housesSlice } from "./slices/user/houses/housesSlice";
 import { favoriteSlice } from "./slices/user/favorite/favoriteSlice";
+import { announcementsSlice } from "./slices/admin/users/profile/announcements/announcementsSlice";
+import { bookingsUserSlice } from "./slices/user/bookingsUser/userBookingsSlice";
+import { announcementsUserSlice } from "./slices/user/announcementsUser/userAnnouncementsSlice";
+import { moderationHousesSlice } from "./slices/user/moderationHouses/moderationHousesSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -26,6 +29,9 @@ const rootReducer = combineReducers({
   [allHousingSlice.name]: allHousingSlice.reducer,
   [housesSlice.name]: housesSlice.reducer,
   [favoriteSlice.name]: favoriteSlice.reducer,
+  [bookingsUserSlice.name]: bookingsUserSlice.reducer,
+  [announcementsUserSlice.name]: announcementsUserSlice.reducer,
+  [moderationHousesSlice.name]: moderationHousesSlice.reducer,
 });
 
 const persistConfig = {

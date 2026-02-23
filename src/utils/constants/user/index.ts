@@ -33,3 +33,27 @@ export const PRICE_FILTER_OPTIONS: SelectOption[] = [
   { id: 2, value: "LOW_TO_HIGH", label: "Low to high" },
   { id: 3, value: "HIGH_TO_LOW", label: "High to low" },
 ];
+
+//
+
+export const houseTypeOptions = [
+  { id: 1, value: "", label: "All" },
+  { id: 2, value: "INWISHLIST", label: "In wish list" },
+  { id: 3, value: "APARTMENT", label: "Apartment" },
+  { id: 4, value: "HOUSE", label: "House" },
+];
+
+export const ratingOptions = [
+  { id: 1, value: "", label: "All" },
+  { id: 2, value: "1", label: "1" },
+  { id: 3, value: "2", label: "2" },
+  { id: 4, value: "3", label: "3" },
+  { id: 5, value: "4", label: "4" },
+  { id: 6, value: "5", label: "5" },
+];
+
+export const priceOptions = [
+  { id: 1, value: "", label: "All" },
+  { id: 2, value: "LOW_TO_HIGH", label: "Low to high" },
+  { id: 3, value: "HIGH_TO_LOW", label: "High to low" },
+];

@@ -18,7 +18,9 @@ const Application = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
-  const [selectedHouseId, setSelectedHouseId] = useState<number | null>(null);
+  const [selectedHouseId, setSelectedHouseId] = useState<
+    number | null | string
+  >(null);
 
   const pageSize = 18;
 
@@ -29,7 +31,7 @@ const Application = () => {
     currentPage,
   });
 
-  const handleOpenRejectModal = (houseId: number) => {
+  const handleOpenRejectModal = (houseId: number | string) => {
     setSelectedHouseId(houseId);
     setIsRejectModalOpen(true);
   };

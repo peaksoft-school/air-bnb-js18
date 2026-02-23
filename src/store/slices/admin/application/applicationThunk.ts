@@ -37,7 +37,7 @@ export const getAllApplication = createAsyncThunk<
 
 export const deleteCardApplication = createAsyncThunk<
   void,
-  { id: number; getData: GetAllApplicationArgs }
+  { id: number | string; getData: GetAllApplicationArgs }
 >(
   "application/deleteApplication",
 
@@ -68,7 +68,7 @@ export const deleteCardApplication = createAsyncThunk<
 
 export const acceptCardApplication = createAsyncThunk<
   void,
-  { id: number; getData: GetAllApplicationArgs }
+  { id: number | string; getData: GetAllApplicationArgs }
 >(
   "application/acceptCardApplication",
 
