@@ -17,3 +17,8 @@ export interface BookingsState {
   isLoading: boolean;
   error: string | null;
 }
+
+export type DeleteHouseArgs = {
+  id: number | string;
+  navigate?: (delta: number) => void;
+};

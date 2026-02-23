@@ -15,6 +15,7 @@ export type CardData = {
   description?: string;
   favorite?: boolean;
   houseType?: string;
+  isBlocked?: boolean;
 };
 
 export type CardDataLanding = {

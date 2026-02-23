@@ -5,7 +5,7 @@ import axios from "axios";
 import type { User } from "./types";
 
 export const getUserProfile = createAsyncThunk<User, string | undefined>(
-  "user/getUserProfile",
+  "profile/getUserProfile",
 
   async (_, { rejectWithValue }) => {
     try {

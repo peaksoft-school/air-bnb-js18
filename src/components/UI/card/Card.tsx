@@ -33,6 +33,7 @@ export const Card = ({
   className,
   menuActions,
   onToggleFavorite,
+  ...rest
 }: CardProps) => {
   const {
     images,
@@ -81,12 +82,13 @@ export const Card = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative" {...rest}>
       <div
         className={cn(
           "group cursor-pointer overflow-hidden rounded-lg border bg-[#F7F7F7] transition-all",
           variantClasses[variant],
           className,
+          data.isBlocked && "opacity-50",
         )}
       >
         <ImageSlider images={images} />

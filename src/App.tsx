@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { getUserProfile } from "./store/slices/user/profile/profileUserThunk";
-import { USER_ACTIONS } from "./store/slices/user/profile/profileUserSlice";
+import { getUserProfile } from "./store/slices/user/profile/profileThunk";
+import { USER_ACTIONS } from "./store/slices/user/profile/profileSlice";
 
 const App = () => {
   const { isAuth, role } = useAppSelector((state) => state.auth);

@@ -20,3 +20,17 @@ export interface AnnouncementsState {
   isLoading: boolean;
   error: string | null;
 }
+
+export type BlockedHousesArgs = {
+  id: number | string;
+  block: boolean;
+};
+
+export type DeleteHouseArgs = {
+  id: number | string;
+  navigate?: (delta: number) => void;
+};
+
+export type BlockAllUserHousesArgs = {
+  userId: string | undefined;
+};

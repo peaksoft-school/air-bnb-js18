@@ -7,7 +7,6 @@ import TalasImage from "@/assets/images/regions/talas.jpg";
 import BishkekImage from "@/assets/images/regions/bishkek.jpg";
 import OshImage from "@/assets/images/regions/osh.jpg";
 
-// ragions
 export const RAGIONS_IMAGES = [
   { id: 1, src: ChuiImage, span: "col-span-2 row-span-3", alt: "chui" },
   { id: 2, src: BatkenImage, span: "col-span-1 row-span-1", alt: "batken" },

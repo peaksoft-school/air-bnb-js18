@@ -7,6 +7,7 @@ export const ROLES = {
 export const ADMIN_ROUTES = {
   index: "/admin",
   application: "/admin/application",
+  applicationById: "/admin/application/:applicationId",
   allHousing: "/admin/all-housing",
   users: "/admin/users",
   user: "/admin/users/:userId",

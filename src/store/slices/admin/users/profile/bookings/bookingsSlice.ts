@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserBooking } from "./bookingsThunk";
+import { deleteHouse, getUserBooking } from "./bookingsThunk";
 import type { BookingsState } from "./type";
 
 const initialState: BookingsState = {
@@ -23,6 +23,17 @@ export const bookingsSlice = createSlice({
         state.bookings = action.payload;
       })
       .addCase(getUserBooking.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "Error";
+      })
+      .addCase(deleteHouse.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteHouse.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteHouse.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || "Error";
       });

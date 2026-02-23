@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const ProfileCard = ({ user, onLogout, role }: Props) => {
-  const { name, email, image } = useAppSelector((state) => state.user);
+  const { name, email, image } = useAppSelector((state) => state.profile);
 
   return (
     <div>
@@ -34,13 +34,13 @@ export const ProfileCard = ({ user, onLogout, role }: Props) => {
               <span className="text-[#757575] text-base font-normal">
                 Name:
               </span>{" "}
-              {user.name && name}
+              {role === "ADMIN" ? user.name : name}
             </p>
             <p>
               <span className="text-[#757575] text-base font-normal">
                 Contact:
               </span>{" "}
-              {user.email && email}
+              {role === "ADMIN" ? user.email : email}
             </p>
 
             {role === "USER" && (

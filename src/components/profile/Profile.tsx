@@ -9,14 +9,16 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getUser } from "@/store/slices/admin/users/profile/user/profileUserThunk";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
 import { mapUserToProfile } from "./type";
-import { Breadcrumbs } from "../UI/Breadcrumbs";
 import { ProfileCard } from "./ProfileCard";
+import { Breadcrumbs } from "../UI/Breadcrumbs";
+import { blockAllUserHouses } from "@/store/slices/admin/users/profile/announcements/announcementsThunk";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("Bookings");
 
   const { role } = useAppSelector((state) => state.auth);
   const { user } = useAppSelector((state) => state["profile-user"]);
+  const { announcements } = useAppSelector((state) => state.announcements);
 
   const { pathname } = useLocation();
 
@@ -24,11 +26,13 @@ const Profile = () => {
 
   const dispatch = useAppDispatch();
 
-  if (role === "ADMIN") {
-    useEffect(() => {
+  useEffect(() => {
+    if (role === "ADMIN") {
+      console.log(1);
       dispatch(getUser(userId));
-    }, []);
-  }
+      console.log(3);
+    }
+  }, [role, userId, dispatch]);
 
   const ADMIN_BREADCRUMBS = [
     {
@@ -56,8 +60,10 @@ const Profile = () => {
         <div className="w-103.25 flex flex-col gap-6">
           <ProfileCard user={mapUserToProfile(user)} role={role} />
 
-          {activeTab === "Announcement" && (
-            <Button>BLOCK ALL ANNOUNCEMENT</Button>
+          {activeTab === "Announcement" && announcements?.length !== 0 && (
+            <Button onClick={() => dispatch(blockAllUserHouses({ userId }))}>
+              BLOCK ALL ANNOUNCEMENT
+            </Button>
           )}
         </div>
 

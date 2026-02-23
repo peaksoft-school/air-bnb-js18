@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserProfile } from "./profileUserThunk";
+import { getUserProfile } from "./profileThunk";
 import type { UserState } from "../type";
 
 const initialState: UserState = {
@@ -9,8 +9,8 @@ const initialState: UserState = {
   isLoading: false,
 };
 
-export const profileUserSlice = createSlice({
-  name: "user",
+export const profileSlice = createSlice({
+  name: "profile",
   initialState,
   reducers: {
     clearUserInfo: (state) => {
@@ -38,4 +38,4 @@ export const profileUserSlice = createSlice({
   },
 });
 
-export const USER_ACTIONS = profileUserSlice.actions;
+export const USER_ACTIONS = profileSlice.actions;
