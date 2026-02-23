@@ -5,7 +5,7 @@ export interface HouseInnerPage {
   description: string;
   houseType: HouseType;
   price: number;
-  maxOfGuests: number;
+  maxGuests: number;
   region: string;
   province: string;
   address: string;

@@ -9,7 +9,7 @@ type Props = {
 export const ImageSlider = ({ images }: Props) => {
   const [index, setIndex] = useState(0);
 
-  if (!images.length) {
+  if (!images?.length) {
     return (
       <div className="flex h-full items-center justify-center text-gray-400 text-sm">
         No images
@@ -17,8 +17,8 @@ export const ImageSlider = ({ images }: Props) => {
     );
   }
 
-  const next = () => setIndex((i) => (i + 1) % images.length);
-  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIndex((i) => (i + 1) % images?.length);
+  const prev = () => setIndex((i) => (i - 1 + images?.length) % images?.length);
 
   return (
     <div className="relative bg-gray-100 aspect-4/3 w-full overflow-hidden">
@@ -28,7 +28,7 @@ export const ImageSlider = ({ images }: Props) => {
         loading="lazy"
       />
 
-      {images.length > 1 && (
+      {images?.length > 1 && (
         <>
           <button
             onClick={prev}
@@ -45,7 +45,7 @@ export const ImageSlider = ({ images }: Props) => {
           </button>
 
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-            {images.map((_, i) => (
+            {images?.map((_, i) => (
               <span
                 key={i}
                 className={cn(

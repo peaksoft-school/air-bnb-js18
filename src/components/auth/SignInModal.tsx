@@ -4,10 +4,8 @@ import { Input } from "../UI/Input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAppDispatch } from "@/store/hooks";
-import { signIn } from "@/store/slices/auth/autThunk";
-import { ForgetPassword } from "./ForgetPassword";
-import { useState } from "react";
 import { signInSchema } from "@/utils/helpers/validate";
+import { signIn } from "@/store/slices/auth/authThunk";
 
 type SignInModalProps = {
   onClose: () => void;
@@ -19,8 +17,6 @@ type SignInFormValues = {
 };
 
 export const SignInModal = ({ onClose }: SignInModalProps) => {
-  const [isForgetPasswordOpen, setIsForgetPasswordOpen] = useState(false);
-
   const dispatch = useAppDispatch();
 
   const {
@@ -86,19 +82,7 @@ export const SignInModal = ({ onClose }: SignInModalProps) => {
         >
           Sign In
         </Button>
-
-        <button
-          type="button"
-          className="text-[#266BD3] font-normal text-[14px] leading-4.25 underline hover:text-blue-600 m-auto mt-2 cursor-pointer"
-          onClick={() => setIsForgetPasswordOpen(true)}
-        >
-          Forgot your password?
-        </button>
       </form>
-
-      {isForgetPasswordOpen && (
-        <ForgetPassword onClose={() => setIsForgetPasswordOpen(false)} />
-      )}
     </Modal>
   );
 };

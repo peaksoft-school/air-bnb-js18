@@ -2,15 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { BookingState } from "./types";
 import { getBookingsByHouseId } from "./bookingsThunk";
 
-
 const initialState: BookingState = {
   bookings: [],
   loading: false,
   error: null,
 };
 
-export const bookingsSlice = createSlice({
-  name: "bookings",
+export const bookingsVendorSlice = createSlice({
+  name: "bookingsVendor",
   initialState,
   reducers: {
     resetBookingsState: (state) => {
@@ -36,5 +35,4 @@ export const bookingsSlice = createSlice({
   },
 });
 
-export const { resetBookingsState } = bookingsSlice.actions;
-export default bookingsSlice.reducer;
+export const { resetBookingsState } = bookingsVendorSlice.actions;

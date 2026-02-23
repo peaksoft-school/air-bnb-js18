@@ -1,6 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import type { Feedback, FeedbackRatings, NewFeedback, ReactionPayload } from "./types";
+import type {
+  Feedback,
+  FeedbackRatings,
+  NewFeedback,
+  ReactionPayload,
+} from "./types";
+import { axiosInstance } from "@/configs/axiosInstance";
 
 export const getFeedbacksByHouseId = createAsyncThunk<
   Feedback[],
@@ -8,7 +13,7 @@ export const getFeedbacksByHouseId = createAsyncThunk<
   { rejectValue: string }
 >("feedbacks/getByHouseId", async (houseId, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`/api/feedbacks/${houseId}`);
+    const response = await axiosInstance.get(`/api/feedbacks/${houseId}`);
     return response.data;
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || "Error");
@@ -21,7 +26,7 @@ export const saveFeedback = createAsyncThunk<
   { rejectValue: string }
 >("feedbacks/save", async (feedbackData, { rejectWithValue }) => {
   try {
-    const response = await axios.post("/api/feedbacks", feedbackData);
+    const response = await axiosInstance.post("/api/feedbacks", feedbackData);
     return response.data;
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || "Error");
@@ -34,7 +39,7 @@ export const reactToFeedback = createAsyncThunk<
   { rejectValue: string }
 >("feedbacks/react", async ({ feedbackId, reaction }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("/api/feedbacks/reaction", {
+    const response = await axiosInstance.post("/api/feedbacks/reaction", {
       feedbackId,
       reaction,
     });
@@ -50,7 +55,9 @@ export const getFeedbackRatingsByHouseId = createAsyncThunk<
   { rejectValue: string }
 >("feedbacks/getRatingsByHouseId", async (houseId, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`/api/feedbacks/${houseId}/ratings`);
+    const response = await axiosInstance.get(
+      `/api/feedbacks/${houseId}/ratings`,
+    );
     return response.data;
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || "Error");

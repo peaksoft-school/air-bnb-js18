@@ -30,6 +30,10 @@ export interface ReactionPayload {
 }
 
 export interface FeedbackRatings {
-  averageRating: number;
-  totalRatings: number; 
+  rating_1_percentage: number;
+  rating_2_percentage: number;
+  rating_3_percentage: number;
+  rating_4_percentage: number;
+  rating_5_percentage: number;
+  total_feedback: number;
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { BookedCard } from "./BookedCard";
+import { BookedCard } from "../../UI/card/BookedCard";
 import { getBookingsByHouseId } from "@/store/slices/inner-page-vendor/bookings/bookingsThunk";
 import type { Booking } from "@/store/slices/inner-page-vendor/bookings/types";
 
@@ -8,10 +8,10 @@ interface BookedSectionProps {
   houseId: string;
 }
 
-export const BookedSection = ({ houseId }: BookedSectionProps) => {
+export const Booked = ({ houseId }: BookedSectionProps) => {
   const dispatch = useAppDispatch();
   const { bookings, loading, error } = useAppSelector(
-    (state) => state.bookings,
+    (state) => state.bookingsVendor,
   );
 
   useEffect(() => {

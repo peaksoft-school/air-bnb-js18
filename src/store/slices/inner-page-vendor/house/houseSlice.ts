@@ -11,8 +11,8 @@ const initialState: HouseState = {
   success: false,
 };
 
-export const housesSlice = createSlice({
-  name: "houses",
+export const housesVendorSlice = createSlice({
+  name: "housesVendor",
   initialState,
   reducers: {
     resetHouseState: (state) => {
