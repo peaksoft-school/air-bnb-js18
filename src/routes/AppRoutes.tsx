@@ -37,7 +37,7 @@ const AppRoutes = () => {
 
       children: [
         {
-          path: `${ADMIN_ROUTES.index}`,
+          path: ADMIN_ROUTES.index,
           element: (
             <Suspense fallback={<NotFound />}>
               <AdminLayout />
@@ -67,14 +67,21 @@ const AppRoutes = () => {
       ),
       children: [
         {
-          path: `${USER_ROUTES.index}`,
+          path: USER_ROUTES.index,
           element: (
             <Suspense>
               <UserLayout />
             </Suspense>
           ),
 
-          children: userRoutes,
+          children: [
+            {
+              index: true,
+              element: <Navigate to={USER_ROUTES.innerRegion} replace />,
+            },
+
+            ...userRoutes,
+          ],
         },
       ],
     },

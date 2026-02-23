@@ -1,67 +1,84 @@
-import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import Breadcrumbs from "@/components/UI/Breadcrumbs_tt";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/UI/Button";
-import { AdminHeader } from "@/layout/admin/AdminHeader";
-
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   getInnerApplication,
   approveInnerApplication,
   rejectInnerApplication,
 } from "@/store/slices/admin/inner-application/innerApplicationThunk";
+import { Breadcrumbs } from "../UI/Breadcrumbs";
+import RejectedModal from "../UI/admin/RejectModal";
 
 const InnerApplication = () => {
-  const { applicationId } = useParams<{ applicationId: string }>();
-  const dispatch = useAppDispatch();
-
   const { data, isLoading } = useAppSelector((state) => state.innerApplication);
 
+  const { applicationId } = useParams<{ applicationId: string }>();
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [activeImage, setActiveImage] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (data?.images?.[0]) {
+      setActiveImage(data.images[0]);
+    }
+  }, [data]);
+
+  const handleReject = () => {
+    setIsOpen((prev) => !prev);
+    setMessage("");
+  };
+
+  const handleChangeMassageValue = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setMessage(e.target.value);
 
   useEffect(() => {
     if (!applicationId) return;
+
     dispatch(getInnerApplication({ id: Number(applicationId) }));
   }, [dispatch, applicationId]);
 
   const images = useMemo(() => data?.images ?? [], [data]);
-  const [activeImage, setActiveImage] = useState<string>(
-    data?.images?.[0] ?? "",
-  );
 
   const onAccept = () => {
     if (!applicationId) return;
-    dispatch(approveInnerApplication({ id: Number(applicationId) }));
+
+    dispatch(approveInnerApplication({ id: Number(applicationId), navigate }));
   };
 
-  const onReject = () => {
+  const sendReject = () => {
     if (!applicationId) return;
     if (!message.trim()) return;
+
     dispatch(
       rejectInnerApplication({
         id: Number(applicationId),
         message,
+        navigate,
       }),
     );
+
+    setIsOpen((prev) => !prev);
+    setMessage("");
   };
 
   return (
-    <div className="bg-[#F7F7F7] min-h-screen ">
-      <AdminHeader />
+    <div className="bg-[#F7F7F7] min-h-screen flex gap-7 my-10 mx-10 flex-col">
+      <Breadcrumbs
+        links={[
+          { label: "Application", href: "/admin/application" },
+          { label: data?.title || "Details", href: "#" },
+        ]}
+      />
 
-      <div className="px-10 py-8">
-        <Breadcrumbs
-          links={[
-            { label: "Application", href: "/admin/application" },
-            { label: data?.title || "Details", href: "#" },
-          ]}
-        />
-      </div>
-
-      <div className="flex gap-16 mt-6 px-10">
+      <div className="flex gap-17">
         <div className="w-157.5">
-          <h1 className="text-lg font-bold text-slate-900">
+          <h1 className="text-[30px] text-slate-900 ">
             {isLoading ? "Loading..." : data?.title || "—"}
           </h1>
 
@@ -77,7 +94,7 @@ const InnerApplication = () => {
             </div>
 
             <div className="flex gap-5">
-              {images.slice(1, 4).map((img, index) => (
+              {images?.slice(1, 4).map((img, index) => (
                 <img
                   key={index}
                   src={img}
@@ -94,7 +111,7 @@ const InnerApplication = () => {
           </div>
         </div>
 
-        <div className="w-105 pt-10">
+        <div className="w-105 pt-16.5">
           <div className="flex gap-3">
             <span className="px-3 py-1 bg-[#FFF0F6] border border-[#FFCBE0]">
               {data?.houseType || "—"}
@@ -113,23 +130,52 @@ const InnerApplication = () => {
             <p>{data?.description || "—"}</p>
           </div>
 
-          <div className="pt-6">
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Reason for reject..."
-              className="w-full p-3 border border-gray-300 rounded"
+          <div className="pt-6 flex gap-2 items-center">
+            <img
+              src={
+                data?.userResponse?.image &&
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/3840px-User-avatar.svg.png"
+              }
+              alt="user"
+              className="w-10 h-10"
             />
+
+            <div className="flex flex-col">
+              <p className="font-medium font-inter text-base text-black">
+                {data?.userResponse?.fullName}
+              </p>
+              <p className="font-medium font-inter text-[1.07rem] text-gray-500">
+                {data?.userResponse?.email}
+              </p>
+            </div>
           </div>
 
           <div className="flex gap-5 pt-6">
-            <Button variant="outline" onClick={onReject} disabled={isLoading}>
+            <Button
+              variant="outline"
+              onClick={handleReject}
+              disabled={isLoading}
+              className="text-[#DD8A08] border-[#DD8A08] w-49 hover:border-[#DD8A08]"
+            >
               REJECT
             </Button>
-            <Button variant="default" onClick={onAccept} disabled={isLoading}>
+            <Button
+              variant="default"
+              onClick={onAccept}
+              disabled={isLoading}
+              className="w-49"
+            >
               ACCEPT
             </Button>
           </div>
+
+          <RejectedModal
+            isOpen={isOpen}
+            onClose={handleReject}
+            value={message}
+            onChange={handleChangeMassageValue}
+            sendRequest={sendReject}
+          />
         </div>
       </div>
     </div>

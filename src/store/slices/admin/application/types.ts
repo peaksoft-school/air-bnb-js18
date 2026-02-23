@@ -36,7 +36,7 @@ export interface GetAllApplicationArgs {
 }
 
 export interface RejectApplicationArgs {
-  houseId: number;
+  houseId: number | string;
   massage: string;
   getData: GetAllApplicationArgs;
 }

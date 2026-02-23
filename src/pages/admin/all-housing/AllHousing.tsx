@@ -42,7 +42,9 @@ const AllHousing = () => {
 
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [rejectReason, setRejectReason] = useState("");
-  const [selectedHouseId, setSelectedHouseId] = useState<number | null>(null);
+  const [selectedHouseId, setSelectedHouseId] = useState<
+    number | null | string
+  >(null);
 
   const dispatch = useAppDispatch();
 
@@ -65,7 +67,7 @@ const AllHousing = () => {
     price: priceFilterOption,
   });
 
-  const handleOpenRejectModal = (houseId: number) => {
+  const handleOpenRejectModal = (houseId: number | string) => {
     setSelectedHouseId(houseId);
     setIsRejectModalOpen(true);
   };

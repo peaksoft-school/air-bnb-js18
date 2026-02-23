@@ -3,11 +3,12 @@ import type { CardData } from "../UI/card/types";
 
 export type UserProfile = {
   image?: string;
+  role?: "ADMIN" | "USER";
   name: string;
   email: string;
 };
 
-export type TabType = "bookings" | "announcements";
+export type TabType = "bookings" | "announcements" | "onModeration";
 
 export type AdminUserPageProps = {
   user: UserProfile;

@@ -15,4 +15,7 @@ export const ADMIN_ROUTES = {
 
 export const USER_ROUTES = {
   index: "/user",
+  innerRegion: "/user/inner-region",
+  favorite: "/user/favorite",
+  profile: "/user/profile",
 };

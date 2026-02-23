@@ -1,4 +1,9 @@
-
+interface UserResponse {
+  fullName: string;
+  email: string;
+  image: string;
+  id: number;
+}
 
 export interface InnerApplication {
   id: number;
@@ -14,6 +19,7 @@ export interface InnerApplication {
   rating: number;
   booked: boolean;
   favorite: boolean;
+  userResponse: UserResponse;
 }
 
 export interface InnerApplicationState {
@@ -29,6 +35,5 @@ export type GetInnerApplicationArgs = {
 export type RejectInnerApplicationArgs = {
   id: number;
   message: string;
+  navigate: (path: string) => void;
 };
-
-

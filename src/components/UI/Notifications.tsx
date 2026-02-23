@@ -24,7 +24,7 @@ const contentByVariant: Record<
   success: { bg: "bg-[#F0FFF1]", border: "border-[#DFF5E1]" },
   info: { bg: "bg-[#fff8f0]", border: "border-[#f5eddf]" },
   error: { bg: "bg-[#FFF1F0]", border: "border-[#f5dfdf]" },
-  booked: { bg: "bg-[#F0FFF1]", border: "border-[#DFF5E1]" },
+  booked: { bg: "bg-[#FFFADD]", border: "border-[#FFFADD]" },
 };
 
 export const Notification = () => {

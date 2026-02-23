@@ -7,6 +7,8 @@ import type {
   InnerApplication,
   RejectInnerApplicationArgs,
 } from "./types";
+import { ADMIN_ROUTES } from "@/utils/constants/routes";
+import { getAllApplication } from "../application/applicationThunk";
 
 export const getInnerApplication = createAsyncThunk<
   InnerApplication,
@@ -33,9 +35,12 @@ export const getInnerApplication = createAsyncThunk<
   },
 );
 
-export const approveInnerApplication = createAsyncThunk<void, { id: number }>(
+export const approveInnerApplication = createAsyncThunk<
+  void,
+  { id: number; navigate: (path: string) => void }
+>(
   "innerApplication/approveInnerApplication",
-  async ({ id }, { dispatch, rejectWithValue }) => {
+  async ({ id, navigate }, { dispatch, rejectWithValue }) => {
     try {
       await axiosInstance.post(
         `/api/admin/accepted-application/${id}?value=APPROVE`,
@@ -47,7 +52,9 @@ export const approveInnerApplication = createAsyncThunk<void, { id: number }>(
         type: "success",
       });
 
-      dispatch(getInnerApplication({ id }));
+      navigate(ADMIN_ROUTES.application);
+
+      dispatch(getAllApplication({ currentPage: 1, pageSize: 18 }));
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         showToast({
@@ -66,7 +73,7 @@ export const rejectInnerApplication = createAsyncThunk<
   RejectInnerApplicationArgs
 >(
   "innerApplication/rejectInnerApplication",
-  async ({ id, message }, { dispatch, rejectWithValue }) => {
+  async ({ id, message, navigate }, { dispatch, rejectWithValue }) => {
     try {
       await axiosInstance.post(
         `/api/admin/accepted-application/${id}?value=REJECT&messageFromAdminToUser=${encodeURIComponent(
@@ -80,7 +87,9 @@ export const rejectInnerApplication = createAsyncThunk<
         type: "success",
       });
 
-      dispatch(getInnerApplication({ id }));
+      navigate(ADMIN_ROUTES.application);
+
+      dispatch(getAllApplication({ currentPage: 1, pageSize: 18 }));
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         showToast({

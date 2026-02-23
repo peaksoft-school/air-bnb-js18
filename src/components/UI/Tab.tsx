@@ -4,7 +4,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/UI/tabs";
+} from "@/components/UI/Tabs";
 
 interface Tab {
   label: string;

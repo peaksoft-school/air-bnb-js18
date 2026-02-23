@@ -17,7 +17,7 @@ interface BreadcrumbsProps {
   links: BreadcrumbLink[];
 }
 
-const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
   if (!links || links.length === 0) return null;
 
   return (
@@ -45,5 +45,3 @@ const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
     </Breadcrumb>
   );
 };
-
-export default Breadcrumbs;

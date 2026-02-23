@@ -13,6 +13,8 @@ export const getUser = createAsyncThunk<User, string | undefined>(
         `api/users/user/${userId}`,
       );
 
+      console.log(2);
+
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

@@ -55,7 +55,7 @@ const RejectedModal = ({
             <Button
               onClick={onClose}
               variant="outline"
-              className="w-37.5 h-9.25 rounded-none"
+              className="w-37.5 h-9.25 rounded-none border-none"
             >
               CANCEL
             </Button>
