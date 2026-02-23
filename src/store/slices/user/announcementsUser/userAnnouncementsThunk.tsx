@@ -1,11 +1,26 @@
+import { axiosInstance } from "@/configs/axiosInstance";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import type { Announcement } from "./types";
 
-export const fetchAnnouncementsUser = createAsyncThunk<Announcement[], string>(
+type AnnouncementFilters = {
+  houseType?: string;
+  rating?: string;
+  price?: string;
+};
+
+export const fetchAnnouncementsUser = createAsyncThunk(
   "announcementsUser/fetchAnnouncements",
-  async () => {
-    const response = await axios.get(`/api/users/houses`);
-    return response.data;
+  async (
+    { houseType, rating, price }: AnnouncementFilters,
+    { rejectWithValue },
+  ) => {
+    try {
+      const { data } = await axiosInstance.get("/api/users/filter", {
+        params: { houseType, rating, price },
+      });
+
+      return data.responses;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
 );

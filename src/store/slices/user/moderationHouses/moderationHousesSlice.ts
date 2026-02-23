@@ -28,6 +28,3 @@ export const moderationHousesSlice = createSlice({
       });
   },
 });
-
-export const moderationHousesReducer = moderationHousesSlice.reducer;
-export const moderationHousesName = moderationHousesSlice.name;

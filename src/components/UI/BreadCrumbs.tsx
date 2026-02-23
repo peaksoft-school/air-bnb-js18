@@ -6,7 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/UI/breadcrumb";
-import React from "react";
+import { Fragment } from "react";
 
 interface BreadcrumbLink {
   href: string;
@@ -17,14 +17,14 @@ interface BreadcrumbsProps {
   links: BreadcrumbLink[];
 }
 
-const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
   if (!links || links.length === 0) return null;
 
   return (
     <Breadcrumb className="mb-10">
       <BreadcrumbList>
         {links.map(({ href, label }, i) => (
-          <React.Fragment key={label + i}>
+          <Fragment key={label + i}>
             <BreadcrumbItem>
               {i === links.length - 1 ? (
                 <BreadcrumbPage className="text-[#222]">{label}</BreadcrumbPage>
@@ -39,11 +39,9 @@ const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
             </BreadcrumbItem>
 
             {i < links.length - 1 && <BreadcrumbSeparator />}
-          </React.Fragment>
+          </Fragment>
         ))}
       </BreadcrumbList>
     </Breadcrumb>
   );
 };
-
-export default Breadcrumbs;

@@ -1,27 +1,37 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
-import { moderationHousesName, moderationHousesReducer } from "./slices/user/moderationHouses/moderationHousesSlice";
-import { bookingsUserName, bookingsUserReducer } from "./slices/user/bookingsUser/userBookingsSlice";
-import { announcementsUserName } from "./slices/user/announcementsUser/userAnnouncementsSlice";
-import { announcementsUserReducer } from "./slices/user/announcementsUser/userAnnouncementsSlice";
-import { announcementsName, announcementsReducer } from "./slices/admin/user/announcements/adminAnnouncementsSlice";
-import { bookingsName, bookingsReducer } from "./slices/admin/user/bookings/adminBookingsSlice";
-
+import { usersSlice } from "./slices/admin/users/usersSlice";
+import { bookingsSlice } from "./slices/admin/users/profile/bookings/bookingsSlice";
+import { profileUserSlice } from "./slices/admin/users/profile/user/profileUserSlice";
+import { applicationSlice } from "./slices/admin/application/applicationSlice";
+import { allHousingSlice } from "./slices/admin/all-housing/allHousingSlice";
+import { housesSlice } from "./slices/user/houses/housesSlice";
+import { favoriteSlice } from "./slices/user/favorite/favoriteSlice";
+import { announcementsSlice } from "./slices/admin/users/profile/announcements/announcementsSlice";
+import { bookingsUserSlice } from "./slices/user/bookingsUser/userBookingsSlice";
+import { announcementsUserSlice } from "./slices/user/announcementsUser/userAnnouncementsSlice";
+import { moderationHousesSlice } from "./slices/user/moderationHouses/moderationHousesSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
+  [usersSlice.name]: usersSlice.reducer,
   [landingSlice.name]: landingSlice.reducer,
-  [announcementsName]: announcementsReducer, 
-  [bookingsName]: bookingsReducer,
-  [moderationHousesName]: moderationHousesReducer,
-  [bookingsUserName]: bookingsUserReducer,
-  [announcementsUserName]: announcementsUserReducer,
+  [announcementsSlice.name]: announcementsSlice.reducer,
+  [bookingsSlice.name]: bookingsSlice.reducer,
+  [profileUserSlice.name]: profileUserSlice.reducer,
+  [applicationSlice.name]: applicationSlice.reducer,
+  [allHousingSlice.name]: allHousingSlice.reducer,
+  [housesSlice.name]: housesSlice.reducer,
+  [favoriteSlice.name]: favoriteSlice.reducer,
+  [bookingsUserSlice.name]: bookingsUserSlice.reducer,
+  [announcementsUserSlice.name]: announcementsUserSlice.reducer,
+  [moderationHousesSlice.name]: moderationHousesSlice.reducer,
 });
 
 const persistConfig = {

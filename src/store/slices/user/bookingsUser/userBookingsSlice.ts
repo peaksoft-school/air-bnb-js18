@@ -8,7 +8,7 @@ const initialState: BookingsState = {
   error: null,
 };
 
-const bookingsUserSlice = createSlice({
+export const bookingsUserSlice = createSlice({
   name: "bookingsUser",
   initialState,
   reducers: {},
@@ -18,12 +18,10 @@ const bookingsUserSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-    .addCase(fetchBookingsUser.fulfilled, (state, action) => {
-  state.isLoading = false;
-  state.data = Array.isArray(action.payload)
-    ? action.payload
-    : [];
-})
+      .addCase(fetchBookingsUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = Array.isArray(action.payload) ? action.payload : [];
+      })
 
       .addCase(fetchBookingsUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -31,6 +29,3 @@ const bookingsUserSlice = createSlice({
       });
   },
 });
-
-export const bookingsUserReducer = bookingsUserSlice.reducer;
-export const bookingsUserName = bookingsUserSlice.name;

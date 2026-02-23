@@ -9,6 +9,10 @@ export const ADMIN_BREADCRUMBS = [
 
 export const USER_BREADCRUMBS = [
   {
+    label: "Main",
+    href: USER_ROUTES.index,
+  },
+  {
     label: "Profile",
     href: USER_ROUTES.index,
   },

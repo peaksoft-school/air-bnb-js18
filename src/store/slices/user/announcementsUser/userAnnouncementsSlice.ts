@@ -8,7 +8,7 @@ const initialState: AnnouncementsState = {
   error: null,
 };
 
-const announcementsUserSlice = createSlice({
+export const announcementsUserSlice = createSlice({
   name: "announcementsUser",
   initialState,
   reducers: {},
@@ -29,6 +29,3 @@ const announcementsUserSlice = createSlice({
       });
   },
 });
-
-export const announcementsUserReducer = announcementsUserSlice.reducer;
-export const announcementsUserName = announcementsUserSlice.name;
