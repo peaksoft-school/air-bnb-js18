@@ -54,17 +54,12 @@ export const ApplicationGallery = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-          
           </div>
-          
         </div>
-        
       </div>
-        <div>
-              <h1 className="text-lg font-medium text-slate-900 m-10">
-                FEEDBACK
-              </h1>
-            </div>
+      <div>
+        <h1 className="text-lg font-medium text-slate-900 m-10">FEEDBACK</h1>
+      </div>
     </div>
   );
 };

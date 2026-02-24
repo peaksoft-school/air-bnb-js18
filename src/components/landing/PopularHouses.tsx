@@ -1,14 +1,20 @@
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useEffect } from "react";
+import { NotFound } from "@/layout/NotFound";
 import { CardLanding } from "../UI/card/CardLanding";
-import type { CardDataLanding } from "../UI/card/types";
+import { getPopularHouses } from "@/store/slices/landing/landingThunk";
+import type { PopularHouse } from "@/store/slices/landing/types";
 
-type PopularHousesProps = {
-  houses?: CardDataLanding[];
-};
+export const PopularHouses = () => {
+  const { popularHouse } = useAppSelector((state) => state.landing);
 
-export const PopularHouses = ({ houses = [] }: PopularHousesProps) => {
-  if (!houses.length) {
-    return <p className="p-10 text-gray-500">No houses available</p>;
-  }
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPopularHouses());
+  }, [dispatch]);
+
+  if (!popularHouse?.length) return <NotFound />;
 
   return (
     <section className="w-full px-25 py-10 space-y-10">
@@ -28,10 +34,10 @@ export const PopularHouses = ({ houses = [] }: PopularHousesProps) => {
         </a>
       </div>
 
-      <div className="flex justify-between gap-5">
-        {houses.slice(0, 3).map((house, index) => (
-          <CardLanding key={index} data={house} />
-        ))}
+      <div className="flex justify-start gap-5">
+        {popularHouse?.map((house: PopularHouse) => {
+          return <CardLanding key={house.id} data={house} />;
+        })}
       </div>
     </section>
   );
