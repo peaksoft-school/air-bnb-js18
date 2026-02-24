@@ -6,10 +6,11 @@ import { JoinUsModal } from "../auth/JoinUsModal";
 import { Logo, ProfileIcon } from "@/assets/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getProfile } from "@/store/slices/user/userThunk";
-import downArrow from "../../assets/icons/svgs/down-arrow.svg";
 import { logout } from "@/store/slices/auth/authSlice";
 import { useNavigate } from "react-router";
 import { USER_ROUTES } from "@/utils/constants/routes";
+import downArrow from "../../assets/icons/svgs/down-arrow.svg";
+import LogoutModal from "../logout-modal/LogoutModal";
 
 export const Intro = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -18,9 +19,9 @@ export const Intro = () => {
   const [nearby, setNearby] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,14 +34,17 @@ export const Intro = () => {
 
   const handleMyProfile = () => {
     navigate(USER_ROUTES.profile);
-
     handleDropDown();
   };
 
-  const handleLogOut = () => {
-    dispatch(logout());
-
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
     handleDropDown();
+  };
+
+  const handleConfirmLogout = () => {
+    dispatch(logout());
+    setIsLogoutModalOpen(false);
   };
 
   return (
@@ -78,7 +82,7 @@ export const Intro = () => {
 
                   <button
                     className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-500 rounded cursor-pointer"
-                    onClick={handleLogOut}
+                    onClick={handleLogoutClick} // <- теперь открываем модальное
                   >
                     Log out
                   </button>
@@ -132,6 +136,14 @@ export const Intro = () => {
           </div>
         )}
       </main>
+
+      {isLogoutModalOpen && (
+        <LogoutModal
+          open={isLogoutModalOpen}
+          onClose={() => setIsLogoutModalOpen(false)}
+          onLogout={handleConfirmLogout}
+        />
+      )}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { ArrowDownIcon, Logo } from "@/assets/icons";
+import LogoutModal from "@/components/logout-modal/LogoutModal";
 import { useAppDispatch } from "@/store/hooks";
 import { logout } from "@/store/slices/auth/authSlice";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
@@ -7,12 +8,23 @@ import { NavLink } from "react-router";
 
 export const AdminHeader = () => {
   const [open, setOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
 
   const handleOpenDropDown = () => setOpen((prev) => !prev);
 
-  const handleLogOut = () => dispatch(logout());
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
+
+    setOpen(false);
+  };
+
+  const handleConfirmLogout = () => {
+    dispatch(logout());
+
+    setIsLogoutModalOpen(false);
+  };
 
   return (
     <header className="bg-[#0B0B0B] h-20.5 flex justify-between items-center px-10">
@@ -66,11 +78,19 @@ export const AdminHeader = () => {
             <button
               className="
                 w-full h-6.25 mx-auto mt-4 px-5 flex items-center text-[#525252] font-inter text-base hover:bg-gray-200 cursor-pointer"
-              onClick={handleLogOut}
+              onClick={handleLogoutClick}
             >
               Log out
             </button>
           </div>
+        )}
+
+        {isLogoutModalOpen && (
+          <LogoutModal
+            open={isLogoutModalOpen}
+            onClose={() => setIsLogoutModalOpen(false)}
+            onLogout={handleConfirmLogout}
+          />
         )}
       </div>
     </header>

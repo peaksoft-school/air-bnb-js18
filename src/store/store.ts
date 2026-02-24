@@ -22,6 +22,7 @@ import { announcementsSlice } from "./slices/admin/users/profile/announcements/a
 import { profileSlice } from "./slices/user/profile/profileSlice";
 import { innerApplicationSlice } from "./slices/admin/inner-application/innerApplicationSlice";
 import { profileUserSlice } from "./slices/admin/users/profile/user/profileUserSlice";
+import { addHouseSlice } from "./slices/user/addHouse/addHouseSlice";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authSlice.reducer,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   [announcementsUserSlice.name]: announcementsUserSlice.reducer,
   [moderationHousesSlice.name]: moderationHousesSlice.reducer,
   [profileUserSlice.name]: profileUserSlice.reducer,
+  [addHouseSlice.name]: addHouseSlice.reducer,
 });
 
 const persistConfig = {

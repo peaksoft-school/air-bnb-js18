@@ -15,10 +15,12 @@ import { logout } from "@/store/slices/auth/authSlice";
 import { USER_ROUTES } from "@/utils/constants/routes";
 import { useNavigate } from "react-router";
 import { getAllFavorites } from "@/store/slices/user/favorite/favoriteThunk";
+import LogoutModal from "@/components/logout-modal/LogoutModal";
 
 export const UserHeader = () => {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const { isAuth } = useAppSelector((state) => state.auth);
   const { image } = useAppSelector((state) => state.user);
@@ -44,10 +46,16 @@ export const UserHeader = () => {
     handleDropDown();
   };
 
-  const handleLogOut = () => {
-    dispatch(logout());
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
 
     handleDropDown();
+  };
+
+  const handleConfirmLogout = () => {
+    dispatch(logout());
+
+    setIsLogoutModalOpen(false);
   };
 
   return (
@@ -88,7 +96,9 @@ export const UserHeader = () => {
         <div className="flex items-center gap-6">
           {isAuth ? (
             <>
-              <Button>SUBMIT AN AD</Button>
+              <Button onClick={() => navigate(USER_ROUTES.anAd)}>
+                SUBMIT AN AD
+              </Button>
 
               <button
                 className="cursor-pointer"
@@ -123,7 +133,7 @@ export const UserHeader = () => {
 
                     <button
                       className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-500 rounded cursor-pointer"
-                      onClick={handleLogOut}
+                      onClick={handleLogoutClick}
                     >
                       Log out
                     </button>
@@ -145,6 +155,14 @@ export const UserHeader = () => {
       </div>
 
       {isSignUpOpen && <JoinUsModal onClose={() => setIsSignUpOpen(false)} />}
+
+      {isLogoutModalOpen && (
+        <LogoutModal
+          open={isLogoutModalOpen}
+          onClose={() => setIsLogoutModalOpen(false)}
+          onLogout={handleConfirmLogout}
+        />
+      )}
     </header>
   );
 };

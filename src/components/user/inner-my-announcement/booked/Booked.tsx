@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { BookedCard } from "../../UI/card/BookedCard";
 import { getBookingsByHouseId } from "@/store/slices/inner-page-vendor/bookings/bookingsThunk";
 import type { Booking } from "@/store/slices/inner-page-vendor/bookings/types";
+import { BookedCard } from "@/components/UI/card/BookedCard";
 
 interface BookedSectionProps {
   houseId: string;
@@ -10,6 +10,7 @@ interface BookedSectionProps {
 
 export const Booked = ({ houseId }: BookedSectionProps) => {
   const dispatch = useAppDispatch();
+
   const { bookings, loading, error } = useAppSelector(
     (state) => state.bookingsVendor,
   );

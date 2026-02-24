@@ -3,7 +3,7 @@ import { lazy } from "react";
 
 const Application = lazy(() => import("@/pages/admin/application/Application"));
 const InnerApplication = lazy(
-  () => import("@/components/InnerApplication/InnerApplication"),
+  () => import("@/pages/admin/inner-application/InnerApplication"),
 );
 const AllHousing = lazy(() => import("@/pages/admin/all-housing/AllHousing"));
 const Users = lazy(() => import("@/pages/admin/users/Users"));

@@ -34,7 +34,7 @@ export const Bookings = () => {
   return (
     <>
       {bookings && bookings?.length > 0 ? (
-        <div className="grid grid-cols-4 gap-6 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-4 gap-10 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {bookings?.map((item, index) => (
             <Card
               key={index}

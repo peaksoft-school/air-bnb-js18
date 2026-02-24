@@ -7,8 +7,8 @@ import {
   approveInnerApplication,
   rejectInnerApplication,
 } from "@/store/slices/admin/inner-application/innerApplicationThunk";
-import { Breadcrumbs } from "../UI/Breadcrumbs";
-import RejectedModal from "../UI/admin/RejectModal";
+import RejectedModal from "../../../components/UI/admin/RejectModal";
+import { Breadcrumbs } from "../../../components/UI/Breadcrumbs";
 
 const InnerApplication = () => {
   const { data, isLoading } = useAppSelector((state) => state.innerApplication);

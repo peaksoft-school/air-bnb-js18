@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { CardData } from "@/components/UI/card/types";
 import type { ModerationHouse } from "./types";
-import axios from "axios";
+import { axiosInstance } from "@/configs/axiosInstance";
 
 export const getModerationHouses = createAsyncThunk<
   CardData[],
@@ -9,7 +9,7 @@ export const getModerationHouses = createAsyncThunk<
   { rejectValue: string }
 >("moderation/getHouses", async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get<ModerationHouse[]>(
+    const { data } = await axiosInstance.get<ModerationHouse[]>(
       "/api/users/moderation/houses",
     );
 

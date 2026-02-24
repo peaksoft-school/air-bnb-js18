@@ -19,4 +19,5 @@ export const USER_ROUTES = {
   favorite: "/user/favorite",
   profile: "/user/profile",
   innerMyAnnouncement: "/user/profile/my-announcement/:houseId",
+  anAd: "user/an-ad",
 };

@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getHouse } from "@/store/slices/inner-page-vendor/house/houseThunk";
-import { PropertyCard } from "./HouseCard/PropertyCard";
-import { Booked } from "./booked/Booked";
-import { Favorites } from "./favorites/Favorites";
-import { Reviews } from "./feedback/Reviews";
 import { INNERPAGE_BREADCRUMBS } from "@/utils/constants/breadcrumbs";
 import { NotFound } from "@/layout/NotFound";
-import { Breadcrumbs } from "../UI/Breadcrumbs";
+import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
+import { PropertyCard } from "@/components/user/inner-my-announcement/house-card/PropertyCard";
+import { Booked } from "@/components/user/inner-my-announcement/booked/Booked";
+import { Favorites } from "@/components/user/inner-my-announcement/favorites/Favorites";
+import { Reviews } from "@/components/user/inner-my-announcement/feedback/Reviews";
 
-export const InnerPageVendor = () => {
+const InnerMyAnnouncement = () => {
   const { houseId } = useParams<{ houseId: string }>();
 
   const dispatch = useAppDispatch();
@@ -52,3 +52,5 @@ export const InnerPageVendor = () => {
     </div>
   );
 };
+
+export default InnerMyAnnouncement;
