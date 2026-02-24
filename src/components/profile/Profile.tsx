@@ -28,9 +28,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (role === "ADMIN") {
-      console.log(1);
       dispatch(getUser(userId));
-      console.log(3);
     }
   }, [role, userId, dispatch]);
 

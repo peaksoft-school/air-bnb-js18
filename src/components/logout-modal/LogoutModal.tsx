@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 type LogoutModalProps = {
   open: boolean;

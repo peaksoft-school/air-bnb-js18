@@ -10,7 +10,7 @@ import { logout } from "@/store/slices/auth/authSlice";
 import { useNavigate } from "react-router";
 import { USER_ROUTES } from "@/utils/constants/routes";
 import downArrow from "../../assets/icons/svgs/down-arrow.svg";
-import LogoutModal from "../UI/LogoutModal/LogoutModal";
+import LogoutModal from "../logout-modal/LogoutModal";
 
 export const Intro = () => {
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -38,7 +38,7 @@ export const Intro = () => {
   };
 
   const handleLogoutClick = () => {
-    setIsLogoutModalOpen(true); // открываем модальное
+    setIsLogoutModalOpen(true);
     handleDropDown();
   };
 

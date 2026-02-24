@@ -15,7 +15,7 @@ import { logout } from "@/store/slices/auth/authSlice";
 import { USER_ROUTES } from "@/utils/constants/routes";
 import { useNavigate } from "react-router";
 import { getAllFavorites } from "@/store/slices/user/favorite/favoriteThunk";
-import LogoutModal from "@/components/UI/LogoutModal/LogoutModal";
+import LogoutModal from "@/components/logout-modal/LogoutModal";
 
 export const UserHeader = () => {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);

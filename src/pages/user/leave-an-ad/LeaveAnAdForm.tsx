@@ -3,17 +3,18 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/UI/Input";
 import { Button } from "@/components/UI/Button";
 import { Radio } from "@/components/UI/Radio";
-import { RegionDropdown } from "@/components/UI/RegionsDropdown/RegionDropdown";
 import { useAppDispatch } from "@/store/hooks";
 import {
   postImageFile,
   saveHouse,
 } from "@/store/slices/user/addHouse/addHouseThunk";
 import { useNavigate } from "react-router";
+import { RegionDropdown } from "@/components/UI/RegionDropdown";
+import { CameraIcon } from "@/assets/icons";
 
 type FormValues = {
   homeType: "APARTMENT" | "HOUSE";
-  maxGuests: number;
+  maxOfGuests: number;
   price: number;
   title: string;
   description: string;
@@ -118,8 +119,8 @@ const LeaveAnAdForm = () => {
           ))}
 
           {imagePreviews.length < 4 && (
-            <label className="w-33.75 h-33.75 bg-[#F3F3F3] flex flex-col items-center justify-center cursor-pointer border border-dashed border-[#C4C4C4] gap-2">
-              <div className="w-10 h-10 border border-[#C4C4C4] rounded-[6px] opacity-60" />
+            <label className="w-33.75 h-33.75 bg-[#F3F3F3] flex flex-col items-center justify-center cursor-pointer  border-[#C4C4C4] gap-2">
+              <img src={CameraIcon} className="w-10 h-10" />
               <span className="text-[13px] text-[#266BD3]">Add photo</span>
               <input
                 type="file"
@@ -153,17 +154,17 @@ const LeaveAnAdForm = () => {
             <Input
               placeholder="0"
               type="number"
-              className="w-61.25 h-9.75 rounded-[2px]"
-              {...register("maxGuests", { valueAsNumber: true })}
+              className="w-61.25 h-9.75 bg-white border border-black rounded"
+              {...register("maxOfGuests", { valueAsNumber: true })}
             />
           </div>
 
           <div className="w-61.25">
             <p className="text-[16px] text-[#363636] mb-2">Price</p>
             <Input
-              placeholder="0"
+              placeholder="$0"
               type="number"
-              className="w-61.25 h-9.75 rounded-[2px]"
+              className="w-61.25 h-9.75 bg-white border border-black rounded"
               {...register("price", { valueAsNumber: true })}
             />
           </div>
@@ -172,7 +173,8 @@ const LeaveAnAdForm = () => {
         <div className="mt-8">
           <p className="text-[16px] text-[#363636] mb-2">Title</p>
           <Input
-            className="w-152.5 h-9.75 rounded-[2px]"
+            placeholder="Title of House/Apartment"
+            className="w-152.5 h-9.75 bg-white border border-black rounded"
             {...register("title")}
           />
         </div>
@@ -182,7 +184,8 @@ const LeaveAnAdForm = () => {
             Description of listing
           </p>
           <textarea
-            className="w-152.5 h-26 border border-[#E0E0E0] rounded-[2px] px-3 py-2 text-[16px] outline-none resize-none"
+            placeholder="Write Description of listing"
+            className="w-152.5 h-26 px-3 py-2 text-[16px] outline-none resize-none bg-white border border-black rounded"
             {...register("description")}
           />
         </div>
@@ -193,10 +196,12 @@ const LeaveAnAdForm = () => {
             onChange={(value: string) => setValue("region", value)}
           />
         </div>
+
         <div className="mt-8">
           <p className="text-[16px] text-[#363636] mb-2">Town / Province</p>
           <Input
-            className="w-152.5 h-9.75 rounded-[2px]"
+            placeholder="Town or Province"
+            className="w-152.5 h-9.75 bg-white border border-black rounded"
             {...register("province")}
           />
         </div>
@@ -204,7 +209,8 @@ const LeaveAnAdForm = () => {
         <div className="mt-8">
           <p className="text-[16px] text-[#363636] mb-2">Address</p>
           <Input
-            className="w-152.5 h-9.75 rounded-[2px]"
+            placeholder="The exact address"
+            className="w-152.5 h-9.75  bg-white border border-gray-300 rounded"
             {...register("address")}
           />
         </div>

@@ -1,5 +1,5 @@
 import { ArrowDownIcon, Logo } from "@/assets/icons";
-import LogoutModal from "@/components/UI/LogoutModal/LogoutModal";
+import LogoutModal from "@/components/logout-modal/LogoutModal";
 import { useAppDispatch } from "@/store/hooks";
 import { logout } from "@/store/slices/auth/authSlice";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
