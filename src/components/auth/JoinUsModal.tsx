@@ -5,8 +5,8 @@ import { Modal } from "../UI/Modal";
 import { GoogleIcon } from "@/assets/icons";
 import { signInWithPopup } from "firebase/auth";
 import { useAppDispatch } from "@/store/hooks";
-import { authWithGoogleRequest } from "@/store/slices/auth/autThunk";
 import { auth, googleProvider } from "@/configs/firebase";
+import { authWithGoogleRequest } from "@/store/slices/auth/authThunk";
 
 type JoinUsModalProps = {
   onClose: () => void;

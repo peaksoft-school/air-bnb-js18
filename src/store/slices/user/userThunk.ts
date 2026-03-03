@@ -10,6 +10,7 @@ export const getProfile = createAsyncThunk<
   try {
     const response =
       await axiosInstance.get<UserProfileResponse>("/api/users/profile");
+
     return response.data;
   } catch {
     return rejectWithValue("Failed to load profile");

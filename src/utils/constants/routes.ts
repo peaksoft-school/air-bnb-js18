@@ -6,8 +6,19 @@ export const ROLES = {
 
 export const ADMIN_ROUTES = {
   index: "/admin",
+  application: "/admin/application",
+  applicationById: "/admin/application/:applicationId",
   allHousing: "/admin/all-housing",
+  users: "/admin/users",
+  user: "/admin/users/:userId",
 };
+
 export const USER_ROUTES = {
   index: "/user",
+  innerRegion: "/user/inner-region",
+  house: "/user/inner-region/house/:id",
+  favorite: "/user/favorite",
+  profile: "/user/profile",
+  innerMyAnnouncement: "/user/profile/my-announcement/:houseId",
+  anAd: "user/an-ad",
 };

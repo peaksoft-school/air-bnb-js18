@@ -1,10 +1,30 @@
 import { ArrowDownIcon, Logo } from "@/assets/icons";
+import LogoutModal from "@/components/logout-modal/LogoutModal";
+import { useAppDispatch } from "@/store/hooks";
+import { logout } from "@/store/slices/auth/authSlice";
 import { ADMIN_ROUTES } from "@/utils/constants/routes";
 import { useState } from "react";
 import { NavLink } from "react-router";
 
 export const AdminHeader = () => {
   const [open, setOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const handleOpenDropDown = () => setOpen((prev) => !prev);
+
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
+
+    setOpen(false);
+  };
+
+  const handleConfirmLogout = () => {
+    dispatch(logout());
+
+    setIsLogoutModalOpen(false);
+  };
 
   return (
     <header className="bg-[#0B0B0B] h-20.5 flex justify-between items-center px-10">
@@ -19,7 +39,7 @@ export const AdminHeader = () => {
               isActive ? "text-[#FF4B4B]" : "hover:text-[#FF4B4B]"
             }
           >
-            All housing
+            Application
           </NavLink>
 
           <NavLink
@@ -46,7 +66,7 @@ export const AdminHeader = () => {
 
       <div className="relative flex items-center text-[#FFFFFF]">
         <button
-          onClick={() => setOpen(!open)}
+          onClick={handleOpenDropDown}
           className="flex items-center gap-2 cursor-pointer"
         >
           Administrator
@@ -58,11 +78,19 @@ export const AdminHeader = () => {
             <button
               className="
                 w-full h-6.25 mx-auto mt-4 px-5 flex items-center text-[#525252] font-inter text-base hover:bg-gray-200 cursor-pointer"
-              onClick={() => console.log("logout")}
+              onClick={handleLogoutClick}
             >
               Log out
             </button>
           </div>
+        )}
+
+        {isLogoutModalOpen && (
+          <LogoutModal
+            open={isLogoutModalOpen}
+            onClose={() => setIsLogoutModalOpen(false)}
+            onLogout={handleConfirmLogout}
+          />
         )}
       </div>
     </header>

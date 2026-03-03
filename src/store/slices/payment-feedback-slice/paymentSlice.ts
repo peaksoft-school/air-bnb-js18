@@ -1,47 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { chargePayment } from "./paymentThunks";
-import type { PaymentError } from "./types/payment";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Dayjs } from "dayjs";
+import { postPayment } from "./paymentThunks";
 
 interface PaymentState {
-  loading: boolean;
-  error: PaymentError | null;
-  success: boolean;
+  isLoading: boolean;
+  startedDate: string | null; // ISO строка
+  endedDate: string | null;
+  booking: any[];
 }
 
 const initialState: PaymentState = {
-  loading: false,
-  error: null,
-  success: false,
+  isLoading: false,
+  startedDate: null,
+  endedDate: null,
+  booking: [],
 };
 
 export const paymentSlice = createSlice({
   name: "payment",
   initialState,
   reducers: {
-    resetPayment: (state) => {
-      state.loading = false;
-      state.error = null;
-      state.success = false;
+    changeStartDate: (state, { payload }: PayloadAction<Dayjs | null>) => {
+      // Сохраняй строку, а не Dayjs объект
+      state.startedDate = payload ? payload.toISOString() : null;
+    },
+    changeEndDate: (state, { payload }: PayloadAction<Dayjs | null>) => {
+      state.endedDate = payload ? payload.toISOString() : null;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(chargePayment.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(chargePayment.fulfilled, (state) => {
-        state.loading = false;
-        state.success = true;
-      })
-      .addCase(chargePayment.rejected, (state, action) => {
-        state.loading = false;
-        state.success = false;
 
-        state.error = action.payload ?? { message: "Unknown error" };
-      });
+  extraReducers: (builder) => {
+    builder.addCase(postPayment.fulfilled, (state, { payload }) => {
+      state.booking = [...state.booking, payload];
+    });
   },
 });
 
-export const { resetPayment } = paymentSlice.actions;
+export const { changeStartDate, changeEndDate } = paymentSlice.actions;
