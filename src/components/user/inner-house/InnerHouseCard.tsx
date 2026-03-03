@@ -28,9 +28,9 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editData, setEditData] = useState<HouseInnerPage | null>(null);
 
-const { email, isAuth } = useAppSelector((state) => state.auth);
+  const { email, isAuth } = useAppSelector((state) => state.auth);
 
-const isOwner = isAuth && email === house?.userResponse?.email;
+  const isOwner = isAuth && email === house?.userResponse?.email;
 
   const previewImages = house.images
     .filter((img) => img !== activeImage)
@@ -47,8 +47,7 @@ const isOwner = isAuth && email === house?.userResponse?.email;
     setIsEditModalOpen(false);
   };
 
-  const changeIsLike = () => {
-  };
+  const changeIsLike = () => {};
 
   return (
     <div>
@@ -193,7 +192,6 @@ const isOwner = isAuth && email === house?.userResponse?.email;
               onChange={(e) => handleEditChange("title", e.target.value)}
               className="border p-2 rounded"
             />
-
             <textarea
               value={editData.description}
               onChange={(e) => handleEditChange("description", e.target.value)}
