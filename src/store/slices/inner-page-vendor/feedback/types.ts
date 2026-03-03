@@ -18,7 +18,6 @@ export interface FeedbackState {
 
 export interface NewFeedback {
   houseId: number;
-  name: string;
   feedback: string;
   rating: number;
   images?: string[];

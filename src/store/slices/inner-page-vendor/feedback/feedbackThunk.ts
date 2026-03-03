@@ -24,9 +24,15 @@ export const saveFeedback = createAsyncThunk<
   Feedback,
   NewFeedback,
   { rejectValue: string }
->("feedbacks/save", async (feedbackData, { rejectWithValue }) => {
+>("feedbacks/save", async (feedbackData, { rejectWithValue, dispatch }) => {
   try {
-    const response = await axiosInstance.post("/api/feedbacks", feedbackData);
+    const response = await axiosInstance.post(
+      `/api/feedbacks?houseId=${feedbackData.houseId}`,
+      feedbackData,
+    );
+
+    dispatch(getFeedbackRatingsByHouseId(feedbackData.houseId));
+
     return response.data;
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || "Error");

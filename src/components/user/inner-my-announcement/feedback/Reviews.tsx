@@ -6,6 +6,7 @@ import { ReviewsStats } from "./ReviewsStats";
 import {
   getFeedbackRatingsByHouseId,
   getFeedbacksByHouseId,
+  saveFeedback,
 } from "@/store/slices/inner-page-vendor/feedback/feedbackThunk";
 import { Button } from "@/components/UI/Button";
 import { Modal } from "@/components/UI/Modal";
@@ -31,20 +32,33 @@ export const Reviews = () => {
   }, [dispatch, houseId]);
 
   if (loading) return <p className="mt-6 text-gray-400">Loading reviews…</p>;
-  if (!feedbacks.length)
+
+  if (!feedbacks?.length)
     return <p className="mt-6 text-gray-400">No reviews yet.</p>;
 
   const visibleFeedbacks = showAll ? feedbacks : feedbacks.slice(0, 3);
+
+  const handleSubmit = (id: number) => {
+    dispatch(
+      saveFeedback({
+        rating,
+        feedback: text,
+        houseId: id,
+      }),
+    );
+
+    setIsModalOpen(false);
+  };
 
   return (
     <>
       <div className="flex gap-30 items-start">
         <div className="flex flex-col gap-8">
-          {visibleFeedbacks.map((item) => (
+          {visibleFeedbacks?.map((item) => (
             <ReviewItem key={item.id} feedback={item} />
           ))}
 
-          {feedbacks.length > 3 && !showAll && (
+          {feedbacks?.length > 3 && !showAll && (
             <button
               onClick={() => setShowAll(true)}
               className="text-sm underline self-center"
@@ -81,7 +95,12 @@ export const Reviews = () => {
             className="border p-3 h-28 resize-none"
           />
 
-          <button className="bg-black text-white py-2">Submit</button>
+          <button
+            className="bg-black text-white py-2"
+            onClick={() => handleSubmit(houseId)}
+          >
+            Submit
+          </button>
         </div>
       </Modal>
     </>
