@@ -20,17 +20,12 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
   const { loadingDelete, loadingUpdate } = useAppSelector(
     (state) => state.housesVendor,
   );
-
   const dispatch = useAppDispatch();
 
   const [activeImage, setActiveImage] = useState(house.images[0]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editData, setEditData] = useState<HouseInnerPage | null>(null);
-
-const { email, isAuth } = useAppSelector((state) => state.auth);
-
-const isOwner = isAuth && email === house?.userResponse?.email;
 
   const previewImages = house.images
     .filter((img) => img !== activeImage)
@@ -47,8 +42,9 @@ const isOwner = isAuth && email === house?.userResponse?.email;
     setIsEditModalOpen(false);
   };
 
-  const changeIsLike = () => {
-  };
+  console.log(house);
+
+  const changeIsLike = () => {};
 
   return (
     <div>
@@ -63,7 +59,6 @@ const isOwner = isAuth && email === house?.userResponse?.email;
               className="w-full h-full object-cover"
             />
           </div>
-
           <div className="flex gap-5">
             {previewImages.map((img, index) => (
               <div
@@ -87,7 +82,6 @@ const isOwner = isAuth && email === house?.userResponse?.email;
               {house.houseType?.charAt(0)?.toUpperCase() +
                 house.houseType?.slice(1)?.toLowerCase()}
             </span>
-
             <span className="px-3 py-1 bg-[#FFF0F6] border border-[#FFCBE0] text-sm">
               {house.maxGuests} Guests
             </span>
@@ -118,40 +112,36 @@ const isOwner = isAuth && email === house?.userResponse?.email;
           </div>
 
           <div className="flex gap-4 mt-12">
-            {isOwner ? (
-              <>
-                <Button
-                  variant="outline"
-                  className="text-[#DD8A08] border-[#DD8A08]"
-                  onClick={() => setIsDeleteModalOpen(true)}
-                  disabled={loadingDelete}
-                >
-                  DELETE
-                </Button>
+            {/* <Button
+              variant="outline"
+              className="text-[#DD8A08] border-[#DD8A08]"
+              onClick={() => setIsDeleteModalOpen(true)}
+              disabled={loadingDelete}
+            >
+              DELETE
+            </Button>
+            <Button
+              variant="default"
+              onClick={() => {
+                setEditData({ ...house } as HouseInnerPage);
+                setIsEditModalOpen(true);
+              }}
+              disabled={loadingUpdate}
+            >
+              EDIT */}
+            {/* </Button> */}
 
-                <Button
-                  variant="default"
-                  onClick={() => {
-                    setEditData({ ...house } as HouseInnerPage);
-                    setIsEditModalOpen(true);
-                  }}
-                  disabled={loadingUpdate}
-                >
-                  EDIT
-                </Button>
-              </>
-            ) : (
-              <Payment
-                price={house?.price}
-                id={house.id}
-                booked={house?.booked}
-                changeIsLike={changeIsLike}
-                isLike={house?.favorite}
-              />
-            )}
+            <Payment
+              price={house?.price}
+              id={house.id}
+              booked={house?.booked}
+              changeIsLike={changeIsLike}
+              isLike={house?.favorite}
+            />
           </div>
         </div>
       </div>
+
       <Modal
         open={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
@@ -160,7 +150,6 @@ const isOwner = isAuth && email === house?.userResponse?.email;
           <h3 className="text-lg font-semibold mb-4">
             Вы уверены, что хотите удалить этот объект?
           </h3>
-
           <div className="flex justify-center gap-4">
             <Button
               variant="default"
@@ -172,7 +161,6 @@ const isOwner = isAuth && email === house?.userResponse?.email;
             >
               Удалить
             </Button>
-
             <Button
               variant="outline"
               onClick={() => setIsDeleteModalOpen(false)}
@@ -182,38 +170,37 @@ const isOwner = isAuth && email === house?.userResponse?.email;
           </div>
         </div>
       </Modal>
+
       <Modal open={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
         {editData && (
           <div className="p-6 flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Редактировать объект</h3>
-
             <input
               type="text"
               value={editData.title}
               onChange={(e) => handleEditChange("title", e.target.value)}
+              placeholder="Title"
               className="border p-2 rounded"
             />
-
             <textarea
               value={editData.description}
               onChange={(e) => handleEditChange("description", e.target.value)}
+              placeholder="Description"
               className="border p-2 rounded"
             />
-
             <input
               type="number"
               value={editData.price}
               onChange={(e) =>
                 handleEditChange("price", Number(e.target.value))
               }
+              placeholder="Price"
               className="border p-2 rounded"
             />
-
             <div className="flex justify-end gap-4 mt-4">
               <Button onClick={handleConfirmEdit} disabled={loadingUpdate}>
                 Сохранить
               </Button>
-
               <Button
                 variant="outline"
                 onClick={() => setIsEditModalOpen(false)}
