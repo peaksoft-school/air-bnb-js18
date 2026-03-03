@@ -7,17 +7,23 @@ import {
 } from "@/store/slices/user/favorite/favoriteThunk";
 import UserNoDataImage from "@/assets/images/user-no-data.png";
 import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
+import { useNavigate } from "react-router";
 
 const Favorite = () => {
   const { favorite, isLoading } = useAppSelector((state) => state.favorite);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllFavorites());
   }, [dispatch]);
 
   const handleFavorite = (id: number | string) => dispatch(toggleFavorite(id));
+
+  const handleOpenHouse = (id: number | string) => {
+    navigate(`/user/inner-region/house/${id}`);
+  };
 
   if (isLoading) return <div className="py-10">Loading...</div>;
 
@@ -44,6 +50,7 @@ const Favorite = () => {
               key={item.id}
               data={item}
               onToggleFavorite={() => handleFavorite(item.id)}
+              onClick={() => handleOpenHouse(item.id)}
             />
           ))}
         </div>

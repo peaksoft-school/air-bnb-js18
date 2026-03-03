@@ -20,12 +20,17 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
   const { loadingDelete, loadingUpdate } = useAppSelector(
     (state) => state.housesVendor,
   );
+
   const dispatch = useAppDispatch();
 
   const [activeImage, setActiveImage] = useState(house.images[0]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editData, setEditData] = useState<HouseInnerPage | null>(null);
+
+const { email, isAuth } = useAppSelector((state) => state.auth);
+
+const isOwner = isAuth && email === house?.userResponse?.email;
 
   const previewImages = house.images
     .filter((img) => img !== activeImage)
@@ -42,9 +47,8 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
     setIsEditModalOpen(false);
   };
 
-  console.log(house);
-
-  const changeIsLike = () => {};
+  const changeIsLike = () => {
+  };
 
   return (
     <div>
@@ -59,6 +63,7 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
               className="w-full h-full object-cover"
             />
           </div>
+
           <div className="flex gap-5">
             {previewImages.map((img, index) => (
               <div
@@ -82,6 +87,7 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
               {house.houseType?.charAt(0)?.toUpperCase() +
                 house.houseType?.slice(1)?.toLowerCase()}
             </span>
+
             <span className="px-3 py-1 bg-[#FFF0F6] border border-[#FFCBE0] text-sm">
               {house.maxGuests} Guests
             </span>
@@ -112,36 +118,40 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
           </div>
 
           <div className="flex gap-4 mt-12">
-            {/* <Button
-              variant="outline"
-              className="text-[#DD8A08] border-[#DD8A08]"
-              onClick={() => setIsDeleteModalOpen(true)}
-              disabled={loadingDelete}
-            >
-              DELETE
-            </Button>
-            <Button
-              variant="default"
-              onClick={() => {
-                setEditData({ ...house } as HouseInnerPage);
-                setIsEditModalOpen(true);
-              }}
-              disabled={loadingUpdate}
-            >
-              EDIT */}
-            {/* </Button> */}
+            {isOwner ? (
+              <>
+                <Button
+                  variant="outline"
+                  className="text-[#DD8A08] border-[#DD8A08]"
+                  onClick={() => setIsDeleteModalOpen(true)}
+                  disabled={loadingDelete}
+                >
+                  DELETE
+                </Button>
 
-            <Payment
-              price={house?.price}
-              id={house.id}
-              booked={house?.booked}
-              changeIsLike={changeIsLike}
-              isLike={house?.favorite}
-            />
+                <Button
+                  variant="default"
+                  onClick={() => {
+                    setEditData({ ...house } as HouseInnerPage);
+                    setIsEditModalOpen(true);
+                  }}
+                  disabled={loadingUpdate}
+                >
+                  EDIT
+                </Button>
+              </>
+            ) : (
+              <Payment
+                price={house?.price}
+                id={house.id}
+                booked={house?.booked}
+                changeIsLike={changeIsLike}
+                isLike={house?.favorite}
+              />
+            )}
           </div>
         </div>
       </div>
-
       <Modal
         open={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
@@ -150,6 +160,7 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
           <h3 className="text-lg font-semibold mb-4">
             Вы уверены, что хотите удалить этот объект?
           </h3>
+
           <div className="flex justify-center gap-4">
             <Button
               variant="default"
@@ -161,6 +172,7 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
             >
               Удалить
             </Button>
+
             <Button
               variant="outline"
               onClick={() => setIsDeleteModalOpen(false)}
@@ -170,37 +182,38 @@ export const InnerHouseCard = ({ house }: PropertyCardProps) => {
           </div>
         </div>
       </Modal>
-
       <Modal open={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
         {editData && (
           <div className="p-6 flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Редактировать объект</h3>
+
             <input
               type="text"
               value={editData.title}
               onChange={(e) => handleEditChange("title", e.target.value)}
-              placeholder="Title"
               className="border p-2 rounded"
             />
+
             <textarea
               value={editData.description}
               onChange={(e) => handleEditChange("description", e.target.value)}
-              placeholder="Description"
               className="border p-2 rounded"
             />
+
             <input
               type="number"
               value={editData.price}
               onChange={(e) =>
                 handleEditChange("price", Number(e.target.value))
               }
-              placeholder="Price"
               className="border p-2 rounded"
             />
+
             <div className="flex justify-end gap-4 mt-4">
               <Button onClick={handleConfirmEdit} disabled={loadingUpdate}>
                 Сохранить
               </Button>
+
               <Button
                 variant="outline"
                 onClick={() => setIsEditModalOpen(false)}
