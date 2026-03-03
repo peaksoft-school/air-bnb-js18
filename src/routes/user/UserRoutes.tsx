@@ -12,9 +12,11 @@ const InnerMyAnnouncement = lazy(
 const LeaveAnAdForm = lazy(
   () => import("@/pages/user/leave-an-ad/LeaveAnAdForm"),
 );
+const InnerHouse = lazy(() => import("@/pages/user/InnerHouse"));
 
 export const userRoutes = [
   { path: USER_ROUTES.innerRegion, Component: UserRegionsFiltered },
+  { path: USER_ROUTES.house, Component: InnerHouse },
   { path: USER_ROUTES.favorite, Component: Favorite },
   { path: USER_ROUTES.profile, Component: Profile },
   { path: USER_ROUTES.innerMyAnnouncement, Component: InnerMyAnnouncement },

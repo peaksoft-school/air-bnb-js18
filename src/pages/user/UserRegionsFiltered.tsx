@@ -12,11 +12,12 @@ import {
 } from "@/utils/constants/user";
 import Select from "../../components/UI/Select";
 import { Chip } from "../../components/UI/Chip";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import UserNoDataImage from "@/assets/images/user-no-data.png";
 import { Pagination } from "../../components/UI/Pagination";
 import { Card } from "../../components/UI/card/Card";
 import { Breadcrumbs } from "@/components/UI/Breadcrumbs";
+import { USER_ROUTES } from "@/utils/constants/routes";
 
 type SelectChangeEvent = {
   target: {
@@ -26,6 +27,7 @@ type SelectChangeEvent = {
 
 const UserRegionsFiltered = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const { houses, totalPages, loading } = useAppSelector(
     (state) => state.houses,
@@ -227,6 +229,9 @@ const UserRegionsFiltered = () => {
               data={house}
               variant="default"
               onToggleFavorite={handleToggleFavorite}
+              onClick={() =>
+                navigate(`${USER_ROUTES.innerRegion}/house/${house.id}`)
+              }
             />
           ))}
         </div>

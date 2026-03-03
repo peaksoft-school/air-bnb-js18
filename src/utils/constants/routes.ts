@@ -16,6 +16,7 @@ export const ADMIN_ROUTES = {
 export const USER_ROUTES = {
   index: "/user",
   innerRegion: "/user/inner-region",
+  house: "/user/inner-region/house/:id",
   favorite: "/user/favorite",
   profile: "/user/profile",
   innerMyAnnouncement: "/user/profile/my-announcement/:houseId",

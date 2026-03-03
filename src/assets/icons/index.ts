@@ -21,6 +21,7 @@ import DislikeIcon from "./svgs/dislike.svg";
 import BlackLikeIcon from "./svgs/black-like.svg";
 import BlackDislikeIcon from "./svgs/black-dislike.svg";
 import CameraIcon from "./svgs/camera.svg";
+import CalendarIcon from "./svgs/calendar.svg";
 
 export {
   Logo,
@@ -46,4 +47,5 @@ export {
   BlackLikeIcon,
   BlackDislikeIcon,
   CameraIcon,
+  CalendarIcon,
 };

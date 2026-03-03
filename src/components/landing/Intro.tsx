@@ -82,7 +82,7 @@ export const Intro = () => {
 
                   <button
                     className="w-full text-left px-4 py-2 hover:bg-gray-100 text-sm text-red-500 rounded cursor-pointer"
-                    onClick={handleLogoutClick} // <- теперь открываем модальное
+                    onClick={handleLogoutClick}
                   >
                     Log out
                   </button>

@@ -5,6 +5,7 @@ import { persistReducer } from "redux-persist";
 import { authSlice } from "./slices/auth/authSlice";
 import { userSlice } from "./slices/user/userSlice";
 import { landingSlice } from "./slices/landing/landingSlice";
+import {paymentSlice} from "./slices/payment-feedback-slice/paymentSlice";
 import { feedbacksSlice } from "./slices/inner-page-vendor/feedback/feedbackSlice";
 import { housesVendorSlice } from "./slices/inner-page-vendor/house/houseSlice";
 import { housesSlice } from "./slices/user/houses/housesSlice";
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [userSlice.name]: userSlice.reducer,
   [usersSlice.name]: usersSlice.reducer,
   [landingSlice.name]: landingSlice.reducer,
+  [paymentSlice.name]: paymentSlice.reducer,
   [feedbacksSlice.name]: feedbacksSlice.reducer,
   [housesSlice.name]: housesSlice.reducer,
   [favoritesSlice.name]: favoritesSlice.reducer,

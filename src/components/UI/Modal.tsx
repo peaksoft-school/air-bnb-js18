@@ -15,7 +15,7 @@ export const Modal = ({ open, onClose, children }: ModalProps) => {
 
       <div className="relative z-10 flex min-h-screen items-center justify-center">
         <div
-          className="rounded-xl bg-white shadow-lg"
+          className="bg-white shadow-lg"
           onClick={(e) => e.stopPropagation()}
         >
           {children}
